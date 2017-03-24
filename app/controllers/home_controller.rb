@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     @close_array2 = []
 
     @enddate = Date.today
-    @startdate = @enddate - 100.days
+    @startdate = @enddate - 17.days
 
     b = Benchmark.measure do
       @stocks = StockQuote::Stock.history('aapl', "#{@startdate}", "#{@enddate}")
@@ -104,6 +104,7 @@ class HomeController < ApplicationController
 
 # ###################################################
     # ONE DOLLAR TRAIL
+    # return as .98 or 1.02
     @new_array = []
     @lastr = @close_array[1]
 
@@ -159,15 +160,15 @@ class HomeController < ApplicationController
       @number2 = @newNum
     end
 
+    @date_array.shift
+    @date_array1.shift
+    @date_array2.shift
 
     @zip6 = @date_array.reverse.zip(@hundredDollarArray)
     @zip7 = @date_array1.reverse.zip(@hundredDollarArray1)
     @zip8 = @date_array2.reverse.zip(@hundredDollarArray2)
 
-
-
-
-
+##########################################################
     @data1 = [
       {name: "#{@stocks.first.symbol}", data: @zip },
       {name: "#{@stocks1.first.symbol}", data: @zip1 },
@@ -191,10 +192,46 @@ class HomeController < ApplicationController
     @maximum = @all_values.max
 
 # #############################################
+
 # SORTINO RATIO
+# a higher Sortino ratio is better. When looking at two
+# similar investments, a rational investor would prefer
+# the one with the higher Sortino ratio because it means
+# that the investment is earning more return per unit of
+# bad risk that it takes on.
+  @min_acc_return = 0.0
+  @excess_return = []
+  @negative_excess_return =  []
+# if return is less than 0 it is stored, else it is stored as
+  @new_array.each do |ret|
+    @excess_return << ret-1-@min_acc_return
+  end
 
+  @excess_return.each do |ret|
+    if ret < 0
+      @negative_excess_return << ret
+    else
+      @negative_excess_return << 0
+    end
+  end
 
+  @suma = 0
+  @negative_excess_return.each do |neg|
+    @suma += neg**2
+  end
 
+  @downside_risk = (@suma/@negative_excess_return.length) ** 0.5
+  @average_excess_return = @excess_return.mean
+  @sortino = @average_excess_return/@downside_risk
+
+  puts @downside_risk
+  puts @sortino
+
+  # @excess_return
+  # puts @average_excess_return
+  # puts @downside_risk
+  # puts @excess_return
+  # puts @sortino
     # METAS
       # 1 anásisis técnico
       # 2 mejores visuales con monedas
