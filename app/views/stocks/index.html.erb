@@ -1,21 +1,21 @@
 <h1>STOCK PICKER</h1>
 <h1>TECHNICAL ANALYSIS</h1>
 <hr>
-<h1>ABSOLUTE PRICE CHART</h1>
+<!-- <h1>ABSOLUTE PRICE CHART</h1> -->
 
-<%= line_chart @data1 %>
+<%# line_chart @data1 %>
 
 <h1>STANDARD DEVIATION</h1>
-<%= @stocks.first.symbol %> -- <%= @stdev %> <br>
-<%= @stocks1.first.symbol  %> -- <%= @stdev1 %> <br>
-<%= @stocks2.first.symbol  %> -- <%= @stdev2 %> <br>
+<%= @stocks.first.symbol %> -- <%= @stdev.round(2) %> <br>
+<%= @stocks1.first.symbol  %> -- <%= @stdev1.round(2) %> <br>
+<%= @stocks2.first.symbol  %> -- <%= @stdev2.round(2) %> <br>
 
 <h1>VARIATION COEFFICIENT</h1>
 <p>The higher the riskier</p>
 <p>
-  <%= @stocks.first.symbol %> -- <%= @varcoef %> <br>
-  <%= @stocks1.first.symbol  %> -- <%= @varcoef1%> <br>
-  <%= @stocks2.first.symbol  %> -- <%= @varcoef2 %> <br>
+  <%= @stocks.first.symbol %> -- <%= @varcoef.round(2) %> <br>
+  <%= @stocks1.first.symbol  %> -- <%= @varcoef1.round(2)%> <br>
+  <%= @stocks2.first.symbol  %> -- <%= @varcoef2.round(2) %> <br>
 </p>
 
 <h1>RETURN ON INVESTMENT</h1>
@@ -28,7 +28,8 @@
 
 <h1>VARIATION CHART</h1>
 <p>Can improve</p>
-<%= line_chart @data2 %>
+
+<%= area_chart @data2 %>
 
 <h1>HUNDRED DOLLAR TEST</h1>
 <p>If You invested 100 dollars in </p>
@@ -41,13 +42,17 @@
 
 
 <h1>SORTINO Ratio</h1>
-<p>Eliminiates upward volatily</p>
+<p>Eliminates upward volatily</p>
 <p>
   A higher Sortino ratio is better. When looking at two similar investments, a rational investor would prefer the one with the higher Sortino ratio because it means that the investment is earning more return per unit of bad risk that it takes on.
+  <br>
 <%= @stocks.first.symbol %> -- <%= @sortino.round(2) %> %<br>
-<%= @stocks1.first.symbol  %> -- <% @sortino1.round(2)%> % <br>
+<%= @stocks1.first.symbol  %> -- <%= @sortino1.round(2) %> % <br>
 <%= @stocks2.first.symbol  %> -- <%= @sortino2.round(2) %>%<br>
 </p>
+
+<%# line_chart @sortinoGraph %>
+
 
 
 <h1>V@R</h1>

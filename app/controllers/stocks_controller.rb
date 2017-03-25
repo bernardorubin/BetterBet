@@ -2,7 +2,7 @@ require 'descriptive_statistics'
 
 class StocksController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @stock = StockQuote::Stock.quote("aapl")
 
@@ -16,7 +16,7 @@ class StocksController < ApplicationController
     @close_array2 = []
 
     @enddate = Date.today
-    @startdate = @enddate - 17.days
+    @startdate = @enddate - 300.days
 
     b = Benchmark.measure do
       @stocks = StockQuote::Stock.history('aapl', "#{@startdate}", "#{@enddate}")
@@ -122,8 +122,8 @@ class StocksController < ApplicationController
 
     @new_array.each do |x|
       @hundredDollarArray << @number
-      @newNum = x * @number
-      @number = @newNum
+      newNum = x * @number
+      @number = newNum
     end
 
     @new_array1 = []
@@ -140,8 +140,8 @@ class StocksController < ApplicationController
 
     @new_array1.each do |x|
       @hundredDollarArray1 << @number1
-      @newNum = x * @number1
-      @number1 = @newNum
+      newNum = x * @number1
+      @number1 = newNum
     end
 
 
@@ -159,8 +159,8 @@ class StocksController < ApplicationController
 
     @new_array2.each do |x|
       @hundredDollarArray2 << @number2
-      @newNum = x * @number2
-      @number2 = @newNum
+      newNum = x * @number2
+      @number2 = newNum
     end
 
     @date_array.shift
@@ -221,57 +221,76 @@ class StocksController < ApplicationController
   @downside_risk = (@suma/@negative_excess_return.length) ** 0.5
   @average_excess_return = @excess_return.mean
   @sortino = @average_excess_return/@downside_risk
+
 # #############
-@min_acc_return1 = 0.0
-@excess_return1 = []
-@negative_excess_return1 =  []
-# if return is less than 0 it is stored, else it is stored as
-@new_array1.each do |ret|
-  @excess_return1 << ret-1-@min_acc_return1
-end
 
-@excess_return1.each do |ret|
-  if ret < 0
-    @negative_excess_return1 << ret
-  else
-    @negative_excess_return1 << 0
+  @min_acc_return1 = 0.0
+  @excess_return1 = []
+  @negative_excess_return1 =  []
+  # if return is less than 0 it is stored, else it is stored as
+  @new_array1.each do |ret|
+    @excess_return1 << ret-1-@min_acc_return1
   end
-end
 
-@suma1 = 0
-@negative_excess_return1.each do |neg|
-  @suma1 += neg**2
-end
+  @excess_return1.each do |ret|
+    if ret < 0
+      @negative_excess_return1 << ret
+    else
+      @negative_excess_return1 << 0
+    end
+  end
 
-@downside_risk1 = (@suma1/@negative_excess_return1.length) ** 0.5
-@average_excess_return1 = @excess_return1.mean
-@sortino1 = @average_excess_return1/@downside_risk1
+  @suma1 = 0
+  @negative_excess_return1.each do |neg|
+    @suma1 += neg**2
+  end
+
+  @downside_risk1 = (@suma1/@negative_excess_return1.length) ** 0.5
+  @average_excess_return1 = @excess_return1.mean
+  @sortino1 = @average_excess_return1/@downside_risk1
+
 # ######################
-@min_acc_return2 = 0.0
-@excess_return2 = []
-@negative_excess_return2 =  []
-# if return is less than 0 it is stored, else it is stored as
-@new_array2.each do |ret|
-  @excess_return2 << ret-1-@min_acc_return2
-end
 
-@excess_return2.each do |ret|
-  if ret < 0
-    @negative_excess_return2 << ret
-  else
-    @negative_excess_return2 << 0
+  @min_acc_return2 = 0.0
+  @excess_return2 = []
+  @negative_excess_return2 =  []
+  # if return is less than 0 it is stored, else it is stored as
+  @new_array2.each do |ret|
+    @excess_return2 << ret-1-@min_acc_return2
   end
-end
 
-@suma2 = 0
-@negative_excess_return2.each do |neg|
-  @suma2 += neg**2
-end
+  @excess_return2.each do |ret|
+    if ret < 0
+      @negative_excess_return2 << ret
+    else
+      @negative_excess_return2 << 0
+    end
+  end
 
-@downside_risk2 = (@suma2/@negative_excess_return2.length) ** 0.5
-@average_excess_return2 = @excess_return2.mean
-@sortino2 = @average_excess_return2/@downside_risk2
+  @suma2 = 0
+  @negative_excess_return2.each do |neg|
+    @suma2 += neg**2
+  end
 
+  @downside_risk2 = (@suma2/@negative_excess_return2.length) ** 0.5
+  @average_excess_return2 = @excess_return2.mean
+  @sortino2 = @average_excess_return2/@downside_risk2
+
+  @neg = []
+  @negative_excess_return.each do |x|
+    @neg << x*100.round
+  end
+
+
+  @zip9 = @date_array.reverse.zip(@negative_excess_return)
+  @zip10 = @date_array1.reverse.zip(@negative_excess_return1)
+  @zip11 = @date_array2.reverse.zip(@negative_excess_return2)
+
+  @sortinoGraph = [
+    {name: "#{@stocks.first.symbol}", data: @zip9 },
+    {name: "#{@stocks1.first.symbol}", data: @zip10 },
+    {name: "#{@stocks2.first.symbol}", data: @zip11 }
+  ]
 
   # DRAW DB ERD 🌶
   # DRAW DB mockup 🌶

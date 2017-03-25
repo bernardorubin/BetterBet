@@ -16,3 +16,23 @@
 //= require highcharts
 //= require chartkick
 //= require bootstrap-sprockets
+
+$(document).ready(function(){
+  $('.toggleAnalysis').on('click', function(){
+    $('.betHub, .toggleBet').slideToggle().promise().done(function(){
+      $('.toggleAnalysis').parent().toggleClass('col-md-12');
+      $('.toggleAnalysis').parent().toggleClass('col-md-4');
+    });
+
+    $('.analysis').slideToggle();
+
+  });
+  $('.toggleBet').on('click', function(){
+    $('.betHub, .toggleAnalysis').slideToggle();
+    $(this).parent().toggleClass('col-md-12');
+    $(this).parent().toggleClass('col-md-4');
+    $('.placeABet').slideToggle();
+
+  });
+  console.log('Hello');
+})
