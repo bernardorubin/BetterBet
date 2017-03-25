@@ -63,5 +63,5 @@ tickerArray = [
 
 
 tickerArray.each do |x|
-  Ticker.create(ticker: x)
+  Ticker.create(name: x)
 end

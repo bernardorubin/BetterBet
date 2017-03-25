@@ -1,4 +1,4 @@
 class Portfolio < ApplicationRecord
   belongs_to :user
-  has_many :tickers
+  belongs_to :portfolio_tickers
 end

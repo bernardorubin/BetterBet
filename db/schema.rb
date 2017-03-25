@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325205754) do
+ActiveRecord::Schema.define(version: 20170325212554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "portfolio_tickers", force: :cascade do |t|
+    t.integer  "portfolio_id"
+    t.integer  "tickers_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["portfolio_id"], name: "index_portfolio_tickers_on_portfolio_id", using: :btree
+    t.index ["tickers_id"], name: "index_portfolio_tickers_on_tickers_id", using: :btree
+  end
+
   create_table "portfolios", force: :cascade do |t|
-    t.text     "tickers",                   array: true
     t.float    "startvalue"
     t.float    "currentvalue"
     t.datetime "startdate"
@@ -28,11 +36,9 @@ ActiveRecord::Schema.define(version: 20170325205754) do
   end
 
   create_table "tickers", force: :cascade do |t|
-    t.string   "ticker"
-    t.integer  "portfolio_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["portfolio_id"], name: "index_tickers_on_portfolio_id", using: :btree
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170325205754) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "portfolio_tickers", "portfolios"
+  add_foreign_key "portfolio_tickers", "tickers", column: "tickers_id"
   add_foreign_key "portfolios", "users"
-  add_foreign_key "tickers", "portfolios"
 end
