@@ -6,12 +6,16 @@ git_source(:github) do |repo_name|
 end
 # https://github.com/tyrauber/stock_quote
 # https://rubygems.org/gems/money-open-exchange-rates
+# MY GEMS
+gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 gem 'better_errors'
 gem 'stock_quote'
 gem 'chartkick', '~> 1.4'
 gem 'yahoo-finance', '~> 1.2'
+#///////////////////////////////////////////////////////
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use postgresql as the database for Active Record

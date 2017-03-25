@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   get '/' => 'main#index'
 
-  resources :stocks, only: [:show]
-  resources :currencies only: [:show]
+  resources :stocks, only: :index
+  resources :currencies, only: :index
 
 end
