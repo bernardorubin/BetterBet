@@ -194,11 +194,6 @@ class HomeController < ApplicationController
 # #############################################
 
 # SORTINO RATIO
-# a higher Sortino ratio is better. When looking at two
-# similar investments, a rational investor would prefer
-# the one with the higher Sortino ratio because it means
-# that the investment is earning more return per unit of
-# bad risk that it takes on.
   @min_acc_return = 0.0
   @excess_return = []
   @negative_excess_return =  []
@@ -223,19 +218,68 @@ class HomeController < ApplicationController
   @downside_risk = (@suma/@negative_excess_return.length) ** 0.5
   @average_excess_return = @excess_return.mean
   @sortino = @average_excess_return/@downside_risk
+# #############
+@min_acc_return1 = 0.0
+@excess_return1 = []
+@negative_excess_return1 =  []
+# if return is less than 0 it is stored, else it is stored as
+@new_array1.each do |ret|
+  @excess_return1 << ret-1-@min_acc_return1
+end
 
-  puts @downside_risk
-  puts @sortino
+@excess_return1.each do |ret|
+  if ret < 0
+    @negative_excess_return1 << ret
+  else
+    @negative_excess_return1 << 0
+  end
+end
 
-  # @excess_return
-  # puts @average_excess_return
-  # puts @downside_risk
-  # puts @excess_return
-  # puts @sortino
+@suma1 = 0
+@negative_excess_return1.each do |neg|
+  @suma1 += neg**2
+end
+
+@downside_risk1 = (@suma1/@negative_excess_return1.length) ** 0.5
+@average_excess_return1 = @excess_return1.mean
+@sortino1 = @average_excess_return1/@downside_risk1
+# ######################
+@min_acc_return2 = 0.0
+@excess_return2 = []
+@negative_excess_return2 =  []
+# if return is less than 0 it is stored, else it is stored as
+@new_array2.each do |ret|
+  @excess_return2 << ret-1-@min_acc_return2
+end
+
+@excess_return2.each do |ret|
+  if ret < 0
+    @negative_excess_return2 << ret
+  else
+    @negative_excess_return2 << 0
+  end
+end
+
+@suma2 = 0
+@negative_excess_return2.each do |neg|
+  @suma2 += neg**2
+end
+
+@downside_risk2 = (@suma2/@negative_excess_return2.length) ** 0.5
+@average_excess_return2 = @excess_return2.mean
+@sortino2 = @average_excess_return2/@downside_risk2
+
+
+  # DRAW DB ERD 🌶
+  # DRAW DB mockup 🌶
+
+  # graph should ignore empty days (weekends)
+  # Query database monthly when range is higher than x amount
     # METAS
-      # 1 anásisis técnico
+      # store all stock information data in DB
+      # 1 análisis técnico cabrón ✅
       # 2 mejores visuales con monedas
-      # 3 análisis fundamental
+      # 3 análisis fundamental con gurus probably
       # 4 gurus
       # 5 apuestas con otras personas y board
       # 6 agregar deportes

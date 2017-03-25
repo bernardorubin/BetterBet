@@ -1,4 +1,5 @@
 <h1>STOCK PICKER</h1>
+<h1>TECHNICAL ANALYSIS</h1>
 <hr>
 <h1>ABSOLUTE PRICE CHART</h1>
 
@@ -37,6 +38,29 @@
 <%= @stocks2.first.symbol %> at beginning today you would have <%= @number2.round(2) %> today <br>
 </p>
 <%= line_chart @data3, min: @minimum, max: @maximum %>
+
+
+<h1>SORTINO Ratio</h1>
+<p>Eliminiates upward volatily</p>
+<p>
+  A higher Sortino ratio is better. When looking at two similar investments, a rational investor would prefer the one with the higher Sortino ratio because it means that the investment is earning more return per unit of bad risk that it takes on.
+<%= @stocks.first.symbol %> -- <%= @sortino.round(2) %> %<br>
+<%= @stocks1.first.symbol  %> -- <% @sortino1.round(2)%> % <br>
+<%= @stocks2.first.symbol  %> -- <%= @sortino2.round(2) %>%<br>
+</p>
+
+
+<h1>V@R</h1>
+<p>MAYBE slider to certainty</p>
+<p>There's a 95% degree of certainty that you won't lose more than ...</p>
+<p>Link to actual stock buy</p>
+
+
+
+<h1>FUNDAMENTAL ANALYSIS</h1>
+
+<h1>NEWS ANALYSIS</h1>
+
 
 STOCKS
 <%# @stocks %>
