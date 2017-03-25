@@ -11,11 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require chosen-jquery
 //= require jquery_ujs
 //= require_tree .
 //= require highcharts
 //= require chartkick
 //= require bootstrap-sprockets
+
 
 $(document).ready(function(){
   $('.toggleAnalysis').on('click', function(){

@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   root to: "home#index"
   get '/' => 'main#index'
 
-  resources :stocks, only: :index
+  resources :stocks, only: [:index, :show, :new]
   resources :currencies, only: :index
 
-  resources :sessions, only: [:new, :create] do
-    delete :destroy, on: :collection
-  end
+  # resources :sessions, only: [:new, :create] do
+  #   delete :destroy, on: :collection
+  # end
 
   get 'user' => 'user#index'
   patch 'user' => 'user#update'
-  
+
 end

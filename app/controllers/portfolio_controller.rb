@@ -1,6 +1,6 @@
 require 'descriptive_statistics'
 
-class StocksController < ApplicationController
+class PortfolioController < ApplicationController
   before_action :authenticate_user!
 
   def new
@@ -366,4 +366,5 @@ class StocksController < ApplicationController
 
     # to_date = today.strftime("%Y-%m-%d")
   end
+
 end

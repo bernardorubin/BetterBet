@@ -8,6 +8,8 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS //////////////////////////////////////////////
+gem 'chosen-rails'
+gem 'simple_form'
 gem 'devise'
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3.6'
