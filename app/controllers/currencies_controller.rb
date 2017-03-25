@@ -1,4 +1,6 @@
 class CurrenciesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     yahoo_client = YahooFinance::Client.new
     @data = yahoo_client.quotes(["GOOGL","AAPL","AMZN","MSFT","BRK-A"], [:ask, :bid, :last_trade_date, :adj_close])

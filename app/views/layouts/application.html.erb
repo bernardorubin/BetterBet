@@ -11,6 +11,8 @@
 
   <body>
     <%= render 'layouts/navbar' %>
+    <div class='alert alert-success'<%= ' style="display: none"'.html_safe unless notice %>><%= notice if notice %></div>
+    <div class='alert alert-danger'<%= ' style="display: none"'.html_safe unless alert %>><%= alert if alert %></div>
     <div class="container" align="center">
     <%= yield %>
     </div>

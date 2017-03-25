@@ -1,6 +1,8 @@
 require 'descriptive_statistics'
 
 class StocksController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @stock = StockQuote::Stock.quote("aapl")
 

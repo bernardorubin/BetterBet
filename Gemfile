@@ -6,7 +6,9 @@ git_source(:github) do |repo_name|
 end
 # https://github.com/tyrauber/stock_quote
 # https://rubygems.org/gems/money-open-exchange-rates
-# MY GEMS
+
+# MY GEMS //////////////////////////////////////////////
+gem 'devise'
 gem "font-awesome-rails"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'

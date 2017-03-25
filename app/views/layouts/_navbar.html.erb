@@ -18,11 +18,11 @@
         <li><%= link_to 'Currencies', currencies_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <%# if user_sign_in? %>
-          <li><%# link_to "#{current_user.full_name}", edit_user_path(current_user) %></li>
+        <% if user_signed_in? %>
+          <li><%= link_to current_user.display_name, user_path %></li>
           <%# if current_user.is_admin == true %>
             <li><%# link_to "Admin Dashboard", admin_dashboard_index_path %></li>
-          <%# end %>
+          <% end %>
           <li><%# link_to '<i class="fa fa-bookmark" aria-hidden="true"></i>'.html_safe, bookmarks_user_path(current_user) %></li>
           <li><%# link_to '<i class="fa fa-line-chart" aria-hidden="true"></i>'.html_safe, stats_user_path(current_user) %></li>
           <li><%# link_to 'Sign Out', sessions_path, method: :delete %></li>
