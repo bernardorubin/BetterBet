@@ -8,7 +8,7 @@ class PortfolioController < ApplicationController
   end
 
 
-  def show
+  def index
     @stock = StockQuote::Stock.quote("aapl")
 
     @date_array = []

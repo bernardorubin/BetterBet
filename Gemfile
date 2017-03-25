@@ -53,6 +53,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "better_errors"
   gem 'awesome_print'
   gem 'interactive_editor'
   gem 'hirb'
