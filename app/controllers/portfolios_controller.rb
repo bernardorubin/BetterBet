@@ -199,8 +199,6 @@ class PortfoliosController < ApplicationController
       @return_array << (@lastp_array[index]/@firstp_array[index]-1)*100
     end
 
-
-
     @stdev = @close_array.standard_deviation
     @stdev1 = @close_array1.standard_deviation
     @stdev2 = @close_array2.standard_deviation
@@ -224,6 +222,43 @@ class PortfoliosController < ApplicationController
 # ###################################################
     # ONE DOLLAR TRAIL
     # return as .98 or 1.02
+
+    @super_hundred_dollar_array = []
+
+    @super_close_array.each_with_index do |x, index|
+      @new_array = []
+      @lastr = x[1]
+      x.reverse.each do |close|
+        @new_array << (close/@lastr)
+        @lastr = close
+      end
+
+      @new_array.shift
+      @number = 100
+      @hundred_dollar_array = []
+
+      @new_array.each do |x|
+        @hundred_dollar_array << @number
+        newNum = x * @number
+        @number = newNum
+      end
+
+      @super_hundred_dollar_array << @hundred_dollar_array
+    end
+
+    @super_date_array.each do |x|
+      x.shift
+    end
+
+    @zip_array2 = []
+
+    @super_hundred_dollar_array.each_with_index do |x, index|
+      @zip_array2 << @super_date_array[index].reverse.zip(@super_hundred_dollar_array[index])
+    end
+
+
+
+
     @new_array = []
     @lastr = @close_array[1]
 
