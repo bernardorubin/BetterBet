@@ -1,4 +1,4 @@
 class PortfolioTicker < ApplicationRecord
   belongs_to :portfolio
-  belongs_to :tickers
+  belongs_to :ticker
 end

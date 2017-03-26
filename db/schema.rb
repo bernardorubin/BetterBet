@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170325214829) do
+ActiveRecord::Schema.define(version: 20170326005843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "portfolio_tickers", force: :cascade do |t|
     t.integer  "portfolio_id"
-    t.integer  "tickers_id"
+    t.integer  "ticker_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["portfolio_id"], name: "index_portfolio_tickers_on_portfolio_id", using: :btree
-    t.index ["tickers_id"], name: "index_portfolio_tickers_on_tickers_id", using: :btree
+    t.index ["ticker_id"], name: "index_portfolio_tickers_on_ticker_id", using: :btree
   end
 
   create_table "portfolios", force: :cascade do |t|
@@ -43,10 +43,8 @@ ActiveRecord::Schema.define(version: 20170325214829) do
 
   create_table "user_portfolios", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "portfolio_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["portfolio_id"], name: "index_user_portfolios_on_portfolio_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_portfolios_on_user_id", using: :btree
   end
 
@@ -70,8 +68,7 @@ ActiveRecord::Schema.define(version: 20170325214829) do
   end
 
   add_foreign_key "portfolio_tickers", "portfolios"
-  add_foreign_key "portfolio_tickers", "tickers", column: "tickers_id"
+  add_foreign_key "portfolio_tickers", "tickers"
   add_foreign_key "portfolios", "users"
-  add_foreign_key "user_portfolios", "portfolios"
   add_foreign_key "user_portfolios", "users"
 end

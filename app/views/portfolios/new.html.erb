@@ -1,0 +1,6 @@
+<h1>Choose Stocks to Analyze</h1>
+
+<%= simple_form_for @portfolio do |f| %>
+<%= f.association :tickers, input_html: { class: 'chosen-select form-control' } %>
+<%= f.submit class: 'btn btn-primary' %>
+<% end %>

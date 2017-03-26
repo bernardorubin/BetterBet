@@ -3,27 +3,28 @@
 <hr>
 <!-- <h1>ABSOLUTE PRICE CHART</h1> -->
 
-<%# line_chart @data1 %>
+<%=line_chart @data1 %>
 
 <h1>STANDARD DEVIATION</h1>
-<%= @stocks.first.symbol %> -- <%= @stdev.round(2) %> <br>
-<%= @stocks1.first.symbol  %> -- <%= @stdev1.round(2) %> <br>
-<%= @stocks2.first.symbol  %> -- <%= @stdev2.round(2) %> <br>
+
+<%= @super_duper_array[0].first.symbol %> -- <%= @stdev.round(2) %> <br>
+<%= @super_duper_array[1].first.symbol  %> -- <%= @stdev1.round(2) %> <br>
+<%= @super_duper_array[2].first.symbol  %> -- <%= @stdev2.round(2) %> <br>
 
 <h1>VARIATION COEFFICIENT</h1>
 <p>The higher the riskier</p>
 <p>
-  <%= @stocks.first.symbol %> -- <%= @varcoef.round(2) %> <br>
-  <%= @stocks1.first.symbol  %> -- <%= @varcoef1.round(2)%> <br>
-  <%= @stocks2.first.symbol  %> -- <%= @varcoef2.round(2) %> <br>
+  <%= @super_duper_array[0].first.symbol %> -- <%= @varcoef.round(2) %> <br>
+  <%= @super_duper_array[1].first.symbol  %> -- <%= @varcoef1.round(2)%> <br>
+  <%= @super_duper_array[2].first.symbol  %> -- <%= @varcoef2.round(2) %> <br>
 </p>
 
 <h1>RETURN ON INVESTMENT</h1>
 <p>The higher the better</p>
 <p>
-  <%= @stocks.first.symbol %> -- <%= @return.round(2) %> %<br>
-  <%= @stocks1.first.symbol  %> -- <%= @return1.round(2)%> % <br>
-  <%= @stocks2.first.symbol  %> -- <%= @return2.round(2) %>%<br>
+  <%= @super_duper_array[0].first.symbol %> -- <%= @return.round(2) %> %<br>
+  <%= @super_duper_array[1].first.symbol  %> -- <%= @return1.round(2)%> % <br>
+  <%= @super_duper_array[2].first.symbol  %> -- <%= @return2.round(2) %>%<br>
 </p>
 
 <h1>VARIATION CHART</h1>
@@ -34,9 +35,9 @@
 <h1>HUNDRED DOLLAR TEST</h1>
 <p>If You invested 100 dollars in </p>
 <p>
-<%= @stocks.first.symbol %> at beginning, today you would have <%= @number.round(2) %> today <br>
-<%= @stocks1.first.symbol %> at beginning today you would have <%= @number1.round(2) %> today <br>
-<%= @stocks2.first.symbol %> at beginning today you would have <%= @number2.round(2) %> today <br>
+<%= @super_duper_array[0].first.symbol %> at beginning, today you would have <%= @number.round(2) %> today <br>
+<%= @super_duper_array[1].first.symbol %> at beginning today you would have <%= @number1.round(2) %> today <br>
+<%= @super_duper_array[2].first.symbol %> at beginning today you would have <%= @number2.round(2) %> today <br>
 </p>
 <%= line_chart @data3, min: @minimum, max: @maximum %>
 
@@ -46,9 +47,9 @@
 <p>
   A higher Sortino ratio is better. When looking at two similar investments, a rational investor would prefer the one with the higher Sortino ratio because it means that the investment is earning more return per unit of bad risk that it takes on.
   <br>
-<%= @stocks.first.symbol %> -- <%= @sortino.round(2) %> %<br>
-<%= @stocks1.first.symbol  %> -- <%= @sortino1.round(2) %> % <br>
-<%= @stocks2.first.symbol  %> -- <%= @sortino2.round(2) %>%<br>
+<%= @super_duper_array[0].first.symbol %> -- <%= @sortino.round(2) %> %<br>
+<%= @super_duper_array[1].first.symbol  %> -- <%= @sortino1.round(2) %> % <br>
+<%= @super_duper_array[2].first.symbol  %> -- <%= @sortino2.round(2) %>%<br>
 </p>
 
 <%# line_chart @sortinoGraph %>

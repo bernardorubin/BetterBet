@@ -5,8 +5,18 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :portfolio, only: [:index, :show, :new]
+  resources :portfolios, only: [:index, :show, :new, :create]
   resources :currencies, only: :index
+
+
+
+  # resources :questions, shallow: true do
+  #
+  #   resources :answers, only: [:create, :destroy]
+  #   resources :likes, only: [:create, :destroy]
+  #   resources :votes, only: [:create, :update, :destroy]
+  # end
+
 
   # resources :sessions, only: [:new, :create] do
   #   delete :destroy, on: :collection

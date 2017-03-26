@@ -1,4 +1,4 @@
-<h1>Welcome</h1>
+<h1 style="color:white">Stock Bot <i class="fa fa-line-chart" aria-hidden="true"></i></h1>
 <h4><%= current_user.display_name %></h4>
 <!-- My three passions to come with a solution for unequal distribution of wealthCCombine finance programming and social impact -->
 <p>Invest in Stocks Currencies or Sports and do something about income inequality</p>
@@ -21,7 +21,7 @@
 
 <div class="row analysis" style="display:none">
   <div class="col-md-4">
-    <%= link_to "STOCK ANALYSIS", portfolio_index_path, class:"btn btn-primary btn-lg btn-menu" %>
+    <%= link_to "STOCK ANALYSIS", new_portfolio_path, class:"btn btn-primary btn-lg btn-menu" %>
   </div>
   <div class="col-md-4">
     <%= link_to "CURRENCY ANALYSIS", currencies_path, class:"btn btn-default btn-lg btn-menu" %>
@@ -32,7 +32,7 @@
 </div>
 <div class="row placeABet" style="display:none">
   <div class="col-md-6">
-    <%= link_to "STOCK OR CURRENCY BET", portfolio_index_path, class:"btn btn-primary btn-lg btn-menu" %>
+    <%= link_to "STOCK OR CURRENCY BET", portfolios_path, class:"btn btn-primary btn-lg btn-menu" %>
   </div>
   <div class="col-md-6">
     <%= link_to "SPORTS BET", currencies_path, class:"btn btn-success btn-lg btn-menu" %>

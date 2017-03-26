@@ -1,15 +1,75 @@
 require 'descriptive_statistics'
 
-class PortfolioController < ApplicationController
+class PortfoliosController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @stock = Stock.new
+    @portfolio = Portfolio.new
+  end
+
+  def create
+    # DATES HERE?????????????????????????????????????????
+    # render json:portfolio_params
+    # @portfolio_tickers = "AAPL"
+    @portfolio  = Portfolio.new
+    @portfolio.user = current_user
+    if @portfolio.save
+      flash[:notice] = 'Portfolio created successfully'
+      portfolio_params[:ticker_ids].each do |x|
+        p = PortfolioTicker.new
+        p.ticker_id = x
+        p.portfolio_id = Portfolio.last.id
+        p.save
+      end
+      redirect_to portfolio_path(@portfolio)
+    else
+      flash.now[:alert] = 'Please fix errors below'
+      render :new
+    end
   end
 
 
-  def index
+  def show
+    # DATES HERE?????????????????????????????????????????
+
+    @portfolio = Portfolio.find params[:id]
+
+    @ticker_array= []
+
+    @portfolio.tickers.each do |x|
+      @ticker_array << x.name
+    end
+
     @stock = StockQuote::Stock.quote("aapl")
+
+    @enddate = Date.today
+    @startdate = @enddate - 300.days
+
+    @super_duper_array = []
+
+    # b = Benchmark.measure do
+    @ticker_array.each do |ticker|
+      @super_duper_array << StockQuote::Stock.history("#{ticker}", "#{@startdate}", "#{@enddate}")
+    end
+    # end
+    # puts "*** time: #{b}"
+
+    @super_date_array = []
+    @super_close_array = []
+
+    @super_duper_array.each_with_index do |hist, index|
+      @datearray = []
+      @closearray = []
+      hist.each do |stock|
+        @datearray << stock.date
+        @closearray << stock.adj_close
+      end
+      @super_date_array << @datearray
+      @super_close_array << @closearray
+    end
+
+    puts @super_date_array
+    puts @super_close_array
 
     @date_array = []
     @close_array = []
@@ -20,45 +80,35 @@ class PortfolioController < ApplicationController
     @date_array2 = []
     @close_array2 = []
 
-    @enddate = Date.today
-    @startdate = @enddate - 300.days
-
-    b = Benchmark.measure do
-      @stocks = StockQuote::Stock.history('BBD-B.TO', "#{@startdate}", "#{@enddate}")
-      @stocks1 = StockQuote::Stock.history('tsla', "#{@startdate}", "#{@enddate}")
-      @stocks2 = StockQuote::Stock.history('amzn', "#{@startdate}", "#{@enddate}")
-    end
-
-    puts "*** time: #{b}"
-
-    @stocks.each do |stock|
+    @super_duper_array[0].each do |stock|
       @date_array << stock.date
     end
 
-    @stocks.each do |stock|
+    @super_duper_array[0].each do |stock|
       @close_array << stock.adj_close
     end
 
-    @stocks1.each do |stock|
+    @super_duper_array[1].each do |stock|
       @date_array1 << stock.date
     end
 
-    @stocks1.each do |stock|
+    @super_duper_array[1].each do |stock|
       @close_array1 << stock.adj_close
     end
 
 
-    @stocks2.each do |stock|
+    @super_duper_array[2].each do |stock|
       @date_array2 << stock.date
     end
 
-    @stocks2.each do |stock|
+    @super_duper_array[2].each do |stock|
       @close_array2 << stock.adj_close
     end
 #######################################################
-    @zip = @date_array.zip(@close_array)
-    @zip1 = @date_array1.zip(@close_array1)
-    @zip2 = @date_array2.zip(@close_array2)
+    @zip_array = []
+    @super_date_array.each_with_index do |x, index|
+      @zip_array << x.zip(@super_close_array[index])
+    end
 #######################################################
 
     @variation_array = []
@@ -178,21 +228,21 @@ class PortfolioController < ApplicationController
 
 ##########################################################
     @data1 = [
-      {name: "#{@stocks.first.symbol}", data: @zip },
-      {name: "#{@stocks1.first.symbol}", data: @zip1 },
-      {name: "#{@stocks2.first.symbol}", data: @zip2 }
+      {name: "#{@super_duper_array[0].first.symbol}", data: @zip_array[0] },
+      {name: "#{@super_duper_array[1].first.symbol}", data: @zip_array[1] },
+      {name: "#{@super_duper_array[2].first.symbol}", data: @zip_array[2] }
       ]
 
     @data2 = [
-      {name: "#{@stocks.first.symbol}", data: @zip3 },
-      {name: "#{@stocks1.first.symbol}", data: @zip4 },
-      {name: "#{@stocks2.first.symbol}", data: @zip5 }
+      {name: "#{@super_duper_array[0].first.symbol}", data: @zip3 },
+      {name: "#{@super_duper_array[1].first.symbol}", data: @zip4 },
+      {name: "#{@super_duper_array[2].first.symbol}", data: @zip5 }
       ]
 
     @data3 = [
-      {name: "#{@stocks.first.symbol}", data: @zip6 },
-      {name: "#{@stocks1.first.symbol}", data: @zip7 },
-      {name: "#{@stocks2.first.symbol}", data: @zip8 }
+      {name: "#{@super_duper_array[0].first.symbol}", data: @zip6 },
+      {name: "#{@super_duper_array[1].first.symbol}", data: @zip7 },
+      {name: "#{@super_duper_array[2].first.symbol}", data: @zip8 }
       ]
 
     @all_values = @hundredDollarArray + @hundredDollarArray1 + @hundredDollarArray2
@@ -292,9 +342,9 @@ class PortfolioController < ApplicationController
   @zip11 = @date_array2.reverse.zip(@negative_excess_return2)
 
   @sortinoGraph = [
-    {name: "#{@stocks.first.symbol}", data: @zip9 },
-    {name: "#{@stocks1.first.symbol}", data: @zip10 },
-    {name: "#{@stocks2.first.symbol}", data: @zip11 }
+    {name: "#{@super_duper_array[0].first.symbol}", data: @zip9 },
+    {name: "#{@super_duper_array[1].first.symbol}", data: @zip10 },
+    {name: "#{@super_duper_array[2].first.symbol}", data: @zip11 }
   ]
 
   # DRAW DB ERD 🌶
@@ -366,5 +416,14 @@ class PortfolioController < ApplicationController
 
     # to_date = today.strftime("%Y-%m-%d")
   end
+
+  private
+
+  def portfolio_params
+    params.require(:portfolio).permit([{ ticker_ids: [] }])
+  end
+
+
+
 
 end
