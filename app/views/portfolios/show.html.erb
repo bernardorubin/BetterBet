@@ -20,9 +20,9 @@
 <h1>RETURN ON INVESTMENT</h1>
 <p>The higher the better</p>
 <p>
-  <%= @super_duper_array[0].first.symbol %> -- <%= @return.round(2) %> %<br>
-  <%= @super_duper_array[1].first.symbol  %> -- <%= @return1.round(2)%> % <br>
-  <%= @super_duper_array[2].first.symbol  %> -- <%= @return2.round(2) %>%<br>
+  <% @return_array.each_with_index do |x, index| %>
+    <%= @super_duper_array[index].first.symbol %> -- <%= @return_array[index].round(2) %> <br>
+  <% end %>
 </p>
 
 <h1>VARIATION CHART</h1>

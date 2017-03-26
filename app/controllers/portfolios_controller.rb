@@ -180,6 +180,27 @@ class PortfoliosController < ApplicationController
       @varcoef_array << @stdev_array[index] / @super_close_array[index].mean * 100
     end
 
+
+    @lastp_array = []
+
+    @super_close_array.each do |x|
+      @lastp_array << x[0]
+    end
+
+    @firstp_array = []
+
+    @super_close_array.each_with_index do |x, index|
+      @firstp_array <<  @super_close_array[index][@super_close_array[index].length-1]
+    end
+
+    @return_array = []
+
+    @super_close_array.each_with_index do |x, index|
+      @return_array << (@lastp_array[index]/@firstp_array[index]-1)*100
+    end
+
+
+
     @stdev = @close_array.standard_deviation
     @stdev1 = @close_array1.standard_deviation
     @stdev2 = @close_array2.standard_deviation
