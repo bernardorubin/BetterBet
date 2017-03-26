@@ -33,9 +33,9 @@
 <h1>HUNDRED DOLLAR TEST</h1>
 <p>If You invested 100 dollars in </p>
 <p>
-<%= @super_duper_array[0].first.symbol %> at beginning, today you would have <%= @number.round(2) %> today <br>
-<%= @super_duper_array[1].first.symbol %> at beginning today you would have <%= @number1.round(2) %> today <br>
-<%= @super_duper_array[2].first.symbol %> at beginning today you would have <%= @number2.round(2) %> today <br>
+  <% @super_dollars_at_end_array.each_with_index do |x, index| %>
+    <%= @super_duper_array[index].first.symbol %> -at beginning, today you would have- <%= @super_dollars_at_end_array[index].round(2) %> <br>
+  <% end %>
 </p>
 <%= line_chart @data3, min: @minimum, max: @maximum %>
 

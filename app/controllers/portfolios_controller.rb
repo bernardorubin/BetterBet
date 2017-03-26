@@ -225,6 +225,7 @@ class PortfoliosController < ApplicationController
 
     @super_hundred_dollar_array = []
     @super_new_array = []
+    @super_dollars_at_end_array = []
 
     @super_close_array.each_with_index do |x, index|
       @new_array = []
@@ -243,6 +244,8 @@ class PortfoliosController < ApplicationController
         newNum = x * @number
         @number = newNum
       end
+
+      @super_dollars_at_end_array << @number
       @super_new_array << @new_array
       @super_hundred_dollar_array << @hundred_dollar_array
     end
@@ -498,7 +501,7 @@ class PortfoliosController < ApplicationController
   end
 
 
-  # 
+  #
   # @sortinoGraph = [
   #   {name: "#{@super_duper_array[0].first.symbol}", data: @zip9 },
   #   {name: "#{@super_duper_array[1].first.symbol}", data: @zip10 },
