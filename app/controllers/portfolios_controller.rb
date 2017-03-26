@@ -224,6 +224,7 @@ class PortfoliosController < ApplicationController
     # return as .98 or 1.02
 
     @super_hundred_dollar_array = []
+    @super_new_array = []
 
     @super_close_array.each_with_index do |x, index|
       @new_array = []
@@ -242,7 +243,7 @@ class PortfoliosController < ApplicationController
         newNum = x * @number
         @number = newNum
       end
-
+      @super_new_array << @new_array
       @super_hundred_dollar_array << @hundred_dollar_array
     end
 
@@ -356,8 +357,47 @@ class PortfoliosController < ApplicationController
 
 # #############################################
 # SORTINO RATIO
+
+    @super_downside_risk= []
+    @super_average_excess_return= []
+    @super_sortino= []
+    @super_negative_excess_return = []
+
+    @super_new_array.each_with_index do |ret, index|
+      @min_acc_return = 0.0
+      @excess_return = []
+      @negative_excess_return =  []
+
+      ret.each do |ret|
+        @excess_return << ret-1-@min_acc_return
+      end
+
+      @excess_return.each do |ret|
+        if ret < 0
+          @negative_excess_return << ret
+        else
+          @negative_excess_return << 0
+        end
+      end
+
+      @suma = 0
+      @negative_excess_return.each do |neg|
+        @suma += neg**2
+      end
+
+      @downside_risk = (@suma/@negative_excess_return.length) ** 0.5
+      @average_excess_return = @excess_return.mean
+      @sortino = @average_excess_return/@downside_risk
+
+      @super_downside_risk << @downside_risk
+      @super_average_excess_return << @average_excess_return
+      @super_sortino << @sortino
+      @super_negative_excess_return << @negative_excess_return
+    end
+
   @min_acc_return = 0.0
   @excess_return = []
+
   @negative_excess_return =  []
 # if return is less than 0 it is stored, else it is stored as
   @new_array.each do |ret|
@@ -440,16 +480,30 @@ class PortfoliosController < ApplicationController
     @neg << x*100.round
   end
 
+  @zip_array3 = []
+
+  @super_hundred_dollar_array.each_with_index do |x, index|
+    @zip_array3 << @super_date_array[index].reverse.zip(@super_negative_excess_return[index])
+  end
 
   @zip9 = @date_array.reverse.zip(@negative_excess_return)
   @zip10 = @date_array1.reverse.zip(@negative_excess_return1)
   @zip11 = @date_array2.reverse.zip(@negative_excess_return2)
 
-  @sortinoGraph = [
-    {name: "#{@super_duper_array[0].first.symbol}", data: @zip9 },
-    {name: "#{@super_duper_array[1].first.symbol}", data: @zip10 },
-    {name: "#{@super_duper_array[2].first.symbol}", data: @zip11 }
-  ]
+
+  @sortinoGraph = []
+
+  @zip_array3.each_with_index do |x, index|
+    @sortinoGraph << {name: "#{@super_duper_array[index].first.symbol}", data: x}
+  end
+
+
+  # 
+  # @sortinoGraph = [
+  #   {name: "#{@super_duper_array[0].first.symbol}", data: @zip9 },
+  #   {name: "#{@super_duper_array[1].first.symbol}", data: @zip10 },
+  #   {name: "#{@super_duper_array[2].first.symbol}", data: @zip11 }
+  # ]
 
   # DRAW DB ERD 🌶
   # DRAW DB mockup 🌶
