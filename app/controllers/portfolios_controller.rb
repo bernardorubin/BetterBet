@@ -128,7 +128,7 @@ class PortfoliosController < ApplicationController
       end
     end
 
-    puts @super_variation_array.length
+    # puts @super_variation_array.length
 
     @variation_array = []
 
@@ -323,30 +323,38 @@ class PortfoliosController < ApplicationController
     @zip8 = @date_array2.reverse.zip(@hundredDollarArray2)
 
 ##########################################################
-    @data1 = [
-      {name: "#{@super_duper_array[0].first.symbol}", data: @zip_array[0] },
-      {name: "#{@super_duper_array[1].first.symbol}", data: @zip_array[1] },
-      {name: "#{@super_duper_array[2].first.symbol}", data: @zip_array[2] }
-      ]
 
-    @data2 = [
-      {name: "#{@super_duper_array[0].first.symbol}", data: @zip_array1[0] },
-      {name: "#{@super_duper_array[1].first.symbol}", data: @zip_array1[1] },
-      {name: "#{@super_duper_array[2].first.symbol}", data: @zip_array1[2] }
-      ]
+    @data1 = []
 
-    @data3 = [
-      {name: "#{@super_duper_array[0].first.symbol}", data: @zip6 },
-      {name: "#{@super_duper_array[1].first.symbol}", data: @zip7 },
-      {name: "#{@super_duper_array[2].first.symbol}", data: @zip8 }
-      ]
+    @zip_array.each_with_index do |x, index|
+      @data1 << {name: "#{@super_duper_array[index].first.symbol}", data: x}
+    end
 
-    @all_values = @hundredDollarArray + @hundredDollarArray1 + @hundredDollarArray2
+
+    @data2 = []
+
+    @zip_array1.each_with_index do |x, index|
+      @data2 << {name: "#{@super_duper_array[index].first.symbol}", data: x}
+    end
+
+    @data3 = []
+
+    @zip_array2.each_with_index do |x, index|
+      @data3 << {name: "#{@super_duper_array[index].first.symbol}", data: x}
+    end
+
+
+    @all_values = []
+
+    @super_hundred_dollar_array.each do |x|
+      @all_values += x
+    end
+    puts @all_values
+
     @minimum = @all_values.min
     @maximum = @all_values.max
 
 # #############################################
-
 # SORTINO RATIO
   @min_acc_return = 0.0
   @excess_return = []
