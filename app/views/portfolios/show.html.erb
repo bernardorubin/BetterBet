@@ -45,9 +45,9 @@
 <p>
   A higher Sortino ratio is better. When looking at two similar investments, a rational investor would prefer the one with the higher Sortino ratio because it means that the investment is earning more return per unit of bad risk that it takes on.
   <br>
-<%= @super_duper_array[0].first.symbol %> -- <%= @sortino.round(2) %> %<br>
-<%= @super_duper_array[1].first.symbol  %> -- <%= @sortino1.round(2) %> % <br>
-<%= @super_duper_array[2].first.symbol  %> -- <%= @sortino2.round(2) %>%<br>
+  <% @super_sortino.each_with_index do |x, index| %>
+    <%= @super_duper_array[index].first.symbol %> -- <%= @super_sortino[index].round(2) %> <br>
+  <% end %>
 </p>
 
 <%= line_chart @sortinoGraph %>
