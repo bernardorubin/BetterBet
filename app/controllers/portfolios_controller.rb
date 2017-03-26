@@ -168,9 +168,11 @@ class PortfoliosController < ApplicationController
     # index+array.length?
 #######################################################
 
-    @stdev = @close_array.standard_deviation
-    @stdev1 = @close_array1.standard_deviation
-    @stdev2 = @close_array2.standard_deviation
+    @stdev_array = []
+
+    @super_close_array.each do |x|
+      @stdev_array << x.standard_deviation
+    end
 
     @varcoef = @stdev / @close_array.mean * 100
     @varcoef1 = @stdev1 / @close_array1.mean * 100
