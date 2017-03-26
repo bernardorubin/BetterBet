@@ -43,7 +43,7 @@ class PortfoliosController < ApplicationController
     @stock = StockQuote::Stock.quote("aapl")
 
     @enddate = Date.today
-    @startdate = @enddate - 300.days
+    @startdate = @enddate - 30.days
 
     @super_duper_array = []
 
@@ -68,8 +68,8 @@ class PortfoliosController < ApplicationController
       @super_close_array << @closearray
     end
 
-    puts @super_date_array
-    puts @super_close_array
+    # puts @super_date_array
+    # puts @super_close_array
 
     @date_array = []
     @close_array = []
@@ -111,16 +111,38 @@ class PortfoliosController < ApplicationController
     end
 #######################################################
 
-    @variation_array = []
-    @last = @close_array[1]
+@super_variation_array = []
+    @super_close_array.each_with_index do |x, index|
+      @last = x[index+1]
+      @variation_array = []
+      count = 0
+      # puts x.length
+      x.each do |h|
+        @variation_array << (((h/@last)-1)*100)
+        @last = h
+        count += 1
+        if count == x.length
+          # puts count
+          @super_variation_array << @variation_array
+        end
+      end
+    end
 
-    @close_array.each do |x|
+    puts @super_variation_array.length
+
+    @variation_array = []
+
+    # close_array2 >> @super_close_array[2]
+    @last = @super_close_array[0][1]
+
+    @close_array.each_with_index do |x|
       @variation_array << (((x/@last)-1)*100)
       @last = x
     end
 
     @variation_array1 = []
-    @last1 = @close_array1[1]
+
+    @last1 = @super_close_array[1][1]
 
     @close_array1.each do |x|
       @variation_array1 << (((x/@last1)-1)*100)
@@ -128,16 +150,22 @@ class PortfoliosController < ApplicationController
     end
 
     @variation_array2 = []
-    @last2 = @close_array2[1]
+
+    # close_array2 >> @super_close_array[2]
+
+    @last2 = @super_close_array[2][1]
 
     @close_array2.each do |x|
       @variation_array2 << (((x/@last2)-1)*100)
       @last2 = x
     end
 #######################################################
-    @zip3 = @date_array.zip(@variation_array)
-    @zip4 = @date_array1.zip(@variation_array1)
-    @zip5 = @date_array2.zip(@variation_array2)
+    @zip_array1 = []
+    @super_date_array.each_with_index do |x, index|
+      @zip_array1 << x.zip(@super_variation_array[index])
+    end
+
+    # index+array.length?
 #######################################################
 
     @stdev = @close_array.standard_deviation
@@ -234,9 +262,9 @@ class PortfoliosController < ApplicationController
       ]
 
     @data2 = [
-      {name: "#{@super_duper_array[0].first.symbol}", data: @zip3 },
-      {name: "#{@super_duper_array[1].first.symbol}", data: @zip4 },
-      {name: "#{@super_duper_array[2].first.symbol}", data: @zip5 }
+      {name: "#{@super_duper_array[0].first.symbol}", data: @zip_array1[0] },
+      {name: "#{@super_duper_array[1].first.symbol}", data: @zip_array1[1] },
+      {name: "#{@super_duper_array[2].first.symbol}", data: @zip_array1[2] }
       ]
 
     @data3 = [
