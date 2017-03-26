@@ -13,11 +13,9 @@
 
 <h1>VARIATION COEFFICIENT</h1>
 <p>The higher the riskier</p>
-<p>
-  <%= @super_duper_array[0].first.symbol %> -- <%= @varcoef.round(2) %> <br>
-  <%= @super_duper_array[1].first.symbol  %> -- <%= @varcoef1.round(2)%> <br>
-  <%= @super_duper_array[2].first.symbol  %> -- <%= @varcoef2.round(2) %> <br>
-</p>
+<% @varcoef_array.each_with_index do |x, index| %>
+  <%= @super_duper_array[index].first.symbol %> -- <%= @varcoef_array[index].round(2) %> <br>
+<% end %>
 
 <h1>RETURN ON INVESTMENT</h1>
 <p>The higher the better</p>
