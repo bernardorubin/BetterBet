@@ -114,8 +114,6 @@ class PortfoliosController < ApplicationController
     @zip_inter = @ticker_array.zip(@varcoef_array)
     @zip_inter = @zip_inter.sort_by{|x,y|y}
 
-
-
     @lastp_array = []
 
     @super_close_array.each do |x|
@@ -148,29 +146,32 @@ class PortfoliosController < ApplicationController
     @super_close_array.each_with_index do |x, index|
       @new_array = []
       @lastr = x[1]
-      x.reverse.each do |close|
-        @new_array << (close/@lastr)
+      x.each do |close|
+        @new_array << (@lastr/close)
         @lastr = close
       end
 
-      @new_array.shift
+      @new_array
+
       @number = 100
       @hundred_dollar_array = []
 
-      @new_array.each do |x|
+      @new_array.reverse.each do |x|
         @hundred_dollar_array << @number
         newNum = x * @number
         @number = newNum
       end
 
-      @super_dollars_at_end_array << @number
+      @final_number = @hundred_dollar_array[-1]
+
+      @super_dollars_at_end_array << @final_number
       @super_new_array << @new_array
       @super_hundred_dollar_array << @hundred_dollar_array
     end
 
-    @super_date_array.each do |x|
-      x.shift
-    end
+    # @super_date_array.each do |x|
+    #   x.shift
+    # end
 
     @zip_array2 = []
 
@@ -178,6 +179,7 @@ class PortfoliosController < ApplicationController
       @zip_array2 << @super_date_array[index].reverse.zip(@super_hundred_dollar_array[index])
     end
 
+    puts @super_dollars_at_end_array
     @zip_dollars = @ticker_array.zip(@super_dollars_at_end_array)
     @zip_dollars = @zip_dollars.sort_by{|x,y|y}.reverse
 
