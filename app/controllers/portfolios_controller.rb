@@ -9,9 +9,11 @@ class PortfoliosController < ApplicationController
 
   def create
     # DATES HERE?????????????????????????????????????????
+    date = Date.new portfolio_params["startdate(1i)"].to_i, portfolio_params["startdate(2i)"].to_i, portfolio_params["startdate(3i)"].to_i
     # render json:portfolio_params
     # @portfolio_tickers = "AAPL"
     @portfolio  = Portfolio.new
+    @portfolio.startdate = date
     @portfolio.user = current_user
     if @portfolio.save
       flash[:notice] = 'Portfolio created successfully'
@@ -34,6 +36,10 @@ class PortfoliosController < ApplicationController
 
     @portfolio = Portfolio.find params[:id]
 
+    @enddate = Date.today
+    # @startdate = @enddate - 30.days
+    @startdate = @portfolio.startdate
+
     @ticker_array= []
 
     @portfolio.tickers.each do |x|
@@ -41,9 +47,6 @@ class PortfoliosController < ApplicationController
     end
 
     @stock = StockQuote::Stock.quote("aapl")
-
-    @enddate = Date.today
-    @startdate = @enddate - 30.days
 
     @super_duper_array = []
 
@@ -100,7 +103,7 @@ class PortfoliosController < ApplicationController
 
     # index+array.length?
 #######################################################
-
+# TEHNICAL MEASURES
     @stdev_array = []
 
     @super_close_array.each do |x|
@@ -112,6 +115,10 @@ class PortfoliosController < ApplicationController
     @super_close_array.each_with_index do |x, index|
       @varcoef_array << @stdev_array[index] / @super_close_array[index].mean * 100
     end
+
+    @zip_inter = @ticker_array.zip(@varcoef_array)
+    @zip_inter = @zip_inter.sort_by{|x,y|y}
+
 
 
     @lastp_array = []
@@ -335,7 +342,7 @@ class PortfoliosController < ApplicationController
   private
 
   def portfolio_params
-    params.require(:portfolio).permit([{ ticker_ids: [] }])
+    params.require(:portfolio).permit([:startdate, { ticker_ids: [] }])
   end
 
 

@@ -2,5 +2,6 @@
 
 <%= simple_form_for @portfolio do |f| %>
 <%= f.association :tickers, input_html: { class: 'chosen-select form-control' } %>
+<%= f.input :startdate %>
 <%= f.submit class: 'btn btn-primary' %>
 <% end %>

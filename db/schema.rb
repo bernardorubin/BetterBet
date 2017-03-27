@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326005843) do
+ActiveRecord::Schema.define(version: 20170327012930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170326005843) do
   create_table "portfolios", force: :cascade do |t|
     t.float    "startvalue"
     t.float    "currentvalue"
-    t.datetime "startdate"
+    t.date     "startdate"
     t.datetime "enddate"
     t.integer  "user_id"
     t.datetime "created_at",   null: false
