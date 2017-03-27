@@ -1,5 +1,7 @@
 <h1>STOCK PICKER</h1>
 <h1>TECHNICAL ANALYSIS</h1>
+<p>Start Date - End Date</p>
+<p><%= @portfolio.startdate %> - <%= @enddate %></p>
 <hr>
 <!-- <h1>ABSOLUTE PRICE CHART</h1> -->
 
@@ -14,12 +16,12 @@
   <div class="col-sm-6">
     <h1>VARIATION COEFFICIENT</h1>
     <p>The higher the riskier</p>
-    <% @varcoef_array.each_with_index do |x, index| %>
-      <%= @super_duper_array[index].first.symbol %> -- <%= @varcoef_array[index].round(2) %> <br>
-    <% end %>
+    <%# @varcoef_array.each_with_index do |x, index| %>
+      <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @varcoef_array[index].round(2) %> <br> -->
+    <%# end %>
 
     <% @zip_inter.each do |x , y| %>
-      <%= x %> -- <%= y %> <br>
+      <%= x %> -- <%= y.round(2) %> <br>
     <% end  %>
 
   </div>

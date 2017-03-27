@@ -8,6 +8,7 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS //////////////////////////////////////////////
+gem 'validates_timeliness'
 gem 'chosen-rails'
 gem 'simple_form'
 gem 'devise'
