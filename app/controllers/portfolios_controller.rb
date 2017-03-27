@@ -80,7 +80,7 @@ class PortfoliosController < ApplicationController
     @super_variation_array = []
 
     @super_close_array.each_with_index do |x, index|
-      @last = x[index+1]
+      @last = x[1]
       @variation_array = []
       count = 0
       # puts x.length
@@ -88,10 +88,8 @@ class PortfoliosController < ApplicationController
         @variation_array << (((h/@last)-1)*100)
         @last = h
         count += 1
-        if count == x.length
-          @super_variation_array << @variation_array
-        end
       end
+      @super_variation_array << @variation_array
     end
 
 #######################################################
@@ -138,6 +136,10 @@ class PortfoliosController < ApplicationController
       @return_array << (@lastp_array[index]/@firstp_array[index]-1)*100
     end
 
+    @zip_return = @ticker_array.zip(@return_array)
+    @zip_return = @zip_return.sort_by{|x,y|y}.reverse
+
+
 # ###################################################
     # ONE DOLLAR TRAIL
 
@@ -177,6 +179,9 @@ class PortfoliosController < ApplicationController
     @super_hundred_dollar_array.each_with_index do |x, index|
       @zip_array2 << @super_date_array[index].reverse.zip(@super_hundred_dollar_array[index])
     end
+
+    @zip_dollars = @ticker_array.zip(@super_dollars_at_end_array)
+    @zip_dollars = @zip_dollars.sort_by{|x,y|y}.reverse
 
 ##########################################################
 
@@ -248,25 +253,28 @@ class PortfoliosController < ApplicationController
     end
 
 
-  @zip_array3 = []
+    @zip_array3 = []
 
-  @super_hundred_dollar_array.each_with_index do |x, index|
-    @zip_array3 << @super_date_array[index].reverse.zip(@super_negative_excess_return[index])
+    @super_hundred_dollar_array.each_with_index do |x, index|
+      @zip_array3 << @super_date_array[index].reverse.zip(@super_negative_excess_return[index])
+    end
+
+    # @sortinoGraph = []
+    #
+    # @zip_array3.each_with_index do |x, index|
+    #   @sortinoGraph << {name: "#{@super_duper_array[index].first.symbol}", data: x}
+    # end
+
+    @zip_sortino = @ticker_array.zip(@super_sortino)
+    @zip_sortino = @zip_sortino.sort_by{|x,y|y}.reverse
+
   end
 
-  @sortinoGraph = []
+  private
 
-  @zip_array3.each_with_index do |x, index|
-    @sortinoGraph << {name: "#{@super_duper_array[index].first.symbol}", data: x}
+  def portfolio_params
+    params.require(:portfolio).permit([:startdate, { ticker_ids: [] }])
   end
-
-
-  #
-  # @sortinoGraph = [
-  #   {name: "#{@super_duper_array[0].first.symbol}", data: @zip9 },
-  #   {name: "#{@super_duper_array[1].first.symbol}", data: @zip10 },
-  #   {name: "#{@super_duper_array[2].first.symbol}", data: @zip11 }
-  # ]
 
   # DRAW DB ERD 🌶
   # DRAW DB mockup 🌶
@@ -336,15 +344,4 @@ class PortfoliosController < ApplicationController
     # IMPLEMENT sports betting
 
     # to_date = today.strftime("%Y-%m-%d")
-  end
-
-  private
-
-  def portfolio_params
-    params.require(:portfolio).permit([:startdate, { ticker_ids: [] }])
-  end
-
-
-
-
 end

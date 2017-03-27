@@ -30,9 +30,12 @@
     <p>The higher the better</p>
     <p>
   </div>
-    <% @return_array.each_with_index do |x, index| %>
-      <%= @super_duper_array[index].first.symbol %> -- <%= @return_array[index].round(2) %> <br>
-    <% end %>
+  <% @zip_return.each do |x , y| %>
+    <%= x %> -- <%= y.round(2) %> <br>
+  <% end  %>
+    <%# @return_array.each_with_index do |x, index| %>
+      <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @return_array[index].round(2) %> <br> -->
+    <%# end %>
   </p>
 </div>
 <h1>VARIATION CHART</h1>
@@ -41,11 +44,15 @@
 <%= area_chart @data2 %>
 
 <h1>HUNDRED DOLLAR TEST</h1>
-<p>If You invested 100 dollars in </p>
+<p>If You invested 100 dollars at the beginning, today tou would have </p>
 <p>
-  <% @super_dollars_at_end_array.each_with_index do |x, index| %>
-    <%= @super_duper_array[index].first.symbol %> -at beginning, today you would have- <%= @super_dollars_at_end_array[index].round(2) %> <br>
-  <% end %>
+  <% @zip_dollars.each do |x , y| %>
+    <%= x %> -- <%= y.round(2) %> <br>
+  <% end  %>
+
+  <%# @super_dollars_at_end_array.each_with_index do |x, index| %>
+    <!-- <%#= @super_duper_array[index].first.symbol %> -at beginning, today you would have- <%#= @super_dollars_at_end_array[index].round(2) %> <br> -->
+  <%# end %>
 </p>
 <%= line_chart @data3, min: @minimum, max: @maximum %>
 
@@ -55,23 +62,30 @@
 <p>
   A higher Sortino ratio is better. When looking at two similar investments, a rational investor would prefer the one with the higher Sortino ratio because it means that the investment is earning more return per unit of bad risk that it takes on.
   <br>
-  <% @super_sortino.each_with_index do |x, index| %>
-    <%= @super_duper_array[index].first.symbol %> -- <%= @super_sortino[index].round(2) %> <br>
-  <% end %>
+  <% @zip_sortino.each do |x , y| %>
+    <%= x %> -- <%= y.round(2) %> <br>
+  <% end  %>
+  <%# @super_sortino.each_with_index do |x, index| %>
+    <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @super_sortino[index].round(2) %> <br> -->
+  <%# end %>
 </p>
 
 <%= line_chart @sortinoGraph %>
 
 
-
+<!--
 <h1>V@R</h1>
 <p>MAYBE slider to certainty</p>
 <p>There's a 95% degree of certainty that you won't lose more than ...</p>
+
+-->
 <p>Link to actual stock buy</p>
 
 
 
 <h1>FUNDAMENTAL ANALYSIS</h1>
+
+
 
 <h1>NEWS ANALYSIS</h1>
 
