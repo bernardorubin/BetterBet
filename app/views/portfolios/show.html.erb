@@ -1,5 +1,31 @@
-<h1>STOCK PICKER</h1>
-<h1>TECHNICAL ANALYSIS</h1>
+<h1 style="color:white">STOCK PICKER</h1>
+<hr>
+<h1 style="color:white">FUNDAMENTALS</h1>
+<div class="row">
+  <div class="col-md-4">
+    <h4>EBITDA</h4>
+      <% @zip_fundamental.each do |x, y| %>
+        <%= x %> -  <%= y.ebitda %><br>
+      <% end  %>
+  </div>
+  <div class="col-md-4">
+    <h4>PE Ratio</h4>
+      <% @zip_fundamental.each do |x, y| %>
+        <%= x %> -  <%= y.pe_ratio %><br>
+      <% end  %>
+  </div>
+  <div class="col-md-4">
+    <h4>Short Ratio</h4>
+      <% @zip_fundamental.each do |x, y| %>
+        <%= x %> -  <%= y.short_ratio%><br>
+      <% end  %>
+    </div>
+</div>
+
+
+<hr>
+
+<h1 style="color:white">TECHNICALS</h1>
 <p>Start Date - End Date</p>
 <p><%= @portfolio.startdate %> - <%= @enddate %></p>
 <hr>
@@ -83,11 +109,12 @@
 
 
 
-<h1>FUNDAMENTAL ANALYSIS</h1>
+<h1>Portfplio return without wight and possibly with</h1>
 
 
 
 <h1>NEWS ANALYSIS</h1>
+<h1>Guru Advise</h1>
 
 
 STOCKS

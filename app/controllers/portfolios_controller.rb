@@ -98,7 +98,7 @@ class PortfoliosController < ApplicationController
 
     # index+array.length?
 #######################################################
-# TEHNICAL MEASURES
+# TECHNICAL RATIOS
     @stdev_array = []
 
     @super_close_array.each do |x|
@@ -179,7 +179,6 @@ class PortfoliosController < ApplicationController
       @zip_array2 << @super_date_array[index].reverse.zip(@super_hundred_dollar_array[index])
     end
 
-    puts @super_dollars_at_end_array
     @zip_dollars = @ticker_array.zip(@super_dollars_at_end_array)
     @zip_dollars = @zip_dollars.sort_by{|x,y|y}.reverse
 
@@ -268,7 +267,38 @@ class PortfoliosController < ApplicationController
     @zip_sortino = @ticker_array.zip(@super_sortino)
     @zip_sortino = @zip_sortino.sort_by{|x,y|y}.reverse
 
+
+    # fundamental
+
+    @fundamental_array = []
+
+    @ticker_array.each do |ticker|
+      # refactor with only one request
+      @fundamental_array << StockQuote::Stock.quote("#{ticker}")
+    end
+
+    @zip_fundamental = @ticker_array.zip(@fundamental_array)
+    @zip_fundamental = @zip_fundamental#.sort_by{|x,y|y}.reverse
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   end
+
+
+
+
 
   private
 
