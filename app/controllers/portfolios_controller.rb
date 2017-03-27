@@ -45,8 +45,6 @@ class PortfoliosController < ApplicationController
       @ticker_array << x.name
     end
 
-    @stock = StockQuote::Stock.quote("aapl")
-
     @super_duper_array = []
 
     # b = Benchmark.measure do
@@ -85,7 +83,7 @@ class PortfoliosController < ApplicationController
       count = 0
       # puts x.length
       x.each do |h|
-        @variation_array << (((h/@last)-1)*100)
+        @variation_array << (((@last/h)-1)*100)
         @last = h
         count += 1
       end
@@ -259,11 +257,11 @@ class PortfoliosController < ApplicationController
       @zip_array3 << @super_date_array[index].reverse.zip(@super_negative_excess_return[index])
     end
 
-    # @sortinoGraph = []
-    #
-    # @zip_array3.each_with_index do |x, index|
-    #   @sortinoGraph << {name: "#{@super_duper_array[index].first.symbol}", data: x}
-    # end
+    @sortinoGraph = []
+
+    @zip_array3.each_with_index do |x, index|
+      @sortinoGraph << {name: "#{@super_duper_array[index].first.symbol}", data: x}
+    end
 
     @zip_sortino = @ticker_array.zip(@super_sortino)
     @zip_sortino = @zip_sortino.sort_by{|x,y|y}.reverse
