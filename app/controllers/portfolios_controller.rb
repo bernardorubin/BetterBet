@@ -3,6 +3,15 @@ require 'descriptive_statistics'
 class PortfoliosController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @user = User.find(params[:user_id])
+    if @user == current_user
+      @portfolios = @user.portfolios
+    else
+      redirect_back fallback_location: root_path, alert: 'Back'
+    end
+  end
+
   def update
     @portfolio = Portfolio.find params[:id]
       if @portfolio.update(portfolio_params)
@@ -26,6 +35,7 @@ class PortfoliosController < ApplicationController
       portfolio_params[:ticker_ids].each do |x|
         p = PortfolioTicker.new
         p.ticker_id = x
+        # TODO fix below for many users
         p.portfolio_id = Portfolio.last.id
         p.save
       end
@@ -40,7 +50,7 @@ class PortfoliosController < ApplicationController
 # Track the bet?
 # Add cancan so noone can see other bets status maybe?
 # add state machine
-
+# TODO check in Portfolio show if th portfolio si in an active bet
 
   def show
     # graph portfolio performance

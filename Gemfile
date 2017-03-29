@@ -8,6 +8,7 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS //////////////////////////////////////////////
+gem 'time_difference'
 gem 'groupdate'
 gem "binding_of_caller"
 gem 'validates_timeliness'
@@ -21,6 +22,7 @@ gem 'better_errors'
 gem 'stock_quote'
 gem 'chartkick'
 gem 'yahoo-finance', '~> 1.2'
+gem 'pry'
 #///////////////////////////////////////////////////////
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

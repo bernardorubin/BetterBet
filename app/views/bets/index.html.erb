@@ -1,2 +1,20 @@
-<h1>Bets#index</h1>
+<h1>Public Bets</h1>
 <p>Find me in app/views/bets/index.html.erb</p>
+  <h1>Time until bet closes</h1>
+<% @bets.each do |x| %>
+  Start Date<%= x.startdate %> <br>
+  Now <%= DateTime.now %> <br>
+  Current <%= DateTime.current %>
+  <h1 id="x">Start Date -> <%= TimeDifference.between(DateTime.now, x.startdate).humanize %> |
+  <%= link_to x.id, bet_path(x.id) %></h1>
+<% end %>
+
+<!-- Fix time until close -->
+
+
+<script>
+var betId = '#{dom_id(x)}';
+setInterval(function() {
+  // method to be executed;
+}, 5000);
+</script>

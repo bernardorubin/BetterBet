@@ -7,12 +7,16 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :portfolios, only: [:index, :show, :new, :create, :update]
+  resources :users, only: [] do
+    resources :portfolios, only: [:index]
+  end
+
+  resources :portfolios, only: [:show, :new, :create, :update]
   resources :currencies, only: :index
 
 
   resources :bets, only: [:new, :index, :show, :create]
-  
+
   # resources :questions, shallow: true do
   #
   #   resources :answers, only: [:create, :destroy]

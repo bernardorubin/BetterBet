@@ -5,7 +5,7 @@
 <% end  %>
 <!--  TODO Add weighted portfolios-->
 <h4>In equal proportions</h4>
-<p>Challenge a user directly</p>
+
 <!-- tenemos
 t.datetime "startdate"
 t.datetime "enddate"
@@ -14,9 +14,9 @@ calculamos current date-->
 <%= simple_form_for @bet do |f| %>
 <%= f.input :startdate, default: DateTime.now + 2.hours %>
 <p>Default Start Time is in 2 hours</p>
-
 <%= f.input :enddate, default: DateTime.now + 1.week %>
 <p>Default End Date is one week</p>
+<%= f.hidden_field :portfolio, value: @portfolio.id %>
 <%= f.submit class: 'btn btn-primary', value: 'Create a Public Bet' %>
 <%= f.submit class: 'btn btn-primary', value: 'Challenge a Friend (Friends) Directly' %>
 <% end %>

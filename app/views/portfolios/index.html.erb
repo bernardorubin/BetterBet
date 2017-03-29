@@ -1,0 +1,6 @@
+<% @portfolios.each do |x| %>
+<br>
+  <%# x.tickers.each do |x|%>
+    <%= link_to x.id, portfolio_path(x.id) %>
+  <%# end  %>
+<% end  %>

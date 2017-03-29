@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/">Home</a> <span class="sr-only">(current)</span></a></li>
-        <li><%= link_to 'Portfolios', portfolios_path %></li>
+        <li><%= link_to 'Portfolios', user_portfolios_path(current_user) %></li>
         <li><%= link_to 'Currencies', currencies_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

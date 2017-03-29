@@ -1,6 +1,12 @@
 Current portfolio
-
+State of bet
 <!-- tenemos
 t.datetime "startdate"
 t.datetime "enddate"
 calculamos current date-->
+
+<% @portfolios.each do |x| %>
+<% x.tickers.each do |x| %>
+  <%= x.name %>
+<% end %>
+<% end %>
