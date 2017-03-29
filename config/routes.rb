@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'bets/index'
+
   devise_for :users
   get 'user' => 'user#index'
   patch 'user' => 'user#update'
@@ -9,7 +11,8 @@ Rails.application.routes.draw do
   resources :currencies, only: :index
 
 
-
+  resources :bets, only: [:new, :index, :show, :create]
+  
   # resources :questions, shallow: true do
   #
   #   resources :answers, only: [:create, :destroy]

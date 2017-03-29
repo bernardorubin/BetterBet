@@ -36,6 +36,11 @@ $(document).ready(function(){
     $(this).parent().toggleClass('col-md-4');
     $('.placeABet').slideToggle();
   });
+//
+  // var randBetween = function(){
+  //   color = Math.floor((Math.random() * 255) + 1)
+  // }
+
 
   $('.toggleFundamentals').on('click', function(){
     $('#fundamentals').slideToggle();

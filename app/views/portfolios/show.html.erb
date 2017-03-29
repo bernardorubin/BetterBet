@@ -1,9 +1,10 @@
 <h1 style="color:white">STOCK PICKER</h1>
-
+<%= link_to new_bet_path(@portfolio) do  %>
 <span class="fa-stack fa-lg betFixed" data-toggle="tooltip" title="Bet" data-placement="top">
   <i class="fa fa-circle fa-stack-2x"></i>
   <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
 </span>
+<% end  %>
 
 <hr>
 <%= render 'portfolios/form' %>

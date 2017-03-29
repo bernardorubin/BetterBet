@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329005429) do
+ActiveRecord::Schema.define(version: 20170329163413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bets", force: :cascade do |t|
+    t.datetime "startdate"
+    t.datetime "enddate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "portfolio_tickers", force: :cascade do |t|
     t.integer  "portfolio_id"
@@ -40,6 +47,15 @@ ActiveRecord::Schema.define(version: 20170329005429) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "ticker"
+  end
+
+  create_table "user_bets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "bet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bet_id"], name: "index_user_bets_on_bet_id", using: :btree
+    t.index ["user_id"], name: "index_user_bets_on_user_id", using: :btree
   end
 
   create_table "user_portfolios", force: :cascade do |t|
@@ -71,5 +87,7 @@ ActiveRecord::Schema.define(version: 20170329005429) do
   add_foreign_key "portfolio_tickers", "portfolios"
   add_foreign_key "portfolio_tickers", "tickers"
   add_foreign_key "portfolios", "users"
+  add_foreign_key "user_bets", "bets"
+  add_foreign_key "user_bets", "users"
   add_foreign_key "user_portfolios", "users"
 end

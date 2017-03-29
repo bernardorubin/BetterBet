@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+   has_many :user_bets
+   has_many :bets, through: :user_bets
+
   # has_many :portfolios, through: :user_portfolios, source: :portfolio
 # dependent destroy?
    def display_name

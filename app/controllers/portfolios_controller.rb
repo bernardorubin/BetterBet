@@ -36,6 +36,11 @@ class PortfoliosController < ApplicationController
     end
   end
 
+# Add validations for seeds and everything
+# Track the bet?
+# Add cancan so noone can see other bets status maybe?
+# add state machine
+
 
   def show
     # graph portfolio performance
@@ -46,13 +51,13 @@ class PortfoliosController < ApplicationController
     @enddate = Date.today
     # @startdate = @enddate - 30.days
     @startdate = @portfolio.startdate
-
+# NOT DRY
     @ticker_array= []
 
     @portfolio.tickers.each do |x|
       @ticker_array << x.ticker
     end
-
+#
     @super_duper_array = []
 
     # b = Benchmark.measure do
