@@ -41,7 +41,9 @@ $(document).ready(function(){
     $('#fundamentals').slideToggle();
     // TODO CHANGE FUNCTION TO RGB
     var color = Math.floor((Math.random() * 655366) + 1);
-    $('body').css('background-color', `#${color}`);
+    color = "#" +  color
+    // $('body').css('background-color', `#${color}`);
+    $('body').css('background-color', color);
   });
   $('.toggleTechnicals').on('click', function(){
     $('#technicals').slideToggle();
