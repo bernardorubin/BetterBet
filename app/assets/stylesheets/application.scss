@@ -24,6 +24,24 @@ body {
   transition: all 2s ease;
 }
 
+.betFixed {
+  opacity: 0.4;
+  font-size: 60px;
+  position: fixed;;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99999;
+  transition: all .5s ease;
+
+}
+
+.betFixed:hover {
+  cursor: pointer;
+  opacity: 0.9;
+  text-shadow: -3px 3px black;
+}
+
+
 .highcharts-background, .highcharts-plot-background {
   fill: $color1;
 }

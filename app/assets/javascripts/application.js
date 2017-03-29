@@ -47,5 +47,6 @@ $(document).ready(function(){
     $('#technicals').slideToggle();
     $('body').css('background-color', '#002b36');
   });
+  $('[data-toggle="tooltip"]').tooltip();
   console.log('Welcome To Stock Robot');
 })
