@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require highcharts
+// require Chart.bundle
 //= require chartkick
 //= require bootstrap-sprockets
 
@@ -34,7 +35,17 @@ $(document).ready(function(){
     $(this).parent().toggleClass('col-md-12');
     $(this).parent().toggleClass('col-md-4');
     $('.placeABet').slideToggle();
-
   });
-  console.log('Hello');
+
+  $('.toggleFundamentals').on('click', function(){
+    $('#fundamentals').slideToggle();
+    // TODO CHANGE FUNCTION TO RGB
+    var color = Math.floor((Math.random() * 655366) + 1);
+    $('body').css('background-color', `#${color}`);
+  });
+  $('.toggleTechnicals').on('click', function(){
+    $('#technicals').slideToggle();
+    $('body').css('background-color', '#002b36');
+  });
+  console.log('Welcome To Stock Robot');
 })

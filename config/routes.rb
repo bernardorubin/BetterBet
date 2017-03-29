@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :portfolios, only: [:index, :show, :new, :create]
+  resources :portfolios, only: [:index, :show, :new, :create, :update]
   resources :currencies, only: :index
 
 

@@ -1,125 +1,129 @@
 <h1 style="color:white">STOCK PICKER</h1>
 <hr>
-<h1 style="color:white">FUNDAMENTALS</h1>
-<div class="row">
-  <div class="col-md-4">
-    <h4>EBITDA</h4>
-      <% @zip_fundamental.each do |x, y| %>
-        <%= x %> -  <%= y.ebitda %><br>
-      <% end  %>
-  </div>
-  <div class="col-md-4">
-    <h4>PE Ratio</h4>
-      <% @zip_fundamental.each do |x, y| %>
-        <%= x %> -  <%= y.pe_ratio %><br>
-      <% end  %>
-  </div>
-  <div class="col-md-4">
-    <h4>Short Ratio</h4>
-      <% @zip_fundamental.each do |x, y| %>
-        <%= x %> -  <%= y.short_ratio%><br>
-      <% end  %>
+<%= render 'portfolios/form' %>
+<hr>
+<h1 style="color:white" class="toggleFundamentals btn-default hoverable">FUNDAMENTALS</h1>
+<div id="fundamentals" style="display:none">
+  <div class="row">
+    <div class="col-md-4">
+      <h4>EBITDA</h4>
+        <% @zip_fundamental.each do |x, y| %>
+          <%= x %> -  <%= y.ebitda %><br>
+        <% end  %>
     </div>
+    <div class="col-md-4">
+      <h4>PE Ratio</h4>
+        <% @zip_fundamental.each do |x, y| %>
+          <%= x %> -  <%= y.pe_ratio %><br>
+        <% end  %>
+    </div>
+    <div class="col-md-4">
+      <h4>Short Ratio</h4>
+        <% @zip_fundamental.each do |x, y| %>
+          <%= x %> -  <%= y.short_ratio%><br>
+        <% end  %>
+      </div>
+  </div>
 </div>
 
-
 <hr>
 
-<h1 style="color:white">TECHNICALS</h1>
-<p>Start Date - End Date</p>
-<p><%= @portfolio.startdate %> - <%= @enddate %></p>
-<hr>
-<!-- <h1>ABSOLUTE PRICE CHART</h1> -->
+<h1 style="color:white" class="toggleTechnicals btn-primary hoverable">TECHNICALS</h1>
+<div id="technicals" style="display:none">
+  <p>Start Date - End Date</p>
+  <p><%= @portfolio.startdate %> - <%= @enddate %></p>
+  <hr>
+  <!-- <h1>ABSOLUTE PRICE CHART</h1> -->
 
-<%= line_chart @data1 %>
+  <%= line_chart @data1, discrete: true %>
 
-<!-- <h1>STANDARD DEVIATION</h1> -->
+  <!-- <h1>STANDARD DEVIATION</h1> -->
 
-<%# @stdev_array.each_with_index do |x, index| %>
-  <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @stdev_array[index].round(2) %> <br> -->
-<%# end %>
-<div class="row">
-  <div class="col-sm-6">
-    <h1>VARIATION COEFFICIENT</h1>
-    <p>The higher the riskier</p>
-    <%# @varcoef_array.each_with_index do |x, index| %>
-      <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @varcoef_array[index].round(2) %> <br> -->
-    <%# end %>
+  <%# @stdev_array.each_with_index do |x, index| %>
+    <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @stdev_array[index].round(2) %> <br> -->
+  <%# end %>
+  <div class="row">
+    <div class="col-sm-6">
+      <h1>VARIATION COEFFICIENT</h1>
+      <p>The higher the riskier</p>
+      <%# @varcoef_array.each_with_index do |x, index| %>
+        <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @varcoef_array[index].round(2) %> <br> -->
+      <%# end %>
 
-    <% @zip_inter.each do |x , y| %>
+      <% @zip_inter.each do |x , y| %>
+        <%= x %> -- <%= y.round(2) %> <br>
+      <% end  %>
+
+    </div>
+    <div class="col-sm-6">
+      <h1>RETURN ON INVESTMENT</h1>
+      <p>The higher the better</p>
+      <p>
+    </div>
+    <% @zip_return.each do |x , y| %>
+      <%= x %> -- <%= y.round(2) %> <br>
+    <% end  %>
+      <%# @return_array.each_with_index do |x, index| %>
+        <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @return_array[index].round(2) %> <br> -->
+      <%# end %>
+    </p>
+  </div>
+  <h1>VARIATION CHART</h1>
+  <p>Can improve</p>
+
+  <%= area_chart @data2 %>
+
+  <h1>HUNDRED DOLLAR TEST</h1>
+  <p>If You invested 100 dollars at the beginning, today tou would have </p>
+  <p>
+    <% @zip_dollars.each do |x , y| %>
       <%= x %> -- <%= y.round(2) %> <br>
     <% end  %>
 
-  </div>
-  <div class="col-sm-6">
-    <h1>RETURN ON INVESTMENT</h1>
-    <p>The higher the better</p>
-    <p>
-  </div>
-  <% @zip_return.each do |x , y| %>
-    <%= x %> -- <%= y.round(2) %> <br>
-  <% end  %>
-    <%# @return_array.each_with_index do |x, index| %>
-      <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @return_array[index].round(2) %> <br> -->
+    <%# @super_dollars_at_end_array.each_with_index do |x, index| %>
+      <!-- <%#= @super_duper_array[index].first.symbol %> -at beginning, today you would have- <%#= @super_dollars_at_end_array[index].round(2) %> <br> -->
     <%# end %>
   </p>
+  <%= line_chart @data3, min: @minimum, max: @maximum %>
+
+
+  <h1>SORTINO Ratio</h1>
+  <p>Eliminates upward volatily</p>
+  <p>
+    A higher Sortino ratio is better. When looking at two similar investments, a rational investor would prefer the one with the higher Sortino ratio because it means that the investment is earning more return per unit of bad risk that it takes on.
+    <br>
+    <% @zip_sortino.each do |x , y| %>
+      <%= x %> -- <%= y.round(2) %> <br>
+    <% end  %>
+    <%# @super_sortino.each_with_index do |x, index| %>
+      <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @super_sortino[index].round(2) %> <br> -->
+    <%# end %>
+  </p>
+
+  <%= line_chart @sortinoGraph %>
 </div>
-<h1>VARIATION CHART</h1>
-<p>Can improve</p>
-
-<%= area_chart @data2 %>
-
-<h1>HUNDRED DOLLAR TEST</h1>
-<p>If You invested 100 dollars at the beginning, today tou would have </p>
-<p>
-  <% @zip_dollars.each do |x , y| %>
-    <%= x %> -- <%= y.round(2) %> <br>
-  <% end  %>
-
-  <%# @super_dollars_at_end_array.each_with_index do |x, index| %>
-    <!-- <%#= @super_duper_array[index].first.symbol %> -at beginning, today you would have- <%#= @super_dollars_at_end_array[index].round(2) %> <br> -->
-  <%# end %>
-</p>
-<%= line_chart @data3, min: @minimum, max: @maximum %>
-
-
-<h1>SORTINO Ratio</h1>
-<p>Eliminates upward volatily</p>
-<p>
-  A higher Sortino ratio is better. When looking at two similar investments, a rational investor would prefer the one with the higher Sortino ratio because it means that the investment is earning more return per unit of bad risk that it takes on.
-  <br>
-  <% @zip_sortino.each do |x , y| %>
-    <%= x %> -- <%= y.round(2) %> <br>
-  <% end  %>
-  <%# @super_sortino.each_with_index do |x, index| %>
-    <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @super_sortino[index].round(2) %> <br> -->
-  <%# end %>
-</p>
-
-<%= line_chart @sortinoGraph %>
-
-
 <!--
 <h1>V@R</h1>
 <p>MAYBE slider to certainty</p>
 <p>There's a 95% degree of certainty that you won't lose more than ...</p>
 
 -->
-<p>Link to actual stock buy</p>
+<!-- <p>Link to actual stock buy</p>
 
 
 
-<h1>Portfplio return without wight and possibly with</h1>
+<h1>Portfolio return without weight and possibly with weiight</h1> -->
 
 
-
+<hr>
 <h1>NEWS ANALYSIS</h1>
-<h1>Guru Advise</h1>
+<hr>
+<h1>GURU ADVISE</h1>
 
 
-STOCKS
+<!-- STOCKS -->
 <%# @stocks %>
-STOCK
+<!-- STOCK -->
 <%# @stock.book_value %>
 
 

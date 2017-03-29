@@ -1,0 +1,5 @@
+<%= simple_form_for @portfolio do |f| %>
+<%= f.association :tickers, input_html: { class: 'chosen-select form-control' }, label_html: { class: 'col-xs-12' } %>
+<%= f.input :startdate, default: Date.today-5 %>
+<%= f.submit class: 'btn btn-primary' %>
+<% end %>

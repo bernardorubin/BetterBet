@@ -54,7 +54,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
-    chartkick (1.5.2)
+    chartkick (2.2.3)
     choice (0.2.0)
     chosen-rails (1.5.2)
       coffee-rails (>= 3.2)
@@ -84,6 +84,8 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    groupdate (2.1.1)
+      activerecord (>= 3.0.0)
     hirb (0.7.3)
     i18n (0.8.0)
     interactive_editor (0.0.10)
@@ -215,12 +217,13 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.3.6)
   byebug
-  chartkick (~> 1.4)
+  chartkick
   chosen-rails
   coffee-rails (~> 4.2)
   descriptive_statistics (~> 2.4.0)
   devise
   font-awesome-rails
+  groupdate
   hirb
   interactive_editor
   jbuilder (~> 2.5)

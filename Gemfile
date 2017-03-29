@@ -8,6 +8,7 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS //////////////////////////////////////////////
+gem 'groupdate'
 gem "binding_of_caller"
 gem 'validates_timeliness'
 gem 'chosen-rails'
@@ -18,7 +19,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 gem 'better_errors'
 gem 'stock_quote'
-gem 'chartkick', '~> 1.4'
+gem 'chartkick'
 gem 'yahoo-finance', '~> 1.2'
 #///////////////////////////////////////////////////////
 

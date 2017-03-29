@@ -3,15 +3,21 @@ require 'descriptive_statistics'
 class PortfoliosController < ApplicationController
   before_action :authenticate_user!
 
+  def update
+    @portfolio = Portfolio.find params[:id]
+      if @portfolio.update(portfolio_params)
+        flash[:notice] = 'Portfolio updated successfully'
+        redirect_to portfolio_path
+      end
+  end
+
   def new
     @portfolio = Portfolio.new
   end
 
   def create
-    # DATES HERE?????????????????????????????????????????
     date = Date.new portfolio_params["startdate(1i)"].to_i, portfolio_params["startdate(2i)"].to_i, portfolio_params["startdate(3i)"].to_i
     # render json:portfolio_params
-    # @portfolio_tickers = "AAPL"
     @portfolio  = Portfolio.new
     @portfolio.startdate = date
     @portfolio.user = current_user
@@ -42,7 +48,7 @@ class PortfoliosController < ApplicationController
     @ticker_array= []
 
     @portfolio.tickers.each do |x|
-      @ticker_array << x.name
+      @ticker_array << x.ticker
     end
 
     @super_duper_array = []
@@ -279,16 +285,6 @@ class PortfoliosController < ApplicationController
 
     @zip_fundamental = @ticker_array.zip(@fundamental_array)
     @zip_fundamental = @zip_fundamental#.sort_by{|x,y|y}.reverse
-
-
-
-
-
-
-
-
-
-
 
 
 

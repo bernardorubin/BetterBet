@@ -20,6 +20,10 @@
 @import "variables";
 @import "font-awesome";
 
+body {
+  transition: all 2s ease;
+}
+
 .highcharts-background, .highcharts-plot-background {
   fill: $color1;
 }
@@ -31,4 +35,35 @@ text{
 
 .btn-menu {
   width: 100%
+}
+
+
+.chosen-container-multi{
+  width: 400px !important;
+
+}
+.chosen-container-multi .chosen-choices {
+    // background-image: linear-gradient($color1 99%, black 1%);
+    background-image: linear-gradient(45deg, $color1 80%, white 20%);
+    padding: 10px;
+
+}
+.chosen-container-multi .chosen-choices li.search-choice {
+    background-image: linear-gradient(45deg, $color1 95%, white 5%);
+    padding-right:30px;
+    color: white;
+
+}
+
+.chosen-container-active .chosen-choices li.search-field input[type="text"] {
+  color: white !important;
+}
+
+.highcharts-background{
+  width: 20px !important;
+}
+
+
+.hoverable:hover {
+  cursor: pointer;
 }
