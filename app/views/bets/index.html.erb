@@ -1,14 +1,19 @@
 <h1>Public Bets</h1>
-<p>Find me in app/views/bets/index.html.erb</p>
-  <h1>Time until bet closes</h1>
+<hr>
+<div class="" style="text-align:left">
 <% @bets.each do |x| %>
-  Start Date<%= x.startdate %> <br>
-  Now <%= DateTime.now %> <br>
-  Current <%= DateTime.current %>
-  <h1 id="x">Start Date -> <%= TimeDifference.between(DateTime.now, x.startdate).humanize %> |
-  <%= link_to x.id, bet_path(x.id) %></h1>
+<h4 id="x">
+  <%= x.amount %>
+  <% x.portfolios.each do |r| %>
+    <% r.tickers.each do |ticker| %>
+      <span class="btn btn-default"><%= ticker.name %></span>
+    <% end %>
+    <% end  %>
+  Time Until Bet Starts>> <%= TimeDifference.between(DateTime.current, x.startdate).humanize %> |
+  End Date>> <%= TimeDifference.between(DateTime.current, x.enddate).humanize %>
+  <%= link_to x.id, bet_path(x.id) %></h4>
 <% end %>
-
+</div>
 <!-- Fix time until close -->
 
 

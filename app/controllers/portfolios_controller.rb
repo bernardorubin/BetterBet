@@ -113,6 +113,7 @@ class PortfoliosController < ApplicationController
       @super_variation_array << @variation_array
     end
 
+
 #######################################################
     @zip_array1 = []
     @super_date_array.each_with_index do |x, index|
@@ -176,7 +177,7 @@ class PortfoliosController < ApplicationController
 
       @new_array
 
-      @number = 100
+      @number = 100.0
       @hundred_dollar_array = []
 
       @new_array.reverse.each do |x|
@@ -195,6 +196,17 @@ class PortfoliosController < ApplicationController
     # @super_date_array.each do |x|
     #   x.shift
     # end
+    @portfolio_return = @super_hundred_dollar_array.transpose
+
+    @portfolio_average = []
+
+    @portfolio_return.each do |average|
+      @portfolio_average << average.sum / average.size.to_f
+    end
+
+    @super_date_array << @super_date_array.last
+    @super_hundred_dollar_array << @portfolio_average
+    @ticker_array << "PORTFOLIO"
 
     @zip_array2 = []
 
@@ -202,11 +214,9 @@ class PortfoliosController < ApplicationController
       @zip_array2 << @super_date_array[index].reverse.zip(@super_hundred_dollar_array[index])
     end
 
-    @zip_dollars = @ticker_array.zip(@super_dollars_at_end_array)
-    @zip_dollars = @zip_dollars.sort_by{|x,y|y}.reverse
+
 
 ##########################################################
-
     @data1 = []
 
     @zip_array.each_with_index do |x, index|
@@ -221,8 +231,9 @@ class PortfoliosController < ApplicationController
 
     @data3 = []
 
+
     @zip_array2.each_with_index do |x, index|
-      @data3 << {name: "#{@super_duper_array[index].first.symbol}", data: x}
+      @data3 << {name: "#{@ticker_array[index]}", data: x}
     end
 
     @all_values = []
@@ -234,6 +245,13 @@ class PortfoliosController < ApplicationController
     @minimum = @all_values.min
     @maximum = @all_values.max
 
+# REMOVED FROM PORTFOLIO
+    @ticker_array.pop
+    @super_date_array.pop
+    @super_hundred_dollar_array.pop
+
+    @zip_dollars = @ticker_array.zip(@super_dollars_at_end_array)
+    @zip_dollars = @zip_dollars.sort_by{|x,y|y}.reverse
 # #############################################
 # SORTINO RATIO
 
@@ -303,15 +321,7 @@ class PortfoliosController < ApplicationController
     @zip_fundamental = @ticker_array.zip(@fundamental_array)
     @zip_fundamental = @zip_fundamental#.sort_by{|x,y|y}.reverse
 
-
-
-
-
   end
-
-
-
-
 
   private
 

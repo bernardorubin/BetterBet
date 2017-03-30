@@ -10,13 +10,15 @@
 t.datetime "startdate"
 t.datetime "enddate"
 calculamos current date-->
-
+<div class="container col-md-4 col-md-offset-4">
 <%= simple_form_for @bet do |f| %>
-<%= f.input :startdate, default: DateTime.now + 2.hours %>
-<p>Default Start Time is in 2 hours</p>
-<%= f.input :enddate, default: DateTime.now + 1.week %>
-<p>Default End Date is one week</p>
-<%= f.hidden_field :portfolio, value: @portfolio.id %>
-<%= f.submit class: 'btn btn-primary', value: 'Create a Public Bet' %>
-<%= f.submit class: 'btn btn-primary', value: 'Challenge a Friend (Friends) Directly' %>
+  <%= f.input :startdate, default: @defaultstartdate %>
+  <p>Default Start Time is in 2 hours</p>
+  <%= f.input :enddate, default: @defaultenddate %>
+  <p>Default End Date is one week</p>
+  <%= f.hidden_field :portfolio, value: @portfolio.id %>
+  <%= f.input :amount %>
+  <%= f.submit class: 'btn btn-primary', value: 'Create a Public Bet' %>
+  <%= f.submit class: 'btn btn-primary', value: 'Challenge a Friend Directly', name: 'challenge' %>
 <% end %>
+</div>

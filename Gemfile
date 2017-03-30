@@ -8,6 +8,8 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS //////////////////////////////////////////////
+gem 'aasm'
+gem 'timezone'
 gem 'time_difference'
 gem 'groupdate'
 gem "binding_of_caller"
@@ -58,7 +60,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "better_errors"
   gem 'awesome_print'
   gem 'interactive_editor'
   gem 'hirb'
