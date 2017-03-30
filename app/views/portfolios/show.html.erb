@@ -81,8 +81,8 @@
   <%= area_chart @data2 %>
 
   <h1>HUNDRED DOLLAR TEST</h1>
-  <p>If You invested 100 dollars at the beginning, today tou would have </p>
-  <p>
+  <p>If You invested 100 dollars at the beginning, today you would have </p>
+  <p>Portfolio Return<%= (@portfolio_last - 100).round(2)  %> % return <br>
     <% @zip_dollars.each do |x , y| %>
       <%= x %> -- <%= y.round(2) %> <br>
     <% end  %>

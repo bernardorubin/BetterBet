@@ -248,6 +248,7 @@ class PortfoliosController < ApplicationController
 # REMOVED FROM PORTFOLIO
     @ticker_array.pop
     @super_date_array.pop
+    @portfolio_last = @super_hundred_dollar_array.last.last
     @super_hundred_dollar_array.pop
 
     @zip_dollars = @ticker_array.zip(@super_dollars_at_end_array)
