@@ -82,7 +82,7 @@
 
   <h1>HUNDRED DOLLAR TEST</h1>
   <p>If You invested 100 dollars at the beginning, today you would have </p>
-  <p>Portfolio Return<%= (@portfolio_last - 100).round(2)  %> % return <br>
+  <p><strong>Portfolio Return >><%= (@portfolio_last - 100).round(2)  %> % </strong> <br>
     <% @zip_dollars.each do |x , y| %>
       <%= x %> -- <%= y.round(2) %> <br>
     <% end  %>
