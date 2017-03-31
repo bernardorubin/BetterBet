@@ -63,7 +63,7 @@ tickerArray = [["Apple", "AAPL"],["Google", "GOOGL"], ["Microsoft", "MSFT"],
 # "SAP",
 # "MMM",
 
-
+User.create(email: 'bernardorubin@gmail.com', password: 'chichi', timezone: 'America/Los_Angeles')
 
 tickerArray.each do |x, y|
   Ticker.create(name: x, ticker: y)
