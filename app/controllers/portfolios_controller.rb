@@ -5,7 +5,7 @@ class PortfoliosController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     if @user == current_user
-      @portfolios = @user.portfolios
+      @portfolios = @user.portfolios.latest_first
     else
       redirect_back fallback_location: root_path, alert: 'Back'
     end
@@ -19,12 +19,25 @@ class PortfoliosController < ApplicationController
       end
   end
 
+  def destroy
+
+    @portfolio = Portfolio.find params[:id]
+    if @portfolio.in_bet?
+        redirect_to user_portfolios_path(current_user), alert: 'Can\'t delete once a bet is public'
+    else
+      if @portfolio.destroy
+        redirect_to user_portfolios_path(current_user), alert: 'Portfolio Removed'
+      else
+        # redirect_to @vote.question, alert: 'Can\'t remove vote'
+      end
+    end
+  end
+
   def new
     @portfolio = Portfolio.new
   end
 
   def create
-
     date = Date.new portfolio_params["startdate(1i)"].to_i, portfolio_params["startdate(2i)"].to_i, portfolio_params["startdate(3i)"].to_i
     # render json:portfolio_params
     @portfolio  = Portfolio.new
@@ -46,11 +59,11 @@ class PortfoliosController < ApplicationController
     end
   end
 
+# TODO check in Portfolio show if th portfolio si in an active bet
 # Add validations for seeds and everything
 # Track the bet?
 # Add cancan so noone can see other bets status maybe?
 # add state machine
-# TODO check in Portfolio show if th portfolio si in an active bet
 
   def show
     # graph portfolio performance

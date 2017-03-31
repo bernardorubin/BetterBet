@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :portfolios, only: [:index]
   end
 
-  resources :portfolios, only: [:show, :new, :create, :update]
+  resources :portfolios, only: [:show, :new, :create, :update, :destroy]
   resources :currencies, only: :index
 
 

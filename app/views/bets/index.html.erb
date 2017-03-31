@@ -1,18 +1,37 @@
-<h1>Public Bets</h1>
+<h1 style="color: white">Public Bets</h1>
 <hr>
 <div class="" style="text-align:left">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>UserName</th>
+        <th>Time Until Bet Starts</th>
+        <th>Time Until Bet Ends</th>
+        <th>Amount</th>
+        <th>Stocks in Portfolio</th>
+        <th>Take Bet</th>
+      </tr>
+    </thead>
+    <tbody>
 <% @bets.each do |x| %>
-<h4 id="x">
-  <%= x.amount %>
-  <% x.portfolios.each do |r| %>
-    <% r.tickers.each do |ticker| %>
-      <span class="btn btn-default"><%= ticker.name %></span>
-    <% end %>
-    <% end  %>
-  Time Until Bet Starts>> <%= TimeDifference.between(DateTime.current, x.startdate).humanize %> |
-  End Date>> <%= TimeDifference.between(DateTime.current, x.enddate).humanize %>
-  <%= link_to x.id, bet_path(x.id) %></h4>
+  <tr>
+    <td> <%=  x.portfolios.first
+     %></td>
+    <td><%= TimeDifference.between(DateTime.current, x.startdate).humanize %></td>
+    <td><%= TimeDifference.between(DateTime.current, x.enddate).humanize %></td>
+    <td><%= number_to_currency(x.amount) %></td>
+    <td>
+      <% x.portfolios.each do |r| %>
+            <% r.tickers.each do |ticker| %>
+         <span class="btn btn-default btn-sm"><%= ticker.name %></span>
+        <% end %>
+      <% end  %>
+    </td>
+    <td><%= link_to x.id, user_portfolios_path(user_id: current_user, chuy: x.id) %></td>
+  </tr>
 <% end %>
+</tbody>
+</table>
 </div>
 <!-- Fix time until close -->
 

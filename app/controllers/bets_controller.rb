@@ -10,27 +10,32 @@ class BetsController < ApplicationController
   # TODO Close Bets
 
   def new
-    @portfolio = Portfolio.find(params[:format])
+      @portfolio = Portfolio.find(params[:format])
+      if @portfolio.in_bet?
+        redirect_to portfolio_path(@portfolio.id)
+        flash[:alert] = 'Bet already placed for this portfolio'
+      else
 
 # NOT DRY
-     @ticker_array= []
+       @ticker_array= []
 
-     @portfolio.tickers.each do |x|
-       @ticker_array << x.ticker
-     end
+       @portfolio.tickers.each do |x|
+         @ticker_array << x.ticker
+       end
 
-     @name_array= []
+       @name_array= []
 
-     @portfolio.tickers.each do |x|
-       @name_array << x.name
-     end
-#
-      @bet = Bet.new
+       @portfolio.tickers.each do |x|
+         @name_array << x.name
+       end
+  #
+        @bet = Bet.new
 
-      get_user_time_zone
+        get_user_time_zone
 
-      @defaultstartdate = @timezone.utc_to_local(Time.current) + 2.hours
-      @defaultenddate = @timezone.utc_to_local(Time.current) + 1.week
+        @defaultstartdate = @timezone.utc_to_local(Time.current) + 2.hours
+        @defaultenddate = @timezone.utc_to_local(Time.current) + 1.week
+      end
   end
 
 # TODO Add state Machine
@@ -63,9 +68,12 @@ class BetsController < ApplicationController
     @bet.enddate = @timezone.local_to_utc(enddate)
 
     @portfolio = Portfolio.find(bet_params[:portfolio])
+
     if @bet.save
       @portfolio.bet_id = @bet.id
       @portfolio.save
+      @portfolio.to_bet!
+      puts @portfolio.in_bet?
       flash[:notice] = 'Bet created successfully'
       redirect_to bets_path
     end
@@ -73,6 +81,8 @@ class BetsController < ApplicationController
 
   def show
     # @portfolios = []
+
+    # link_to x.id, bet_path(x.id)
     @bet_id = params[:id]
     @portfolios = Portfolio.where(bet_id: @bet_id)
     puts @portfolios

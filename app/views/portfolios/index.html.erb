@@ -1,6 +1,15 @@
+<h1>These are Your Portfolios</h1>
+<h4>You own <%= pluralize(@portfolios.count, "portfolio")  %></h4>
+<%= link_to 'Create New Portfolio', new_portfolio_path, class: 'btn btn-default' %>
 <% @portfolios.each do |x| %>
 <br>
-  <%# x.tickers.each do |x|%>
     <%= link_to x.id, portfolio_path(x.id) %>
-  <%# end  %>
+    <% x.tickers.each do |x|%>
+      <%= x.name %>
+    <% end  %>
+<% if x.in_bet?  %>
+  currently in a bet, link to bet show
+<% else  %>
+  <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe , portfolio_path(x) , method: :delete, data: { confirm: 'Are you sure? '} %>
 <% end  %>
+<%end  %>
