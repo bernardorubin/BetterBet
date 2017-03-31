@@ -8,6 +8,7 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS //////////////////////////////////////////////
+gem 'virtus'
 gem 'aasm'
 gem 'timezone'
 gem 'time_difference'

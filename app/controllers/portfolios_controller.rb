@@ -1,5 +1,4 @@
 require 'descriptive_statistics'
-
 class PortfoliosController < ApplicationController
   before_action :authenticate_user!
 
