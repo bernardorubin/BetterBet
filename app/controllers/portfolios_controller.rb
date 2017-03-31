@@ -74,7 +74,6 @@ class PortfoliosController < ApplicationController
       @portfolio_last = service.portfolio_last
       @minimum = service.minimum
       @maximum = service.maximum
-      puts @service
     end
   end
 

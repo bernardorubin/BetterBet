@@ -13,9 +13,6 @@ tickerArray = [["Apple", "AAPL"],["Google", "GOOGL"], ["Microsoft", "MSFT"],
 ["Facebook", "FB"], ["Amazon", "AMZN"], ["Alibaba", "BABA"],["Tesla", "TSLA"],
 ["Sony", "SNY"]
 
-
-
-
 ]
 
 
