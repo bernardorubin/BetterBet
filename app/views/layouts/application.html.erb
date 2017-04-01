@@ -3,16 +3,17 @@
   <head>
     <title>StocksRails</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
     <%= render 'layouts/navbar' %>
-    <div class="container" align="center">
+    <div id="container-messages" align="center">
       <div class='alert alert-success'<%= ' style="display: none"'.html_safe unless notice %>><%= notice if notice %></div>
       <div class='alert alert-danger'<%= ' style="display: none;"'.html_safe unless alert %>><%= alert if alert %></div>
+    </div>
+      <div class="container" align="center">
       <%= yield %>
     </div>
   </body>

@@ -59,6 +59,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
+    cancancan (1.16.0)
     chartkick (2.2.3)
     choice (0.2.0)
     chosen-rails (1.5.2)
@@ -242,6 +243,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.3.6)
   byebug
+  cancancan
   chartkick
   chosen-rails
   coffee-rails (~> 4.2)

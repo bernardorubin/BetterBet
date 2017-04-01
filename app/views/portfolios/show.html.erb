@@ -1,28 +1,44 @@
-<h1 style="color:white">Your Portfolio
+<h1 class="title">Portfolio Analysis</h1>
+
 <% if @portfolio.in_bet? %>
   <h4>[Already In a Bet]</h4>
+  <hr>
   <span class="fa-stack fa-lg betFixed" data-toggle="tooltip" title="Already in a Bet" data-placement="top">
     <i class="fa fa-circle fa-stack-2x" style="color:#7F0000"></i>
     <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
   </span>
 <% else %>
-  <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, portfolio_path(@portfolio) , method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-danger pull-right'%>
-  <%= link_to new_bet_path(@portfolio) do  %>
-  <span class="fa-stack fa-lg betFixed" data-toggle="tooltip" title="Bet" data-placement="top">
-    <i class="fa fa-circle fa-stack-2x"></i>
-    <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
+  <span>
+    <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i> Delete Portfolio'.html_safe, portfolio_path(@portfolio) , method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-warning btn-lg'%>
   </span>
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-refresh" aria-hidden="true"></i> Update Portfolio
+  </button>
+  <hr>
+  <%= link_to new_bet_path(@portfolio) do  %>
+    <span class="fa-stack fa-lg betFixed" data-toggle="tooltip" title="Bet" data-placement="top">
+      <i class="fa fa-square fa-stack-2x"></i>
+      <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
+    </span>
   <% end  %>
 <% end %>
-</h1>
 
-
-
-
-<hr>
-<%= render 'portfolios/form' %>
-<hr>
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Portfolio</h4>
+      </div>
+      <hr>
+        <%= render 'portfolios/form' %>
+        <hr>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
 <h1 style="color:white" class="toggleFundamentals btn-default hoverable">FUNDAMENTALS</h1>
 <div id="fundamentals" style="display:none">

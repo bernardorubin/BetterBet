@@ -3,7 +3,6 @@ class PortfoliosController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
     @user = User.find(params[:user_id])
     if @user == current_user
       @portfolios = @user.portfolios.latest_first
@@ -17,14 +16,18 @@ class PortfoliosController < ApplicationController
 
   def update
     @portfolio = Portfolio.find params[:id]
-      if @portfolio.update(portfolio_params)
-        flash[:notice] = 'Portfolio updated successfully'
+      if @portfolio.in_bet?
+        flash[:alert] = 'Can\'t update portfolio when it\'s in a bet'
         redirect_to portfolio_path
+      else
+        if @portfolio.update(portfolio_params)
+          flash[:notice] = 'Portfolio updated successfully'
+          redirect_to portfolio_path
+        end
       end
   end
 
   def destroy
-
     @portfolio = Portfolio.find params[:id]
     if @portfolio.in_bet?
         redirect_to user_portfolios_path(current_user), alert: 'Can\'t delete once a bet is public'
@@ -81,23 +84,24 @@ class PortfoliosController < ApplicationController
     # Set dates in request as 1 week etc, not by exact date
     # DATES HERE?????????????????????????????????????????
     @portfolio = Portfolio.find params[:id]
-    service = Portfolios::CreateAnalysis.new portfolio: @portfolio
-
-    if service.call
-      @enddate = service.enddate
-      @portfolio = service.portfolio
-      @zip_fundamental = service.zip_fundamental
-      @data1 = service.data1
-      @data2 = service.data2
-      @data3 = service.data3
-      @zip_inter = service.zip_inter
-      @zip_return = service.zip_return
-      @zip_dollars = service.zip_dollars
-      @zip_sortino = service.zip_sortino
-      @sortino_graph = service.sortino_graph
-      @portfolio_last = service.portfolio_last
-      @minimum = service.minimum
-      @maximum = service.maximum
+    if can? :manage, @portfolio
+      service = Portfolios::CreateAnalysis.new portfolio: @portfolio
+      if service.call
+        @enddate = service.enddate
+        @portfolio = service.portfolio
+        @zip_fundamental = service.zip_fundamental
+        @data1 = service.data1
+        @data2 = service.data2
+        @data3 = service.data3
+        @zip_inter = service.zip_inter
+        @zip_return = service.zip_return
+        @zip_dollars = service.zip_dollars
+        @zip_sortino = service.zip_sortino
+        @sortino_graph = service.sortino_graph
+        @portfolio_last = service.portfolio_last
+        @minimum = service.minimum
+        @maximum = service.maximum
+      end
     end
   end
 

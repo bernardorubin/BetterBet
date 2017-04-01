@@ -2,7 +2,9 @@ class BetsController < ApplicationController
 
   def index
     # All Bets
-    @bets = Bet.all.latest_first
+
+    @bets = Bet.all.posted.latest_first
+    @bets += Bet.all.taken.latest_first
     # TODO and state open add scope last first
   end
   # TODO Check for user time zone and display it in the form directly instead of storing it in db
@@ -35,6 +37,7 @@ class BetsController < ApplicationController
 
         @defaultstartdate = @timezone.utc_to_local(Time.current) + 2.hours
         @defaultenddate = @timezone.utc_to_local(Time.current) + 1.week
+
       end
 
   end
@@ -48,8 +51,8 @@ class BetsController < ApplicationController
     if params[:bet_id]
       @portfolio = Portfolio.find(params[:portfolio_id])
       if @portfolio.in_bet?
-        redirect_to portfolio_path(@portfolio.id)
-        flash[:alert] = 'Bet already placed for this portfolio'
+        redirect_back(fallback_location: portfolio_path(@portfolio.id))
+        flash[:alert] = 'Bet already placed with current portfolio'
       else
         @bet = Bet.find params[:bet_id]
         @portfolio.bet_id = @bet.id
@@ -94,8 +97,8 @@ class BetsController < ApplicationController
         @bet.enddate = @timezone.local_to_utc(enddate)
 
 
-
         if @bet.save
+          BeginBetJob.set(wait_until: @bet.startdate).perform_later @bet
           @portfolio.bet_id = @bet.id
           @portfolio.save
           @portfolio.to_bet!

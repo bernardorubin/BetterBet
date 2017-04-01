@@ -1,4 +1,4 @@
-<h1 style="color: white">Public Bets</h1>
+<h1 class="title">Public Bets</h1>
 <hr>
 <div class="" style="text-align:left">
   <table class="table table-hover">
@@ -10,6 +10,7 @@
         <th>Amount</th>
         <th>Stocks in Portfolio</th>
         <th>Take Bet</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +28,8 @@
               <% end %>
             <% end  %>
           </td>
-          <td><%= link_to x.id, user_portfolios_path(user_id: current_user, bet_id: x.id) %></td>
+          <td><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i>'.html_safe, user_portfolios_path(user_id: current_user, bet_id: x.id), class:"btn btn-success btn-sm" %></td>
+          <td><%= x.aasm_state %></td>
         </tr>
       <% end %>
     </tbody>

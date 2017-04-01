@@ -23,6 +23,18 @@
 @import "bootswatch";
 @import "font-awesome";
 
+#container-messages {
+  width: 30vw;
+  position: absolute;
+  top: 15vh;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  border-bottom: 1px solid #2AA198 !important;
+}
+.title {
+  color: white;
+}
 body {
   transition: all 2s ease;
 }
@@ -31,8 +43,8 @@ body {
   opacity: 0.4;
   font-size: 55px;
   position: fixed;;
-  bottom: 50vh;
-  right: 30px;
+  top: 13vh;
+  right: 1vw;
   z-index: 99999;
   transition: all .2s ease-in;
 
@@ -65,13 +77,14 @@ text{
 
 }
 .chosen-container-multi .chosen-choices {
+    border-radius: 3px;
     // background-image: linear-gradient($color1 99%, black 1%);
-    background-image: linear-gradient(45deg, $color1 80%, white 20%);
+    background-image: linear-gradient(45deg, $color1 80%, #2AA198 20%);
     padding: 10px;
 
 }
 .chosen-container-multi .chosen-choices li.search-choice {
-    background-image: linear-gradient(45deg, $color1 95%, white 5%);
+    background-image: linear-gradient(45deg, $color1 90%, #2AA198 10%);
     padding-right:30px;
     color: white;
 

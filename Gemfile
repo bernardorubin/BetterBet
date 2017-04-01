@@ -7,7 +7,8 @@ end
 # https://github.com/tyrauber/stock_quote
 # https://rubygems.org/gems/money-open-exchange-rates
 
-# MY GEMS //////////////////////////////////////////////
+# MY GEMS 💎 //////////////////////////////////////////////
+gem 'cancancan'
 gem 'virtus'
 gem 'aasm'
 gem 'timezone'

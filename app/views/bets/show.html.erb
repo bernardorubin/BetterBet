@@ -1,4 +1,4 @@
-<h1>Current state of bet</h1>
+<h1 class="title">Current state of bet</h1>
 
 <!-- tenemos
 t.datetime "startdate"
@@ -6,6 +6,9 @@ t.datetime "enddate"
 calculamos current date-->
 <h4>Amount of <%= number_to_currency(@bet.amount) %></h4>
 <h4>State <%= @bet.aasm_state %></h4>
+<hr>
+<h1><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> Participate in Bet'.html_safe, bets_path(bet_id: @bet, portfolio_id: @closeportfolio), method: :post, class:"btn btn-success btn-lg" %></h1>
+<hr>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -25,6 +28,3 @@ calculamos current date-->
     <% end %>
   </tbody>
 </table>
-
-
-<h1><%= link_to 'close bet', bets_path(bet_id: @bet, portfolio_id: @closeportfolio), method: :post %></h1>
