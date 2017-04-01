@@ -17,7 +17,10 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap1";
 @import "variables";
+@import "variables2";
+@import "bootswatch";
 @import "font-awesome";
 
 body {
@@ -28,7 +31,7 @@ body {
   opacity: 0.4;
   font-size: 55px;
   position: fixed;;
-  bottom: 30px;
+  bottom: 50vh;
   right: 30px;
   z-index: 99999;
   transition: all .2s ease-in;
@@ -85,4 +88,9 @@ text{
 
 .hoverable:hover {
   cursor: pointer;
+}
+
+
+.alert-danger, .btn-danger {
+
 }

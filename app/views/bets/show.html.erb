@@ -1,12 +1,30 @@
-Current portfolio
-State of bet
+<h1>Current state of bet</h1>
+
 <!-- tenemos
 t.datetime "startdate"
 t.datetime "enddate"
 calculamos current date-->
+<h4>Amount of <%= number_to_currency(@bet.amount) %></h4>
+<h4>State <%= @bet.aasm_state %></h4>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>UserNames</th>
+      <th>Stocks in Portfolio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @portfolios.each do |x| %>
+      <tr>
+        <td><%= x.user.display_name %></td>
+        <td>   <% x.tickers.each do |x| %>
+           <span class="btn btn-default btn-sm"><%= x.name %> </span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<% @portfolios.each do |x| %>
-<% x.tickers.each do |x| %>
-  <%= x.name %>
-<% end %>
-<% end %>
+
+<h1><%= link_to 'close bet', bets_path(bet_id: @bet, portfolio_id: @closeportfolio), method: :post %></h1>

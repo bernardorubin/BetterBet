@@ -4,6 +4,7 @@ class Portfolio < ApplicationRecord
   has_many :portfolio_tickers, dependent: :destroy
   has_many :tickers, through: :portfolio_tickers
 
+  # validates :tickers, presence: true
   validates_date :startdate, :before => lambda { Date.today }
   scope :latest_first, -> {order(created_at: :desc)}
   include AASM

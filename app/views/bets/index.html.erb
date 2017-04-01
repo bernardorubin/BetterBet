@@ -13,25 +13,25 @@
       </tr>
     </thead>
     <tbody>
-<% @bets.each do |x| %>
-  <tr>
-    <td> <%=  x.portfolios.first
-     %></td>
-    <td><%= TimeDifference.between(DateTime.current, x.startdate).humanize %></td>
-    <td><%= TimeDifference.between(DateTime.current, x.enddate).humanize %></td>
-    <td><%= number_to_currency(x.amount) %></td>
-    <td>
-      <% x.portfolios.each do |r| %>
-            <% r.tickers.each do |ticker| %>
-         <span class="btn btn-default btn-sm"><%= ticker.name %></span>
-        <% end %>
-      <% end  %>
-    </td>
-    <td><%= link_to x.id, user_portfolios_path(user_id: current_user, chuy: x.id) %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
+      <% @bets.each do |x| %>
+        <tr>
+          <td> <% user =  User.find x.portfolios.first.user_id  %>
+          <%= user.display_name %></td>
+          <td><%= TimeDifference.between(DateTime.current, x.startdate).humanize %></td>
+          <td><%= TimeDifference.between(DateTime.current, x.enddate).humanize %></td>
+          <td><%= number_to_currency(x.amount) %></td>
+          <td>
+            <% x.portfolios.each do |r| %>
+                  <% r.tickers.each do |ticker| %>
+               <span class="btn btn-default btn-sm"><%= ticker.name %></span>
+              <% end %>
+            <% end  %>
+          </td>
+          <td><%= link_to x.id, user_portfolios_path(user_id: current_user, bet_id: x.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 <!-- Fix time until close -->
 

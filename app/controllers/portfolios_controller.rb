@@ -3,9 +3,13 @@ class PortfoliosController < ApplicationController
   before_action :authenticate_user!
 
   def index
+
     @user = User.find(params[:user_id])
     if @user == current_user
       @portfolios = @user.portfolios.latest_first
+      if params[:bet_id]
+        @bet_id = params[:bet_id]
+      end
     else
       redirect_back fallback_location: root_path, alert: 'Back'
     end
@@ -43,6 +47,7 @@ class PortfoliosController < ApplicationController
     @portfolio  = Portfolio.new
     @portfolio.startdate = date
     @portfolio.user = current_user
+
     if @portfolio.save
       flash[:notice] = 'Portfolio created successfully'
       portfolio_params[:ticker_ids].each do |x|
@@ -52,7 +57,13 @@ class PortfoliosController < ApplicationController
         p.portfolio_id = Portfolio.last.id
         p.save
       end
-      redirect_to portfolio_path(@portfolio)
+      if @portfolio.tickers.present?
+        redirect_to portfolio_path(@portfolio)
+      else
+        @portfolio.destroy
+        redirect_to new_portfolio_path
+        flash[:alert] = 'Portfolio deleted because it cannot be empty'
+      end
     else
       flash.now[:alert] = 'Please fix errors below'
       render :new

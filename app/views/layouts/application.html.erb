@@ -6,14 +6,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <link rel="stylesheet" href="https://bootswatch.com/solar/bootstrap.min.css">
   </head>
 
   <body>
     <%= render 'layouts/navbar' %>
     <div class="container" align="center">
       <div class='alert alert-success'<%= ' style="display: none"'.html_safe unless notice %>><%= notice if notice %></div>
-      <div class='alert alert-danger'<%= ' style="display: none"'.html_safe unless alert %>><%= alert if alert %></div>
+      <div class='alert alert-danger'<%= ' style="display: none;"'.html_safe unless alert %>><%= alert if alert %></div>
       <%= yield %>
     </div>
   </body>

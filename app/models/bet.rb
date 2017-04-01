@@ -2,7 +2,7 @@ class Bet < ApplicationRecord
   has_many :portfolios
   attr_accessor :portfolio
   scope :latest_first, -> {order(created_at: :desc)}
-
+  validates :amount, presence: true
 
   include AASM
 

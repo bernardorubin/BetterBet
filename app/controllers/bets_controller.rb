@@ -10,12 +10,13 @@ class BetsController < ApplicationController
   # TODO Close Bets
 
   def new
+
       @portfolio = Portfolio.find(params[:format])
+
       if @portfolio.in_bet?
         redirect_to portfolio_path(@portfolio.id)
         flash[:alert] = 'Bet already placed for this portfolio'
       else
-
 # NOT DRY
        @ticker_array= []
 
@@ -36,56 +37,86 @@ class BetsController < ApplicationController
         @defaultstartdate = @timezone.utc_to_local(Time.current) + 2.hours
         @defaultenddate = @timezone.utc_to_local(Time.current) + 1.week
       end
+
   end
 
 # TODO Add state Machine
 
   def create
     # binding.pry
-    if params[:challenge]
-      puts "challenge on"
+    if params[:bet_id]
+      @portfolio = Portfolio.find(params[:portfolio_id])
+      if @portfolio.in_bet?
+        redirect_to portfolio_path(@portfolio.id)
+        flash[:alert] = 'Bet already placed for this portfolio'
+      else
+        @bet = Bet.find params[:bet_id]
+        @portfolio.bet_id = @bet.id
+        @portfolio.save
+        @portfolio.to_bet!
+        puts @portfolio.in_bet?
+        flash[:notice] = 'Bet closed successfully'
+        @bet.close!
+        redirect_to bet_path(@portfolio, bet_id: @bet)
+      end
+    else
+      @portfolio = Portfolio.find(bet_params[:portfolio])
+
+
+    if @portfolio.in_bet?
+      redirect_to portfolio_path(@portfolio.id)
+      flash[:alert] = 'Bet already placed for this portfolio'
+    else
+      if params[:challenge]
+        puts "challenge on"
+      end
+      @bet = Bet.new(bet_params)
+      # portfolio_params["startdate(1i)"].to_i, portfolio_params["startdate(2i)"].to_i, portfolio_params["startdate(3i)"].to_i
+      startdate = DateTime.new bet_params["startdate(1i)"].to_i,
+                            bet_params["startdate(2i)"].to_i,
+                            bet_params["startdate(3i)"].to_i,
+                            bet_params["startdate(4i)"].to_i,
+                            bet_params["startdate(5i)"].to_i
+
+      enddate = DateTime.new bet_params["enddate(1i)"].to_i,
+                            bet_params["enddate(2i)"].to_i,
+                            bet_params["enddate(3i)"].to_i,
+                            bet_params["enddate(4i)"].to_i,
+                            bet_params["enddate(5i)"].to_i
+
+
+
+      get_user_time_zone
+
+      @bet.startdate = @timezone.local_to_utc(startdate)
+
+      @bet.enddate = @timezone.local_to_utc(enddate)
+
+
+
+      if @bet.save
+        @portfolio.bet_id = @bet.id
+        @portfolio.save
+        @portfolio.to_bet!
+        puts @portfolio.in_bet?
+        flash[:notice] = 'Bet created successfully'
+        redirect_to bets_path
+      end
     end
-    @bet = Bet.new(bet_params)
-    # portfolio_params["startdate(1i)"].to_i, portfolio_params["startdate(2i)"].to_i, portfolio_params["startdate(3i)"].to_i
-    startdate = DateTime.new bet_params["startdate(1i)"].to_i,
-                          bet_params["startdate(2i)"].to_i,
-                          bet_params["startdate(3i)"].to_i,
-                          bet_params["startdate(4i)"].to_i,
-                          bet_params["startdate(5i)"].to_i
-
-    enddate = DateTime.new bet_params["enddate(1i)"].to_i,
-                          bet_params["enddate(2i)"].to_i,
-                          bet_params["enddate(3i)"].to_i,
-                          bet_params["enddate(4i)"].to_i,
-                          bet_params["enddate(5i)"].to_i
-
-
-
-    get_user_time_zone
-
-    @bet.startdate = @timezone.local_to_utc(startdate)
-
-    @bet.enddate = @timezone.local_to_utc(enddate)
-
-    @portfolio = Portfolio.find(bet_params[:portfolio])
-
-    if @bet.save
-      @portfolio.bet_id = @bet.id
-      @portfolio.save
-      @portfolio.to_bet!
-      puts @portfolio.in_bet?
-      flash[:notice] = 'Bet created successfully'
-      redirect_to bets_path
     end
   end
 
   def show
-    # @portfolios = []
-
+    if params[:bet_id]
+      @bet_id = params[:bet_id]
+      @bet = Bet.find params[:bet_id]
+      @closeportfolio = Portfolio.find params[:id]
+      @portfolios = Portfolio.where(bet_id: @bet_id)
+    else
     # link_to x.id, bet_path(x.id)
-    @bet_id = params[:id]
-    @portfolios = Portfolio.where(bet_id: @bet_id)
-    puts @portfolios
+      @bet_id = params[:id]
+      @portfolios = Portfolio.where(bet_id: @bet_id)
+    end
   end
 
   private

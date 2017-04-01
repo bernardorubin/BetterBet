@@ -32,7 +32,7 @@
 </div>
 <div class="row placeABet" style="display:none">
   <div class="col-md-6">
-    <%= link_to "STOCK OR CURRENCY BET", portfolios_path, class:"btn btn-primary btn-lg btn-menu" %>
+    <%= link_to "STOCK OR CURRENCY BET", user_portfolios_path(current_user), class:"btn btn-primary btn-lg btn-menu" %>
   </div>
   <div class="col-md-6">
     <%= link_to "SPORTS BET", currencies_path, class:"btn btn-success btn-lg btn-menu" %>

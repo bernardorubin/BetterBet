@@ -1,15 +1,49 @@
+<% if @bet_id.present? %>
+  <h1>Choose a Portfolio to close bet</h1>
+<% else %>
 <h1>These are Your Portfolios</h1>
+<% end %>
+
 <h4>You own <%= pluralize(@portfolios.count, "portfolio")  %></h4>
 <%= link_to 'Create New Portfolio', new_portfolio_path, class: 'btn btn-default' %>
-<% @portfolios.each do |x| %>
-<br>
-    <%= link_to x.id, portfolio_path(x.id) %>
-    <% x.tickers.each do |x|%>
-      <%= x.name %>
-    <% end  %>
-<% if x.in_bet?  %>
-  currently in a bet, link to bet show
-<% else  %>
-  <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe , portfolio_path(x) , method: :delete, data: { confirm: 'Are you sure? '} %>
-<% end  %>
-<%end  %>
+<hr>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Stocks in Portfolio</th>
+        <th>Link to Bet Show or Portfolio Show</th>
+        <% if @bet_id.present?  %>
+          <th>Close bet with this portfolio</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @portfolios.each do |x| %>
+        </tr>
+          <td><%= link_to x.id, portfolio_path(x.id) %></td>
+          <td>
+            <% x.tickers.each do |x|%>
+              <span class="btn btn-default btn-sm"><%= x.name %></span>
+            <% end  %>
+          </td>
+          <td>
+            <% if x.in_bet?  %>
+              <%= link_to 'See How The Bet is going', bet_path(x, bet_id: x.bet_id) %>
+            <% else  %>
+              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe , portfolio_path(x) , method: :delete, data: { confirm: 'Are you sure? '}, class:"btn btn-warning btn-sm" %>
+              <%= link_to 'BET/Analyze', portfolio_path(x) %>
+            <% end %>
+          </td>
+          <% if @bet_id.present? %>
+            <% if !x.in_bet? %>
+            <td><%= link_to 'close bet with this portfolio', bet_path(x, bet_id:@bet_id) %></td>
+            <% end %>
+          <% else %>
+            <td> Cannot close bet with a portfolio that is already in bet</td>
+          <% end  %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
