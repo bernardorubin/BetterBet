@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed');
+
 /*!
  * bootswatch v3.3.7
  * Homepage: http://bootswatch.com
@@ -1086,11 +1089,15 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #839496;
   background-color: #002b36;
+}
+
+.nav {
+  font-family: 'Roboto', sans-serif;
 }
 input,
 button,

@@ -24,17 +24,71 @@
 @import "bootswatch";
 @import "font-awesome";
 
+.main_title {
+  position: absolute;
+  top: 14vh;
+  right: 0px;
+  text-align: right;
+  background-color: rgba(42,161,152, 1);
+  border-radius: 0px;
+  border-bottom-left-radius: 60px;
+  padding: 20px;
+  height: 30vh;
+  padding-left: 40px;
+  padding-right: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid white;
+  border-right: none;
+
+}
+
+.main_title {
+  color: #08191D;
+}
+
+.parallax {
+    /* The image used */
+    // background: url(https://media.giphy.com/media/3o7Zen3RCzrnhHnSkU/giphy.gif) no-repeat center center fixed;
+    // background: url(https://media.giphy.com/media/l0MYy5GWhv28y71S0/giphy.gif) no-repeat center center fixed;
+    // background: url(https://media.giphy.com/media/e0vDDUmcya6l2/giphy.gif) no-repeat center center fixed;
+    // background: url(http://68.media.tumblr.com/2b27908fac782ca54cc2b3aff6862423/tumblr_mtr2z74Mr41si1lago1_500.gif) no-repeat center center fixed;
+    // background: url(https://media.giphy.com/media/3o7TKFmSsKuJU9eygU/giphy.gif) no-repeat center center fixed;
+    // background: url(https://media.giphy.com/media/3o7TKLKBXz6RVuEDDO/giphy.gif) no-repeat center center fixed;
+    // background: url(https://media.giphy.com/media/l0MYDw3YYsdBLMxa0/giphy.gif) no-repeat center center fixed;
+    background: linear-gradient(rgba(0,43,54, 0.55), rgba(0, 0, 0, 0.55)),
+                rgba(0,43,54, 0.9) url('https://media.giphy.com/media/3o7TKLKBXz6RVuEDDO/giphy.gif') no-repeat center;
+    /* Full height */
+    height: 55vh;
+    margin-top: -30px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+
 html {
   position: relative;
    min-height: 100%;
 }
 
 body {
-    margin-bottom: 80px;
+    margin-bottom: 150px;
 }
 
 .btn {
   border-bottom-right-radius: 20px !important;
+}
+.alert {
+  border-bottom-right-radius: 30px !important;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  border-color: white;
+  border-left: 0px solid red;
+
 }
 
 .btn-lg {
