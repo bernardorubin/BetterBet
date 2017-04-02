@@ -1,35 +1,43 @@
 <nav class="navbar navbar-default">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/"> <i class="fa fa-line-chart" aria-hidden="true"></i> </a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand main_logo" href="/">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+        </a>
 
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/">Home</a> <span class="sr-only">(current)</span></a></li>
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="/">Home</a>
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
         <% if user_signed_in? %>
         <li><%= link_to 'My Portfolios', user_portfolios_path(current_user) %></li>
         <li><%= link_to 'Bet Hub', bets_path %></li>
-        <li><%= link_to 'My bets', bets_path(current_user) %></li>
+        <li><%= link_to 'My Bets', bets_path(user: current_user) %></li>
         <% end %>
         <!-- <li><%# link_to 'Currencies', currencies_path %></li> -->
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to current_user.display_name, user_path %></li>
-                <%# if current_user.is_admin == true %>
-            <li><%# link_to "Admin Dashboard", admin_dashboard_index_path %></li>
-              <li><%= link_to "Signout", destroy_user_session_path, method: 'DELETE' %></li>
-          <% else %>
-              <li><%= link_to "Login", new_user_session_path %></li>
-              <li><%= link_to "SignUp", new_user_registration_path %> </li>
-          <% end %>
-      </ul>
-    </div><!-- /.navbar-collapse -->
+        <li><%= link_to current_user.display_name, user_path %></li>
+        <%# if current_user.is_admin == true %>
+        <li><%# link_to "Admin Dashboard", admin_dashboard_index_path %></li>
+        <li><%= link_to "Signout", destroy_user_session_path, method: 'DELETE' %></li>
+    <% else %>
+        <li><%= link_to "Login", new_user_session_path %></li>
+        <li><%= link_to "SignUp", new_user_registration_path %>
+        </li>
+        <% end %>
+    </ul>
+</div>
+<!-- /.navbar-collapse -->
 </nav>

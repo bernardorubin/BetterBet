@@ -1,7 +1,7 @@
 <% if @bet_id.present? %>
-  <h1>Choose a Portfolio to close bet</h1>
+  <h1 class="title">Choose a Portfolio to close bet</h1>
 <% else %>
-<h1>These are Your Portfolios</h1>
+<h1 class="title">These are Your Portfolios</h1>
 <% end %>
 
 <h4>You own <%= pluralize(@portfolios.count, "portfolio")  %></h4>

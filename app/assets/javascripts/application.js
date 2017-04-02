@@ -36,24 +36,38 @@ $(document).ready(function(){
     $(this).parent().toggleClass('col-md-4');
     $('.placeABet').slideToggle();
   });
-//
-  // var randBetween = function(){
-  //   color = Math.floor((Math.random() * 255) + 1)
-  // }
-
 
   $('.toggleFundamentals').on('click', function(){
+    $(this).toggleClass('activated');
     $('#fundamentals').slideToggle();
-    // TODO CHANGE FUNCTION TO RGB
-    var color = Math.floor((Math.random() * 655366) + 1);
-    color = "#" +  color
-    // $('body').css('background-color', `#${color}`);
-    $('body').css('background-color', color);
+    // function randomColor(base, upper) {
+    //   return Math.floor((Math.random() * upper) + base);
+    // }
+    // color = "rgba(" + randomColor(0, 0) + "," + randomColor(40, 50) + "," + randomColor(50, 55) + "," + "1)"
+    $('body').toggleClass('backgroundChange');
   });
+
   $('.toggleTechnicals').on('click', function(){
+    $(this).toggleClass('activated');
+    $('.footer').fadeOut();
     $('#technicals').slideToggle();
     $('body').css('background-color', '#002b36');
   });
   $('[data-toggle="tooltip"]').tooltip();
+
+  $('a, .btn').mouseenter(function() {
+    $('body').toggleClass('backgroundChange');
+    $(".main_logo, .title").css("color", "#2AA198");
+  });
+
+  $('a, .btn').mouseleave(function() {
+    $('body').toggleClass('backgroundChange');
+    $(".main_logo, .title").css("color", "white");
+  });
+
+
   console.log('Welcome To Stock Robot');
+
+
+
 })

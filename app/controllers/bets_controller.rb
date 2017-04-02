@@ -2,9 +2,17 @@ class BetsController < ApplicationController
 
   def index
     # All Bets
-
-    @bets = Bet.all.posted.latest_first
-    @bets += Bet.all.taken.latest_first
+    if params[:user]
+      @user = User.find params[:user]
+      @portfolios = @user.portfolios.where("bet_id IS NOT NULL")
+      @bets = Array.new
+      @portfolios.each do |x|
+        @bets << Bet.find(x.bet_id)
+      end
+    else
+      @bets = Bet.all.posted.latest_first
+      @bets += Bet.all.taken.latest_first
+    end
     # TODO and state open add scope last first
   end
   # TODO Check for user time zone and display it in the form directly instead of storing it in db

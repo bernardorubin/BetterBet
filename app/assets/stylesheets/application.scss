@@ -23,6 +23,35 @@
 @import "bootswatch";
 @import "font-awesome";
 
+.backgroundChange {
+  background-color: darken($color1, 3%);
+}
+
+.main_logo, .title {
+  transition: all .5s ease-in;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background-color: #073642;
+  border-top: 1px solid #2AA198;
+  font-size: 150%;
+}
+
+
+
+.activated {
+  background-color: #002B36;
+  border: 1px solid #2AA198 !important;
+  box-shadow: inset 0 0 5px
+}
+.togglers{
+  padding-bottom:18px;
+  border: 1px solid white;
+}
+
 #container-messages {
   width: 30vw;
   position: absolute;

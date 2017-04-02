@@ -9,10 +9,10 @@
   </span>
 <% else %>
   <span>
-    <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i> Delete Portfolio'.html_safe, portfolio_path(@portfolio) , method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-warning btn-lg'%>
+    <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i> | Delete Portfolio'.html_safe, portfolio_path(@portfolio) , method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-warning btn-lg'%>
   </span>
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    <i class="fa fa-refresh" aria-hidden="true"></i> Update Portfolio
+    <i class="fa fa-refresh" aria-hidden="true"></i> | Update Portfolio
   </button>
   <hr>
   <%= link_to new_bet_path(@portfolio) do  %>
@@ -40,8 +40,15 @@
   </div>
 </div>
 
-<h1 style="color:white" class="toggleFundamentals btn-default hoverable">FUNDAMENTALS</h1>
+<div class="row">
+  <div class="togglers toggleFundamentals btn-success hoverable title col-md-3"><h1>FUNDAMENTALS</h1> </div>
+  <div class="togglers toggleTechnicals btn-success hoverable title col-md-3"><h1>TECHNICALS</h1> </div>
+  <div class="togglers btn-success hoverable title col-md-3" disabled><h1>NEWS</h1> </div>
+  <div class="togglers btn-success hoverable title col-md-3" disabled><h1>GURU ADVICE</h1> </div>
+</div>
+
 <div id="fundamentals" style="display:none">
+  <hr>
   <div class="row">
     <div class="col-md-4">
       <h4>EBITDA</h4>
@@ -64,10 +71,11 @@
   </div>
 </div>
 
-<hr>
 
-<h1 style="color:white" class="toggleTechnicals btn-primary hoverable">TECHNICALS</h1>
+
+
 <div id="technicals" style="display:none">
+  <hr>
   <p>Start Date - End Date</p>
   <p><%= @portfolio.startdate %> - <%= @enddate %></p>
   <hr>
@@ -151,13 +159,6 @@
 
 
 <h1>Portfolio return without weight and possibly with weiight</h1> -->
-
-
-<hr>
-<h1>NEWS ANALYSIS</h1>
-<hr>
-<h1>GURU ADVISE</h1>
-
 
 <!-- STOCKS -->
 <%# @stocks %>
