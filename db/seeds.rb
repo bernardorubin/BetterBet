@@ -65,3 +65,4 @@ User.create(email: 'bernardorubin@gmail.com', password: 'chichi', timezone: 'Ame
 tickerArray.each do |x, y|
   Ticker.create(name: x, ticker: y)
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')

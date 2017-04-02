@@ -8,6 +8,8 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS 💎 //////////////////////////////////////////////
+gem 'inherited_resources', '~> 1.7'
+gem 'activeadmin', '1.0.0.pre5'
 gem 'cancancan'
 gem 'virtus'
 gem 'aasm'
