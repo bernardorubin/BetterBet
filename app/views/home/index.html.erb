@@ -1,40 +1,116 @@
 <h1 class="title main_logo"> <i class="fa fa-line-chart" aria-hidden="true"></i> Social Bet</h1>
+
 <h4><%= current_user.display_name %></h4>
 <!-- My three passions to come with a solution for unequal distribution of wealthCCombine finance programming and social impact -->
 <p>Invest in Stocks Currencies or Sports and do something about income inequality</p>
 <!-- <p>it's the number one indication of violence</p> -->
+<hr>
+<div class="row">
+  <div class="cube">
+  	<div class="flippety">
+      <div class="col-md-12">
+        <div class="btn btn-success btn-lg btn-menu toggleAnalysis togglers"><h1>ANALYSIS TOOLS</h1></div>
+      </div>
+  	</div>
+  	<div class="flop">
+      <div class="analysis">
+        <div class="col-md-4">
+          <%= link_to "<h1>STOCK ANALYSIS</h1>".html_safe, new_portfolio_path, class:"btn btn-primary btn-lg btn-menu togglers" %>
+        </div>
+        <div class="col-md-4">
+          <%= link_to "<h1>CURRENCY ANALYSIS</h1>".html_safe, currencies_path, class:"btn btn-default btn-lg btn-menu togglers" %>
+        </div>
+        <div class="col-md-4">
+          <%= link_to "<h1>SPORTS ANALYSIS</h1>".html_safe, currencies_path, class:"btn btn-success btn-lg btn-menu togglers" %>
+        </div>
+      </div>
+  	</div>
+  </div>
+</div>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="cube">
+  	<div class="flippety">
+      <div class="col-md-12">
+        <div class="btn btn-primary btn-lg btn-menu toggleBet togglers"><h1>PLACE A BET</h1></div>
+      </div>
+  	</div>
+  	<div class="flop">
+      <div class="placeABet">
+        <div class="col-md-6">
+          <%= link_to "<h1>STOCK OR CURRENCY BET</h1>".html_safe, user_portfolios_path(current_user), class:"btn btn-primary btn-lg btn-menu togglers" %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to "<h1>SPORTS BET</h1>".html_safe, currencies_path, class:"btn btn-success btn-lg btn-menu togglers" %>
+        </div>
+      </div>
+  	</div>
+  </div>
+</div>
+
+<!-- <div class="row"> -->
+  <!-- <div class="col-md-4">
     <div class="btn btn-primary btn-lg btn-menu toggleAnalysis togglers"><h1>ANALYSIS TOOLS</h1></div>
+  </div> -->
+  <div class="row">
+    <div class="col-md-12">
+      <%# link_to "BET HUB", hub_path, class:"btn btn-default btn-lg" %>
+      <%= link_to "<h1>BET HUB</h1>".html_safe, bets_path, class:"btn btn-default btn-lg btn-menu betHub togglers" %>
+    </div>
   </div>
-  <div class="col-md-4">
-    <%# link_to "BET HUB", hub_path, class:"btn btn-default btn-lg" %>
-    <%= link_to "<h1>BET HUB</h1>".html_safe, bets_path, class:"btn btn-default btn-lg btn-menu betHub togglers" %>
-  </div>
-  <div class="col-md-4">
+  <!-- <div class="row" >
+    <div class="col-md-12">
+      <div class="btn btn-primary btn-lg btn-menu toggleBet togglers"><h1>PLACE A BET</h1></div>
+    </div>
+  </div> -->
+  <!-- <div class="col-md-4">
     <%# link_to "PLACE A BET", bet_path, class:"btn btn-success btn-lg" %>
     <div class="btn btn-success btn-lg btn-menu toggleBet togglers"><h1>PLACE A BET</h1></div>
-  </div>
-</div>
-<hr>
+  </div> -->
+<!-- </div> -->
 
-<div class="row analysis" style="display:none">
-  <div class="col-md-4">
-    <%= link_to "STOCK ANALYSIS", new_portfolio_path, class:"btn btn-primary btn-lg btn-menu" %>
-  </div>
-  <div class="col-md-4">
-    <%= link_to "CURRENCY ANALYSIS", currencies_path, class:"btn btn-default btn-lg btn-menu" %>
-  </div>
-  <div class="col-md-4">
-    <%= link_to "SPORTS ANALYSIS", currencies_path, class:"btn btn-success btn-lg btn-menu" %>
-  </div>
-</div>
-<div class="row placeABet" style="display:none">
+
+
+
+
+
+
+<!-- <div class="row placeABet" style="display:none">
   <div class="col-md-6">
-    <%= link_to "STOCK OR CURRENCY BET", user_portfolios_path(current_user), class:"btn btn-primary btn-lg btn-menu" %>
+    <%#= link_to "STOCK OR CURRENCY BET", user_portfolios_path(current_user), class:"btn btn-primary btn-lg btn-menu" %>
   </div>
   <div class="col-md-6">
-    <%= link_to "SPORTS BET", currencies_path, class:"btn btn-success btn-lg btn-menu" %>
+    <%#= link_to "SPORTS BET", currencies_path, class:"btn btn-success btn-lg btn-menu" %>
   </div>
-</div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row analysis" style="display:none">
+  <div class="col-md-4">
+    <%#= link_to "STOCK ANALYSIS", new_portfolio_path, class:"btn btn-primary btn-lg btn-menu" %>
+  </div>
+  <div class="col-md-4">
+    <%#= link_to "CURRENCY ANALYSIS", currencies_path, class:"btn btn-default btn-lg btn-menu" %>
+  </div>
+  <div class="col-md-4">
+    <%#= link_to "SPORTS ANALYSIS", currencies_path, class:"btn btn-success btn-lg btn-menu" %>
+  </div>
+</div> -->
+
+
+<!-- <div class="row placeABet" style="display:none">
+  <div class="col-md-6">
+    <%#= link_to "STOCK OR CURRENCY BET", user_portfolios_path(current_user), class:"btn btn-primary btn-lg btn-menu" %>
+  </div>
+  <div class="col-md-6">
+    <%#= link_to "SPORTS BET", currencies_path, class:"btn btn-success btn-lg btn-menu" %>
+  </div>
+</div> -->
