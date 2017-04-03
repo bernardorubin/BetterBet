@@ -1,4 +1,11 @@
 class BetsController < ApplicationController
+  before_action :authenticate_user!
+
+  def addcharity
+    # display a modal to choose charities when state finished
+    # submit a form
+    # run this controller, save bet
+  end
 
   def index
     # All Bets

@@ -12,12 +12,26 @@ class BeginBetJob < ApplicationJob
           portfolio.currentvalue = service.value_array
           portfolio.save
         end
-        service2 = Portfolios::CalculateReturn.new portfolio: portfolio
-        if service2.call
-          portfolio.return = service2.value
+        service = Portfolios::CalculateReturn.new portfolio: portfolio
+        if service.call
+          portfolio.return = service.value
           portfolio.save
         end
       end
+      @return_a = []
+      @portfolios.each do |x|
+        @return_a << x.return
+      end
+
+      @returnmax = @return_a.max
+
+      @portfolios.each do |x|
+        if x.return == @returnmax
+          x.winner= true
+          x.save
+        end
+      end     
+
     else
       if bet.taken?
         bet.begin!

@@ -10,12 +10,15 @@ module Portfolios
     end
 
     def do_everything
+
       @start_a = []
       @end_a = []
 
-      portfolio.each do |x|
-        @start_a << x.startvalue
-        @end_a << x.currentvalue
+      portfolio.startvalue.each do |x|
+        @start_a << x
+      end
+      portfolio.currentvalue.each do |x|
+        @end_a << x
       end
 
       @value_array = []
@@ -23,6 +26,7 @@ module Portfolios
       @end_a.each_with_index  do |x,index|
         @value_array << x / @start_a[index]
       end
+
 
       @value = 1.0
 

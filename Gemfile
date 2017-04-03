@@ -8,6 +8,7 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS 💎 //////////////////////////////////////////////
+gem 'bootstrap-social-rails'
 gem 'omniauth-facebook'
 gem 'inherited_resources', '~> 1.7'
 gem 'activeadmin', '1.0.0.pre5'

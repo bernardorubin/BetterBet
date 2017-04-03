@@ -1,18 +1,30 @@
 <h1 class="title">Current Bet</h1>
 <h1><i class="fa fa-money fa-2x title" aria-hidden="true"></i></h1>
+<div class="row">
 <% if @bet.posted? || @bet.taken? %>
+<div class="col-xs-6">
   <h3>Time until bet begins</h3>
   <%= TimeDifference.between(DateTime.current, @bet.startdate).humanize %>
+</div>
 <% end %>
 <% if @bet.posted? || @bet.taken? || @bet.in_progress? %>
+
+<div class="col-xs-6 <% if @bet.in_progress? %> col-xs-offset-3 <% end %>">
   <h3>Time until bet ends</h3>
   <%= TimeDifference.between(DateTime.current, @bet.enddate).humanize %>
+</div>
 <% end  %>
+</div>
+<br>
 <!-- tenemos
 t.datetime "startdate"
 t.datetime "enddate"
 calculamos current date-->
+<div class="row">
+<div class="col-xs-12">
 <h4>Amount of <%= number_to_currency(@bet.amount) %></h4>
+</div>
+</div>
 <h4>State <%= @bet.aasm_state %></h4>
 <%if @bet.posted? || @bet.taken? %>
 <hr>
@@ -29,6 +41,8 @@ calculamos current date-->
       <% end %>
       <% if @bet.finished? %>
         <th>End Value</th>
+        <th>Return</th>
+        <th>Winner</th>
       <% end %>
     </tr>
   </thead>
@@ -44,7 +58,9 @@ calculamos current date-->
         <td><%= x.startvalue %></td>
         <% end %>
         <% if @bet.finished? %>
-          <td><%= x.currentvalue %> ret -> <%= x.return %></td>
+          <td><%= x.currentvalue %> </td>
+          <td><%= ((x.return-1)*100).round(2) %> % </td>
+          <td><%= x.winner %></td>
         <% end %>
       </tr>
     <% end %>

@@ -11,6 +11,11 @@
     <%= f.button :submit, "Log in" %>
   </div>
 <% end %>
-
+<hr>
+<%= link_to user_facebook_omniauth_authorize_path, class:"btn btn-block btn-social btn-facebook"  do %>
+  <span class='fa fa-facebook'></span>
+  Sign in with Facebook
+<% end  %>
+<hr>
 <%= render "devise/shared/links" %>
 </div>
