@@ -1,5 +1,5 @@
-<h1 class="title">Current state of bet</h1>
-
+<h1 class="title">Current Bet</h1>
+<h1><i class="fa fa-money fa-2x title" aria-hidden="true"></i></h1>
 <% if @bet.posted? || @bet.taken? %>
   <h3>Time until bet begins</h3>
   <%= TimeDifference.between(DateTime.current, @bet.startdate).humanize %>
@@ -44,7 +44,7 @@ calculamos current date-->
         <td><%= x.startvalue %></td>
         <% end %>
         <% if @bet.finished? %>
-          <td><%= x.currentvalue %></td>
+          <td><%= x.currentvalue %> ret -> <%= x.return %></td>
         <% end %>
       </tr>
     <% end %>
