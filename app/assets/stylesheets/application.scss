@@ -100,7 +100,8 @@ html {
 }
 
 body {
-    margin-bottom: 150px;
+  margin-bottom: 150px;
+  transition: all 2s ease;
 }
 
 .btn {
@@ -211,11 +212,6 @@ body {
 
 .title1:hover{
   box-shadow: inset 10px 10px 21px 0px rgba(0,0,0,0.75);
-}
-
-
-body {
-  transition: all 2s ease;
 }
 
 .btn:hover {

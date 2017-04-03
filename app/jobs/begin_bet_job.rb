@@ -8,14 +8,15 @@ class BeginBetJob < ApplicationJob
       bet.finish!
       @portfolios.each do |portfolio|
         service = Bets::Valuate.new portfolio: portfolio
-        # service2 = Portfolios::CalculateReturn.new portfolio: portfolio
+        service2 = Portfolios::CalculateReturn.new portfolio: portfolio
         if service.call
           portfolio.currentvalue = service.value_array
           portfolio.save
         end
-        # if service2.call
-        #   portfolio.return = service2.value
-        # end
+        if service2.call
+          portfolio.return = service2.value
+          portfolio.save
+        end
       end
     else
       if bet.taken?

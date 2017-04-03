@@ -16,10 +16,10 @@ calculamos current date-->
 <%= simple_form_for @bet do |f| %>
 <hr>
   <%= f.input :startdate, default: @defaultstartdate, label_html: {class: 'form-title'} %>
-  <p>Default Start Time is in 2 hours</p>
+  <p>Default Start Time is in 2 hours (2 minutes)</p>
 <hr>
   <%= f.input :enddate, default: @defaultenddate, label_html: {class: 'form-title'} %>
-  <p>Default End Date is one week</p>
+  <p>Default End Date is one week (3 minutes)</p>
   <hr>
   <%= f.hidden_field :portfolio, value: @portfolio.id %>
   <%= f.input :amount, label_html: {class: 'form-title'}, input_html: {class: 'money-input'} %>

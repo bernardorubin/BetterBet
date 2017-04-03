@@ -54,24 +54,30 @@
 <div id="fundamentals" style="display:none">
   <hr>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <h4>EBITDA</h4>
         <% @zip_fundamental.each do |x, y| %>
           <%= x %> -  <%= y.ebitda %><br>
         <% end  %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <h4>PE Ratio</h4>
         <% @zip_fundamental.each do |x, y| %>
           <%= x %> -  <%= y.pe_ratio %><br>
         <% end  %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <h4>Short Ratio</h4>
         <% @zip_fundamental.each do |x, y| %>
           <%= x %> -  <%= y.short_ratio%><br>
         <% end  %>
-      </div>
+    </div>
+    <div class="col-md-3">
+      <h4>Market Cap</h4>
+        <% @zip_fundamental.each do |x, y| %>
+          <%= x %> -  <%= y.market_capitalization %><br>
+        <% end  %>
+    </div>
   </div>
 </div>
 
