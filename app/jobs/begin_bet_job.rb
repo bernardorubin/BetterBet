@@ -4,6 +4,15 @@ class BeginBetJob < ApplicationJob
   def perform(bet)
     if bet.taken?
       bet.begin!
+      @portfolios = bet.portfolios
+      @portfolios.each do |portfolio|
+        service = Bets::Valuate.new portfolio: portfolio
+        if service.call
+          # @service = service.super_array
+          portfolio.startvalue = service.value
+          portfolio.save
+        end
+      end
     else
       bet.cancel!
     end

@@ -1,29 +1,41 @@
 <h1 class="title">Current state of bet</h1>
 
+<h3>Time until bet begins</h3>
+<%= TimeDifference.between(DateTime.current, @bet.startdate).humanize %>
+<%= TimeDifference.between(DateTime.current, @bet.enddate).humanize %>
+
 <!-- tenemos
 t.datetime "startdate"
 t.datetime "enddate"
 calculamos current date-->
 <h4>Amount of <%= number_to_currency(@bet.amount) %></h4>
 <h4>State <%= @bet.aasm_state %></h4>
+<%if @bet.posted? || @bet.taken? %>
 <hr>
 <h1><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> Participate in Bet'.html_safe, bets_path(bet_id: @bet, portfolio_id: @closeportfolio), method: :post, class:"btn btn-success btn-lg" %></h1>
+<% end  %>
 <hr>
 <table class="table table-hover">
   <thead>
     <tr>
       <th>UserNames</th>
       <th>Stocks in Portfolio</th>
+      <% if @bet.in_progress?  %>
+      <th>Starting Value</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% @portfolios.each do |x| %>
       <tr>
         <td><%= x.user.display_name %></td>
-        <td>   <% x.tickers.each do |x| %>
+        <td><% x.tickers.each do |x| %>
            <span class="btn btn-default btn-sm"><%= x.name %> </span>
           <% end %>
         </td>
+        <% if @bet.in_progress? %>
+        <td><%= x.startvalue %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

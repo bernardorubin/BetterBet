@@ -1,5 +1,7 @@
 <h1 class="title">Portfolio Analysis</h1>
 
+<h4>Start Date - End Date</h4>
+<p><%= @portfolio.startdate %> - <%= @enddate %></p>
 <% if @portfolio.in_bet? %>
   <h4>[Already In a Bet]</h4>
   <hr>
@@ -9,10 +11,10 @@
   </span>
 <% else %>
   <span>
-    <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i> | Delete Portfolio'.html_safe, portfolio_path(@portfolio) , method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-warning btn-lg'%>
+    <%= link_to '<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>&nbsp; &nbsp; &nbsp; Delete Portfolio'.html_safe, portfolio_path(@portfolio) , method: :delete, data: { confirm: 'Are you sure? '}, class: 'btn btn-warning btn-lg btn-delete-float'%>
   </span>
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    <i class="fa fa-refresh" aria-hidden="true"></i> | Update Portfolio
+  <button type="button" class="btn btn-primary btn-lg btn-update-float" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-refresh fa-2x" aria-hidden="true"></i>&nbsp; &nbsp; &nbsp; Update Portfolio
   </button>
   <hr>
   <%= link_to new_bet_path(@portfolio) do  %>
@@ -40,11 +42,13 @@
   </div>
 </div>
 
+
+
 <div class="row">
-  <div class="togglers toggleFundamentals btn-success hoverable title col-md-3"><h1>FUNDAMENTALS</h1> </div>
-  <div class="togglers toggleTechnicals btn-success hoverable title col-md-3"><h1>TECHNICALS</h1> </div>
-  <div class="togglers btn-success hoverable title col-md-3" disabled><h1>NEWS</h1> </div>
-  <div class="togglers btn-success hoverable title col-md-3" disabled><h1>GURU ADVICE</h1> </div>
+  <div class="togglers toggleFundamentals btn-success hoverable title1 col-md-3"><h1>FUNDAMENTALS</h1> </div>
+  <div class="togglers toggleTechnicals btn-success hoverable title1 col-md-3"><h1>TECHNICALS</h1> </div>
+  <div class="togglers btn-success hoverable title1 col-md-3" disabled><h1>NEWS</h1> </div>
+  <div class="togglers btn-success hoverable title1 col-md-3" disabled><h1>GURU ADVICE</h1> </div>
 </div>
 
 <div id="fundamentals" style="display:none">
@@ -76,12 +80,11 @@
 
 <div id="technicals" style="display:none">
   <hr>
-  <p>Start Date - End Date</p>
-  <p><%= @portfolio.startdate %> - <%= @enddate %></p>
-  <hr>
+
+
   <!-- <h1>ABSOLUTE PRICE CHART</h1> -->
 
-  <%= line_chart @data1 %><%#, discrete: true%>
+  <%#= line_chart @data1 %><%#, discrete: true%>
 
   <!-- <h1>STANDARD DEVIATION</h1> -->
 
@@ -205,8 +208,8 @@ last_trade_realtime_with_time--------------
 change_percent_realtime
 change_from_year_high
 percent_change_from_year_high
-last_trade_with_time
-last_trade_price_only
+last_trade_with_time------------------
+last_trade_price_only------------------
 high_limit
 low_limit
 days_range

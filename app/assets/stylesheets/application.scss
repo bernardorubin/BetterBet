@@ -24,6 +24,8 @@
 @import "bootswatch";
 @import "font-awesome";
 
+
+
 .main_title {
   position: absolute;
   top: 14vh;
@@ -81,6 +83,7 @@ body {
 
 .btn {
   border-bottom-right-radius: 20px !important;
+  transition: all .1s ease-in;
 }
 .alert {
   border-bottom-right-radius: 30px !important;
@@ -99,6 +102,41 @@ body {
   background-color: darken($color1, 3%);
 }
 
+.title1 {
+  transition: all .2s ease-in;
+  border-radius: 0px;
+
+}
+
+.btn-delete-float {
+  position: fixed;
+  border-left: none;
+  z-index: 999;
+  bottom: 20vh;
+  left: 0px;
+  width: 5%;
+  overflow: hidden;
+}
+
+.btn-update-float {
+  position: fixed;
+  border-left: none;
+  width: 5%;
+  overflow: hidden;
+  bottom: 30vh;
+  left: 0px;
+  z-index: 999;
+}
+.btn-update-float:hover, .btn-delete-float:hover {
+  border-left: none !important;
+  width: 20%;
+  overflow: hidden;
+  border-color: white !important;
+}
+
+*:focus {
+  outline: none !important;
+}
 .main_logo, .title {
   transition: all .5s ease-in;
 }
@@ -113,12 +151,23 @@ body {
   font-size: 150%;
 }
 
+.form-title {
+  font-size: 200%;
+  color: white;
+}
+
+.money-input{
+  font-size: 400%;
+  height: 150%;
+  text-align: center;
+}
 
 
 .activated {
-  background-color: #002B36;
+  background-color: rgba(42,161,152, .6);
   border: 1px solid #2AA198 !important;
-  box-shadow: inset 0 0 5px
+  box-shadow: inset 10px 10px 21px 0px rgba(0,0,0,0.75);
+  border-bottom-right-radius: 60px;
 }
 .togglers{
   padding-bottom:18px;
@@ -137,12 +186,24 @@ body {
 .title {
   color: white;
 }
+
+.title1:hover{
+  box-shadow: inset 10px 10px 21px 0px rgba(0,0,0,0.75);
+}
+
+
 body {
   transition: all 2s ease;
 }
 
 .btn:hover {
-box-shadow: inset 10px 10px 81px 0px rgba(0,0,0,0.75);
+  box-shadow: inset 10px 10px 21px 0px rgba(0,0,0,0.75);
+  border: 1px solid rgba(42,161,152, .5);
+}
+
+.btn-sm:hover {
+  box-shadow: inset 3px 3px 5px 0px rgba(0,0,0,0.75);
+  border: 1px solid rgba(42,161,152, .5);
 }
 
 .betFixed {

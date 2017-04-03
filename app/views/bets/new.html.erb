@@ -1,10 +1,12 @@
 <h1 class="title">Create a New Bet</h1>
-<h4>Place Bet With current Portfolio Holding</h4>
+<h1><i class="fa fa-usd fa-2x title" aria-hidden="true"></i></h1>
+<h4>Place Bet With current Portfolio Holding in equal proportions</h4>
+<div class="row">
 <% @name_array.each do |name|%>
   <span class="btn btn-default"><%= name  %></span>
 <% end  %>
 <!--  TODO Add weighted portfolios-->
-<h4>In equal proportions</h4>
+</div>
 
 <!-- tenemos
 t.datetime "startdate"
@@ -12,12 +14,15 @@ t.datetime "enddate"
 calculamos current date-->
 <div class="container col-md-4 col-md-offset-4">
 <%= simple_form_for @bet do |f| %>
-  <%= f.input :startdate, default: @defaultstartdate %>
+<hr>
+  <%= f.input :startdate, default: @defaultstartdate, label_html: {class: 'form-title'} %>
   <p>Default Start Time is in 2 hours</p>
-  <%= f.input :enddate, default: @defaultenddate %>
+<hr>
+  <%= f.input :enddate, default: @defaultenddate, label_html: {class: 'form-title'} %>
   <p>Default End Date is one week</p>
+  <hr>
   <%= f.hidden_field :portfolio, value: @portfolio.id %>
-  <%= f.input :amount %>
+  <%= f.input :amount, label_html: {class: 'form-title'}, input_html: {class: 'money-input'} %>
   <%= f.submit class: 'btn btn-primary', value: 'Create a Public Bet' %>
   <%= f.submit class: 'btn btn-primary', value: 'Challenge a Friend Directly', name: 'challenge' %>
 <% end %>
