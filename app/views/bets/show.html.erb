@@ -60,7 +60,9 @@ calculamos current date-->
         <% if @bet.finished? %>
           <td><%= x.currentvalue %> </td>
           <td><%= ((x.return-1)*100).round(2) %> % </td>
-          <td><%= x.winner %></td>
+          <td><% if x.winner %> <span class="btn btn-success">
+            <i class="fa fa-money fa-2x" aria-hidden="true"></i><% end  %>
+          </span></td>
         <% end %>
       </tr>
     <% end %>
