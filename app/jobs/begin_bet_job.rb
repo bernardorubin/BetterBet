@@ -9,7 +9,7 @@ class BeginBetJob < ApplicationJob
         service = Bets::Valuate.new portfolio: portfolio
         if service.call
           # @service = service.super_array
-          portfolio.startvalue = service.value
+          portfolio.startvalue = service.value_array
           portfolio.save
         end
       end

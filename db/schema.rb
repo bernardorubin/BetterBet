@@ -65,13 +65,13 @@ ActiveRecord::Schema.define(version: 20170402070203) do
   end
 
   create_table "portfolios", force: :cascade do |t|
-    t.float    "startvalue"
-    t.float    "currentvalue"
+    t.float    "startvalue",   default: [],              array: true
+    t.float    "currentvalue", default: [],              array: true
     t.date     "startdate"
     t.datetime "enddate"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.integer  "bet_id"
     t.string   "aasm_state"
     t.index ["bet_id"], name: "index_portfolios_on_bet_id", using: :btree

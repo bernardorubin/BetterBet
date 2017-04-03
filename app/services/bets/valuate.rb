@@ -3,9 +3,7 @@ module Bets
   class Valuate
     include Virtus.model
     attribute :portfolio, Hash
-    attribute :value, Float
-    attribute :super_array, Array
-
+    attribute :value_array, Array
 
     def call
       do_everything
@@ -21,11 +19,19 @@ module Bets
       @super_array = []
 
       @ticker_array.each do |ticker|
-        @super_array << StockQuote::Stock.quote("#{ticker}", nil, nil, ['Symbol', 'last_trade_realtime_with_time', 'last_trade_price_only'])
+        @super_array << StockQuote::Stock.quote("#{ticker}",nil , nil, ['last_trade_price_only'])
       end
 
-      @super_array
-      @value = 100.52
+      @value_array = []
+
+      @super_array.each do |x|
+        @value_array << x.last_trade_price_only
+      end
+
+      # @value_array = ['a','b','c']
+
+      # @value_array = [ 100.2, 100.3, 100.4]
+
     end
   end
 end
