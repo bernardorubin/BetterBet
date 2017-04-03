@@ -107,6 +107,7 @@ class BetsController < ApplicationController
 
         if @bet.save
           BeginBetJob.set(wait_until: @bet.startdate).perform_later @bet
+          BeginBetJob.set(wait_until: @bet.enddate).perform_later @bet
           @portfolio.bet_id = @bet.id
           @portfolio.save
           @portfolio.to_bet!

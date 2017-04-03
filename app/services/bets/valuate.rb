@@ -28,10 +28,6 @@ module Bets
         @value_array << x.last_trade_price_only
       end
 
-      # @value_array = ['a','b','c']
-
-      # @value_array = [ 100.2, 100.3, 100.4]
-
     end
   end
 end
