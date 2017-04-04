@@ -60,7 +60,7 @@ calculamos current date-->
         <% if @bet.finished? %>
           <td><%= x.currentvalue %> </td>
           <td><%= ((x.return-1)*100).round(2) %> % </td>
-          <td><% if x.winner %> <span class="btn btn-success">
+          <td><% if x.winner %> <span class="btn btn-success" data-toggle="modal" data-target="#myModal">
             <i class="fa fa-money fa-2x" aria-hidden="true"></i><% end  %>
           </span></td>
         <% end %>
@@ -68,3 +68,34 @@ calculamos current date-->
     <% end %>
   </tbody>
 </table>
+
+<% if @bet.charity %>
+  <div class="col-xs-12">
+    <h3>Here is your charity</h3>
+    <p><%= @bet.charity %></p>
+  </div>
+<% end %>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel">Choose Your Charity</h3>
+        <h4>10% of payout will be donated to this charity</h4>
+        <p>Income Inequality, Water, Education, Health, Environment</p>
+      </div>
+        <hr>
+            <%= simple_form_for @bet do |f| %>
+              <%= f.input :charity  %>
+              <%= f.submit class: 'btn btn-primary', value: 'Proceed to payout' %>
+            <% end %>
+        <hr>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

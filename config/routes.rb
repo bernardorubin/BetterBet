@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :currencies, only: :index
 
 
-  resources :bets, only: [:new, :index, :show, :create]
+  resources :bets, only: [:new, :index, :show, :create, :update]
 
   # resources :questions, shallow: true do
   #

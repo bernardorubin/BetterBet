@@ -1,12 +1,17 @@
 class BetsController < ApplicationController
   before_action :authenticate_user!
 
-  def addcharity
-    # display a modal to choose charities when state finished
-    # submit a form
-    # run this controller, save bet
+  def update
+    @bet = Bet.find params[:id]
+    @charity = params[:bet][:charity]
+    @portfolios = Portfolio.where(bet_id: @bet)
+    if @bet.update(charity:@charity)
+      redirect_to bet_path(@portfolios.first, bet_id: @bet), notice: 'Bet Updated'
+    else
+      redirect_to bet_path(@portfolios.first, bet_id: @bet), alert: 'Bet Not Updated'
+    end
   end
-  
+
   def index
     # All Bets
     if params[:user]
