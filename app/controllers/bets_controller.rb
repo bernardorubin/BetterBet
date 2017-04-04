@@ -6,7 +6,7 @@ class BetsController < ApplicationController
     # submit a form
     # run this controller, save bet
   end
-
+  
   def index
     # All Bets
     if params[:user]

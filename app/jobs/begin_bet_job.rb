@@ -26,7 +26,7 @@ class BeginBetJob < ApplicationJob
       @returnmax = @return_a.max
 
       @portfolios.each do |x|
-        if x.return == @returnmax && x.return != 0.0
+        if x.return == @returnmax && x.return != 1.0
           x.winner= true
           x.save
         end
