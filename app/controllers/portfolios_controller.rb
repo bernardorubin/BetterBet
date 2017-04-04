@@ -87,6 +87,11 @@ class PortfoliosController < ApplicationController
     if can? :manage, @portfolio
       service = Portfolios::CreateAnalysis.new portfolio: @portfolio
       if service.call
+        @ticker_array= []
+        @portfolio.tickers.each do |x|
+          @ticker_array << x.name
+        end
+        @tickers= @ticker_array.join(", ")
         @enddate = service.enddate
         @portfolio = service.portfolio
         @zip_fundamental = service.zip_fundamental
@@ -101,6 +106,7 @@ class PortfoliosController < ApplicationController
         @portfolio_last = service.portfolio_last
         @minimum = service.minimum
         @maximum = service.maximum
+        @feed = service.feed
       end
     end
   end

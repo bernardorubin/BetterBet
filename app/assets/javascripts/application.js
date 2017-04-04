@@ -22,6 +22,7 @@
 
 $(document).ready(function(){
   $('.toggleAnalysis').on('click', function(){
+
     $('.betHub, .toggleBet').slideToggle().promise().done(function(){
       $('.toggleAnalysis').parent().toggleClass('col-md-12');
       $('.toggleAnalysis').parent().toggleClass('col-md-4');
@@ -46,6 +47,17 @@ $(document).ready(function(){
     // color = "rgba(" + randomColor(0, 0) + "," + randomColor(40, 50) + "," + randomColor(50, 55) + "," + "1)"
     $('body').toggleClass('backgroundChange');
   });
+
+  $('.toggleNews').on('click', function(){
+    $(this).toggleClass('activated');
+    $('#news').slideToggle();
+    // function randomColor(base, upper) {
+    //   return Math.floor((Math.random() * upper) + base);
+    // }
+    // color = "rgba(" + randomColor(0, 0) + "," + randomColor(40, 50) + "," + randomColor(50, 55) + "," + "1)"
+    $('body').toggleClass('backgroundChange');
+  });
+
 
   $('.toggleTechnicals').on('click', function(){
     $(this).toggleClass('activated');

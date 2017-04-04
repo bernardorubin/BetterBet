@@ -8,6 +8,7 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS 💎 //////////////////////////////////////////////
+gem "feedjira"
 gem 'bootstrap-social-rails'
 gem 'omniauth-facebook'
 gem 'inherited_resources', '~> 1.7'
@@ -18,7 +19,7 @@ gem 'aasm'
 gem 'timezone'
 gem 'time_difference'
 gem 'groupdate'
-gem "binding_of_caller"
+# gem "binding_of_caller"
 gem 'validates_timeliness'
 gem 'chosen-rails'
 gem 'simple_form'

@@ -16,11 +16,53 @@ module Portfolios
     attribute :enddate, Date
     attribute :minimum, Float
     attribute :maximum, Float
+    attribute :feed, Feedjira::Parser::RSS
 
     # attribute :portfolio, Array
 
     def call
       do_everything
+      fetch_news
+    end
+
+    def fetch_news
+
+      @ticker_array= []
+
+
+      portfolio.tickers.each do |x|
+        @ticker_array << x.ticker
+      end
+
+      @tickers= @ticker_array.join(",")
+
+      url = "http://finance.yahoo.com/rss/headline?s=#{@tickers}"
+
+      begin
+        @feed = Feedjira::Feed.fetch_and_parse(url)
+      rescue Exception
+        begin
+          puts 'rescued1'
+          @feed = Feedjira::Feed.fetch_and_parse(url)
+        rescue Exception
+          begin
+            puts 'rescued2'
+            @feed = Feedjira::Feed.fetch_and_parse(url)
+          rescue Exception
+            begin
+              puts 'rescued3'
+              @feed = Feedjira::Feed.fetch_and_parse(url)
+            rescue Exception
+              puts 'rescued4'
+              @feed = Feedjira::Feed.fetch_and_parse(url)
+            end
+          end
+        end
+      end
+      #
+      # @feed.entries.each do |x|
+      #   puts x.title
+      # end
     end
 
 
@@ -31,6 +73,7 @@ module Portfolios
       @startdate = portfolio.startdate
       # NOT DRY
       @ticker_array= []
+
 
       portfolio.tickers.each do |x|
         @ticker_array << x.ticker

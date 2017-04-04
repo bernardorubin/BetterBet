@@ -47,16 +47,9 @@
 <div class="row">
   <div class="togglers toggleFundamentals btn-success hoverable title1 col-md-3"><h1>FUNDAMENTALS</h1> </div>
   <div class="togglers toggleTechnicals btn-success hoverable title1 col-md-3"><h1>TECHNICALS</h1> </div>
-  <div class="togglers btn-success hoverable title1 col-md-3" disabled><h1>NEWS</h1> </div>
+  <div class="togglers toggleNews btn-success hoverable title1 col-md-3" disabled><h1>NEWS</h1> </div>
   <div class="togglers btn-success hoverable title1 col-md-3" disabled><h1>GURU ADVICE</h1> </div>
 </div>
-
-
-<!-- RSS -->
-
-
-
-<!-- RSS -->
 
 <div id="fundamentals" style="display:none">
   <hr>
@@ -89,7 +82,19 @@
 </div>
 
 
-
+<div id="news" align="left" class="row" style="display:none">
+  <div class="container col-xs-10 col-xs-offset-1">
+    <hr>
+    <h1>Current news for <%= @tickers %></h1>
+    <h1><i class="fa fa-newspaper-o" aria-hidden="true"></i></h1>
+    <% @feed.entries.each do |x| %>
+      <h3><%= x.title  %></h3>
+      <p><%= x.summary %></p>
+      <%= link_to 'Go to Article', x.url %>
+      <br>
+    <% end %>
+  </div>
+</div>
 
 <div id="technicals" style="display:none">
   <hr>
