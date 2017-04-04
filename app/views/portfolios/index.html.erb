@@ -1,5 +1,6 @@
 <% if @bet_id.present? %>
-  <h1 class="title">Choose a Portfolio to close bet</h1>
+  <h1 class="title">Choose a Portfolio to Close Bet</h1>
+<h1><i class="fa fa-handshake-o fa-3x title" aria-hidden="true"></i></h1>
 <% else %>
 <h1 class="title">My Portfolios</h1>
 <h1><i class="fa fa-briefcase fa-3x title" aria-hidden="true"></i></h1>
@@ -16,7 +17,7 @@
         <th>Stocks in Portfolio</th>
         <th>Delete / See Bet State</th>
         <% if @bet_id.present?  %>
-          <th>Select a Portfolio to use in Bet</th>
+          <th>Select a Portfolio to Close Bet</th>
         <% end %>
       </tr>
     </thead>
@@ -38,7 +39,7 @@
           </td>
           <% if @bet_id.present? %>
             <% if !x.in_bet? %>
-            <td><%= link_to '<i class="fa fa-check-square-o" aria-hidden="true"></i>'.html_safe, bet_path(x, bet_id:@bet_id), class:"btn btn-success" %></td>
+            <td><%= link_to '<i class="fa fa-check-square-o" aria-hidden="true"></i> | Close Bet With This Portfolio'.html_safe, bet_path(x, bet_id:@bet_id), class:"btn btn-success" %></td>
             <% else  %>
             <td><i class="fa fa-line-chart" aria-hidden="true"></i> Already in an Active Bet</td>
             <% end %>

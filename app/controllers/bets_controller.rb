@@ -6,7 +6,7 @@ class BetsController < ApplicationController
     @charity = params[:bet][:charity]
     @portfolios = Portfolio.where(bet_id: @bet)
     if @bet.update(charity:@charity)
-      redirect_to bet_path(@portfolios.first, bet_id: @bet), notice: 'Bet Updated'
+      redirect_to bet_path(@portfolios.first, bet_id: @bet), notice: 'Charity Chosen'
     else
       redirect_to bet_path(@portfolios.first, bet_id: @bet), alert: 'Bet Not Updated'
     end
@@ -22,8 +22,10 @@ class BetsController < ApplicationController
         @bets << Bet.find(x.bet_id)
       end
     else
-      @bets = Bet.all.posted.latest_first
-      @bets += Bet.all.taken.latest_first
+      @bets =  Bet.taken + Bet.posted
+      # Bet.taken.latest_first
+      @bets.sort_by &:created_at
+      @bets.reverse!
     end
     # TODO and state open add scope last first
   end

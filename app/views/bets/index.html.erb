@@ -15,7 +15,7 @@
         <th>Time Until Bet Ends</th>
         <th>Amount</th>
         <th>Stocks in Portfolio</th>
-        <th>Take Bet</th>
+        <th>Take/See Bet</th>
         <th>Status</th>
       </tr>
     </thead>
@@ -24,9 +24,18 @@
         <tr>
           <td> <% user =  User.find x.portfolios.first.user_id  %>
           <%= user.display_name %></td>
-          <td><%= TimeDifference.between(DateTime.current, x.startdate).humanize %></td>
-          <td><%= TimeDifference.between(DateTime.current, x.enddate).humanize %></td>
+          <% if  x.in_progress? %>
+            <td>Bet has begun!</td>
+            <td><%= TimeDifference.between(DateTime.current, x.enddate).humanize %></td>
+          <% elsif x.finished? %>
+          <td>Bet Finished</td>
+          <td>Bet Finished</td>
+          <% else %>
+            <td><%= TimeDifference.between(DateTime.current, x.startdate).humanize %></td>
+            <td><%= TimeDifference.between(DateTime.current, x.enddate).humanize %></td>
+          <% end  %>
           <td><%= number_to_currency(x.amount) %></td>
+
           <td>
             <% x.portfolios.each do |r| %>
                   <% r.tickers.each do |ticker| %>
@@ -34,7 +43,11 @@
               <% end %>
             <% end  %>
           </td>
-          <td><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i>'.html_safe, user_portfolios_path(user_id: current_user, bet_id: x.id), class:"btn btn-success btn-sm" %></td>
+          <% if x.in_progress? || x.finished? || x.canceled? %>
+            <td><%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, bet_path(x.portfolios.first, bet_id: x.id), class:"btn btn-warning btn-sm" %></td>
+          <% else %>
+            <td><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> | Participate in Bet'.html_safe, user_portfolios_path(user_id: current_user, bet_id: x.id), class:"btn btn-success btn-sm" %></td>
+          <% end %>
           <td><%= x.aasm_state %></td>
         </tr>
       <% end %>

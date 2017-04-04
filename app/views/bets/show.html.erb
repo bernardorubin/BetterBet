@@ -28,7 +28,7 @@ calculamos current date-->
 <h4>State <%= @bet.aasm_state %></h4>
 <%if @bet.posted? || @bet.taken? %>
 <hr>
-<h1><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> Participate in Bet'.html_safe, bets_path(bet_id: @bet, portfolio_id: @closeportfolio), method: :post, class:"btn btn-success btn-lg" %></h1>
+<h1><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> | Participate in Bet &nbsp; &nbsp;'.html_safe, bets_path(bet_id: @bet, portfolio_id: @closeportfolio), method: :post, class:"btn btn-success btn-lg" %></h1>
 <% end  %>
 <hr>
 <table class="table table-hover">
@@ -71,7 +71,7 @@ calculamos current date-->
 
 <% if @bet.charity %>
   <div class="col-xs-12">
-    <h3>Here is your charity</h3>
+    <h3>Bet Charity</h3>
     <p><%= @bet.charity %></p>
   </div>
 <% end %>
@@ -89,10 +89,12 @@ calculamos current date-->
         <p>Income Inequality, Water, Education, Health, Environment</p>
       </div>
         <hr>
+        <div class="" style="width:30%" align="center">
             <%= simple_form_for @bet do |f| %>
-              <%= f.input :charity  %>
+              <%= f.input :charity, input_html: {style: 'text-align:center'}  %>
               <%= f.submit class: 'btn btn-primary', value: 'Proceed to payout' %>
             <% end %>
+          </div>
         <hr>
       <div class="modal-footer">
       </div>
