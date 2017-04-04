@@ -8,6 +8,7 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS 💎 //////////////////////////////////////////////
+gem 'football__data'
 gem "feedjira"
 gem 'bootstrap-social-rails'
 gem 'omniauth-facebook'

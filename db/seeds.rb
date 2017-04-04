@@ -60,6 +60,13 @@ tickerArray = [["Apple", "AAPL"],["Google", "GOOGL"], ["Microsoft", "MSFT"],
 # "SAP",
 # "MMM",
 
+
+teamsArray = [["Manchester United", 66],["Tottenham", 73],["Borussia Dortmund", 4],["Real Madrid CF", 86],["Club Atlético de Madrid", 78], ["FC Barcelona", 81]]
+
+teamsArray.each do |x, y|
+  Soccerteam.create(name: x, team_id: y)
+end
+
 User.create(email: 'bernardorubin@gmail.com', password: 'chichi', timezone: 'America/Los_Angeles')
 
 tickerArray.each do |x, y|

@@ -22,6 +22,7 @@ class BetsController < ApplicationController
         @bets << Bet.find(x.bet_id)
       end
     else
+      @soccerbets = Soccerbet.posted
       @bets =  Bet.taken + Bet.posted
       # Bet.taken.latest_first
       @bets.sort_by &:created_at

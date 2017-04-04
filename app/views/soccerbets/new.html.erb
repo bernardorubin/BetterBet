@@ -1,0 +1,6 @@
+<p>Choose a Team</p>
+
+<%= simple_form_for @soccerbet do |f| %>
+  <%= f.association :soccerteams, input_html: { class: 'chosen-select form-control' }, label_html: { class: 'col-xs-12' } %>
+  <%= f.submit class: 'btn btn-success btn-lg' %>
+<% end  %>

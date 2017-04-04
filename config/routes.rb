@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'soccerbets/index'
+
+  get 'soccerbets/new'
+
+  get 'sports/index'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'bets/index'
@@ -18,6 +24,7 @@ Rails.application.routes.draw do
   resources :portfolios, only: [:show, :new, :create, :update, :destroy]
   resources :currencies, only: :index
 
+  resources :soccerbets, only: [:index, :new, :create, :show, :update]
 
   resources :bets, only: [:new, :index, :show, :create, :update]
 
