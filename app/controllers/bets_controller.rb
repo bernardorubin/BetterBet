@@ -17,12 +17,14 @@ class BetsController < ApplicationController
     if params[:user]
       @user = User.find params[:user]
       @portfolios = @user.portfolios.where("bet_id IS NOT NULL")
+      @soccerbets = @user.soccerbets
+
       @bets = Array.new
       @portfolios.each do |x|
         @bets << Bet.find(x.bet_id)
       end
     else
-      @soccerbets = Soccerbet.posted
+      @soccerbets = Soccerbet.posted + Soccerbet.closed
       @bets =  Bet.taken + Bet.posted
       # Bet.taken.latest_first
       @bets.sort_by &:created_at

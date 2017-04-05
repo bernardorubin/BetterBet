@@ -95,8 +95,8 @@
                 <% @res = FootballData.fetch(:fixtures, "/", id: x.fixture_id) %>
                 <%= @res["fixture"]["homeTeamName"] %> | <%= @res["fixture"]["awayTeamName"] %>
               </td>
-              <% if x.in_progress? || x.finished? || x.canceled? %>
-                <td><%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, soccer_path(x), class:"btn btn-warning btn-sm" %></td>
+              <% if x.in_progress? || x.closed? || x.canceled?  || x.finished?%>
+                <td><%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, soccerbet_path(x), class:"btn btn-warning btn-sm" %></td>
               <% else %>
                 <td><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> | Participate in Bet'.html_safe, soccerbet_path(x, user_id: current_user), method: :patch, class:"btn btn-success btn-sm", data: {confirm:"are you sure?"} %></td>
               <% end %>

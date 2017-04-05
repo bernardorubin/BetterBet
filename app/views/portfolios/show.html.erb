@@ -87,11 +87,13 @@
     <hr>
     <h1>Current news for <%= @tickers %></h1>
     <h1><i class="fa fa-newspaper-o" aria-hidden="true"></i></h1>
-    <% @feed.entries.each do |x| %>
-      <h3><%= x.title  %></h3>
-      <p><%= x.summary %></p>
-      <%= link_to 'Go to Article', x.url %>
-      <br>
+    <% if @feed %>
+      <% @feed.entries.each do |x| %>
+        <h3><%= x.title  %></h3>
+        <p><%= x.summary %></p>
+        <%= link_to 'Go to Article', x.url %>
+        <br>
+      <% end %>
     <% end %>
   </div>
 </div>

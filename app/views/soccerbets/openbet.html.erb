@@ -1,0 +1,20 @@
+<h1 class="title">Current Bet</h1>
+<h1><i class="fa fa-soccer-ball-o fa-2x title" aria-hidden="true"></i></h1>
+<% if @soccerbet.closed? %>
+<div class="row">
+<div class="col-xs-12">
+  <h3>Time until Game begins</h3>
+  <%= TimeDifference.between(DateTime.current, @soccerbet.fixture_date).humanize %>
+</div>
+</div>
+<% else  %>
+  <p>Game Began</p>
+<% end  %>
+<hr>
+
+<p><%= @res["fixture"]["homeTeamName"] %></p>
+<p><%= @res["fixture"]["awayTeamName"] %></p>
+<% @res["fixture"].each_pair do |key, value| %>
+<p>Key: <%= key %> Value: <%= value %></p>
+<% end %>
+<p><%= @res %></p>

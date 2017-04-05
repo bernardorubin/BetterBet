@@ -26,9 +26,7 @@ module Portfolios
     end
 
     def fetch_news
-
       @ticker_array= []
-
 
       portfolio.tickers.each do |x|
         @ticker_array << x.ticker
@@ -36,7 +34,7 @@ module Portfolios
 
       @tickers= @ticker_array.join(",")
 
-      url = "http://finance.yahoo.com/rss/headline?s=#{@tickers}"
+      url = "http://finance.yahoo.com/rss/industry?s=#{@tickers}"
 
       begin
         @feed = Feedjira::Feed.fetch_and_parse(url)

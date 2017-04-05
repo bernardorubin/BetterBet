@@ -313,6 +313,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    xml-simple (1.1.5)
     yahoo-finance (1.2.0)
       json
 
@@ -361,6 +362,7 @@ DEPENDENCIES
   validates_timeliness
   virtus
   web-console (>= 3.3.0)
+  xml-simple
   yahoo-finance (~> 1.2)
 
 RUBY VERSION

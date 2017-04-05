@@ -2,6 +2,8 @@ class Soccerbet < ApplicationRecord
   has_many :soccerteams
   attr_accessor :team
 
+  has_many :user_soccerbets, dependent: :destroy
+  has_many :users, through: :user_soccerbets
 
   include AASM
 

@@ -3,6 +3,10 @@ class Bet < ApplicationRecord
   attr_accessor :portfolio
   scope :latest_first, -> {order(created_at: :desc)}
   validates :amount, presence: true
+  
+  has_many :user_soccerbets, dependent: :destroy
+  has_many :soccerbets, through: :user_soccerbets
+
 
   include AASM
 

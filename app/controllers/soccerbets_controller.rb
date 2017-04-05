@@ -7,6 +7,7 @@ class SoccerbetsController < ApplicationController
     @user = User.find(current_user)
     @soccerbet = Soccerbet.new
   end
+
   def create
     # render json:params[:soccerbet][:soccerteam_ids].last
     @teamid = params[:soccerbet][:soccerteam_ids].last
@@ -18,11 +19,14 @@ class SoccerbetsController < ApplicationController
   end
 
   def show
+    @soccerbet = Soccerbet.find params[:id]
     if @soccerbet.closed?
-      render
+      @res = FootballData.fetch(:fixtures, "/", id: @soccerbet.fixture_id)
+      render :openbet
     else
       @teamid = Soccerteam.find params[:team_id]
       @res = FootballData.fetch(:teams, :fixtures, id: @teamid.team_id, timeFrame: 'n10')
+      get_user_time_zone
     end
   end
 
@@ -35,19 +39,36 @@ class SoccerbetsController < ApplicationController
       if @soccerbet.save
         @soccerbet.close!
         flash[:notice] = 'Bet Closed Successfully'
+        p = UserSoccerbet.new
+        p.user_id = current_user.id
+        # TODO fix below for many users
+        p.soccerbet_id = @soccerbet.id
+        p.save
         redirect_to soccerbet_path
       end
     else
       @soccerbet.team_id1 = params[:soccerbet][:team]
       @soccerbet.fixture_id = params[:soccerbet][:fixture_id]
-      @soccerbet.fixture_date = params[:soccerbet][:fixture_date].to_datetime
+      @soccerbet.fixture_date = params[:soccerbet][:fixture_date].to_datetime.utc
       @soccerbet.amount = params[:soccerbet][:amount]
       @soccerbet.user_id1 = current_user.id
       if @soccerbet.save
         @soccerbet.post!
         flash[:notice] = 'Bet posted successfully'
+        p = UserSoccerbet.new
+        p.user_id = current_user.id
+        # TODO fix below for many users
+        p.soccerbet_id = @soccerbet.id
+        p.save
         redirect_to bets_path
       end
     end
   end
+
+  private
+
+  def get_user_time_zone
+    @timezone = Timezone[current_user.timezone]
+  end
+
 end

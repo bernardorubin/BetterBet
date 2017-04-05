@@ -26,9 +26,8 @@ calculamos current date-->
 </div>
 </div>
 <h4>State <%= @bet.aasm_state %></h4>
-<%if @bet.posted? || @bet.taken? %>
-<hr>
-<h1><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> | Participate in Bet &nbsp; &nbsp;'.html_safe, bets_path(bet_id: @bet, portfolio_id: @closeportfolio), method: :post, class:"btn btn-success btn-lg" %></h1>
+<%if @bet.posted? %>
+  <h1><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> | Participate in Bet &nbsp; &nbsp;'.html_safe, bets_path(bet_id: @bet, portfolio_id: @closeportfolio), method: :post, class:"btn btn-success btn-lg" %></h1>
 <% end  %>
 <hr>
 <table class="table table-hover">

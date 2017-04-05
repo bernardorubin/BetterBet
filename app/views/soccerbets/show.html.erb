@@ -16,7 +16,8 @@
       <% @res["fixtures"].each do |x| %>
         <%= simple_form_for @soccerbet do |f| %>
           <tr>
-            <td><%= x["date"] %></td>
+            <td><%=@timezone.utc_to_local(x["date"].to_datetime.utc).strftime("%Y-%m-%d %l:%M %p") %>
+            </td>
             <td>
               <%= x["homeTeamName"] %>
             </td>

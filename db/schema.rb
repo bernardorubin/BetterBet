@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404193834) do
+ActiveRecord::Schema.define(version: 20170404224119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,15 @@ ActiveRecord::Schema.define(version: 20170404193834) do
     t.index ["user_id"], name: "index_user_portfolios_on_user_id", using: :btree
   end
 
+  create_table "user_soccerbets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "soccerbet_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["soccerbet_id"], name: "index_user_soccerbets_on_soccerbet_id", using: :btree
+    t.index ["user_id"], name: "index_user_soccerbets_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",                    null: false
     t.string   "encrypted_password",     default: "",                    null: false
@@ -145,4 +154,6 @@ ActiveRecord::Schema.define(version: 20170404193834) do
   add_foreign_key "portfolios", "bets"
   add_foreign_key "portfolios", "users"
   add_foreign_key "user_portfolios", "users"
+  add_foreign_key "user_soccerbets", "soccerbets"
+  add_foreign_key "user_soccerbets", "users"
 end

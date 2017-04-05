@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+   has_many :user_soccerbets, dependent: :destroy
+   has_many :soccerbets, through: :user_soccerbets
+
   has_many :portfolios, dependent: :destroy
 # has_many bets through portfolios
 # dependent destroy?
