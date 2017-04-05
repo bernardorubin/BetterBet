@@ -19,10 +19,14 @@
             <td><%=@timezone.utc_to_local(x["date"].to_datetime.utc).strftime("%Y-%m-%d %l:%M %p") %>
             </td>
             <td>
-              <%= x["homeTeamName"] %>
+              <% @hometeam = Soccerteam.where(team_id: x["homeTeamId"]).first  %>
+              <%= image_tag @hometeam.image, style:'height:30px' %>
+              <%= @hometeam.name %>
             </td>
             <td>
-                <%= x["awayTeamName"] %>
+              <% @awayteam = Soccerteam.where(team_id: x["awayTeamId"]).first %>
+              <%= image_tag @awayteam.image, style:'height:30px' %>
+              <%= @awayteam.name %>
             </td>
             <%= f.hidden_field :fixture_id, value: "#{x["id"]}"   %>
             <%= f.hidden_field :fixture_date, value: "#{x["date"]}"   %>

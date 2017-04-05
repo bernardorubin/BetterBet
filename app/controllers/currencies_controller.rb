@@ -7,7 +7,7 @@ class CurrenciesController < ApplicationController
     @data2 = yahoo_client.historical_quotes("AAPL")
     @data3 = []
     @data2.each do |x|
-        @data3 << x.to_h
+      @data3 << x.to_h
     end
   end
 end

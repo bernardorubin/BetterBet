@@ -58,27 +58,14 @@ class SoccerbetsController < ApplicationController
       @soccerbet.team_id1 = params[:soccerbet][:team]
       @soccerbet.fixture_id = params[:soccerbet][:fixture_id]
 
-
-
       @soccerbet.save
-
-
 
       @res = FootballData.fetch(:fixtures, "/", id: @soccerbet.fixture_id)
 
-      @newteam1 = Soccerteam.new
-      @newteam1.name = @res["fixture"]["homeTeamName"]
-      @newteam1.team_id = @res["fixture"]["homeTeamId"]
-      @newteam1.save
-      @newteam2 = Soccerteam.new
-      @newteam2.name = @res["fixture"]["awayTeamName"]
-      @newteam2.team_id = @res["fixture"]["awayTeamId"]
-      @newteam2.save
-
-      if @soccerbet.team_id1 == @newteam1.team_id
-        @soccerbet.team_id2 = @newteam2.team_id
+      if @soccerbet.team_id1 == @res["fixture"]["homeTeamId"]
+        @soccerbet.team_id2 = @res["fixture"]["awayTeamId"]
       else
-        @soccerbet.team_id2 = @newteam1.team_id
+        @soccerbet.team_id2 = @res["fixture"]["homeTeamId"]
       end
 
       @soccerbet.fixture_date = params[:soccerbet][:fixture_date].to_datetime.utc
