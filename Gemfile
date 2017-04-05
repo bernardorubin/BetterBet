@@ -10,7 +10,7 @@ end
 # MY GEMS 💎 //////////////////////////////////////////////
 # gem 'nokogiri'
 gem 'football__data'
-gem 'xml-simple'
+# gem 'xml-simple'
 gem "feedjira"
 gem 'bootstrap-social-rails'
 gem 'omniauth-facebook'

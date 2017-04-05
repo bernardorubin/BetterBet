@@ -51,16 +51,17 @@ module Portfolios
               puts 'rescued3'
               @feed = Feedjira::Feed.fetch_and_parse(url)
             rescue Exception
-              puts 'rescued4'
-              @feed = Feedjira::Feed.fetch_and_parse(url)
+              begin
+                puts 'rescued4'
+                @feed = Feedjira::Feed.fetch_and_parse(url)
+              rescue Exception
+                puts 'rescued5'
+                @feed = Feedjira::Feed.fetch_and_parse(url)
+              end
             end
           end
         end
       end
-      #
-      # @feed.entries.each do |x|
-      #   puts x.title
-      # end
     end
 
 

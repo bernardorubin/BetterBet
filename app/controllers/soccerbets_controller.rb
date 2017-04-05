@@ -35,7 +35,8 @@ class SoccerbetsController < ApplicationController
 
     if params[:user_id]
       @soccerbet.user_id2 = current_user.id
-      # @soccerbet.team_id1 = params[:soccerbet][:team]
+      # FIX THIS
+      # @soccerbet.team_id2 = params[:soccerbet][:team]
       if @soccerbet.save
         @soccerbet.close!
         flash[:notice] = 'Bet Closed Successfully'
@@ -57,7 +58,6 @@ class SoccerbetsController < ApplicationController
         flash[:notice] = 'Bet posted successfully'
         p = UserSoccerbet.new
         p.user_id = current_user.id
-        # TODO fix below for many users
         p.soccerbet_id = @soccerbet.id
         p.save
         redirect_to bets_path

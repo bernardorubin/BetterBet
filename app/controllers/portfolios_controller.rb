@@ -56,8 +56,7 @@ class PortfoliosController < ApplicationController
       portfolio_params[:ticker_ids].each do |x|
         p = PortfolioTicker.new
         p.ticker_id = x
-        # TODO fix below for many users
-        p.portfolio_id = Portfolio.last.id
+        p.portfolio_id = @portfolio.id
         p.save
       end
       if @portfolio.tickers.present?

@@ -10,11 +10,18 @@
 <% else  %>
   <p>Game Began</p>
 <% end  %>
-<hr>
-
-<p><%= @res["fixture"]["homeTeamName"] %></p>
-<p><%= @res["fixture"]["awayTeamName"] %></p>
-<% @res["fixture"].each_pair do |key, value| %>
-<p>Key: <%= key %> Value: <%= value %></p>
+<h3>State</h3>
+<p><%= @soccerbet.aasm_state %></p>
+<h2>Users In the Bet</h2>
+<% @soccerbet.users.each do |x| %>
+  | <%= x.first_name %> |
 <% end %>
-<p><%= @res %></p>
+<hr>
+<h2>Teams</h2>
+<p><%= @res["fixture"]["homeTeamName"] %> | <%= @res["fixture"]["awayTeamName"] %></p>
+<h2>Fetched</h2>
+<% @res["fixture"].each_pair do |key, value| %>
+<p><%= key %> : <%= value %></p>
+<% end %>
+
+<%#= @res %>
