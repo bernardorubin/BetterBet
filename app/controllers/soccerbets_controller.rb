@@ -22,6 +22,16 @@ class SoccerbetsController < ApplicationController
     @soccerbet = Soccerbet.find params[:id]
     if @soccerbet.closed?
       @res = FootballData.fetch(:fixtures, "/", id: @soccerbet.fixture_id)
+       if @res["fixture"]["result"]["goalsHomeTeam"] == nil && @res["fixture"]["result"]["goalsAwayTeam"] == nil
+       elsif @res["fixture"]["result"]["goalsHomeTeam"] < @res["fixture"]["result"]["goalsAwayTeam"]
+         @soccerbet.winner = @res["fixture"]["result"]["goalsHomeTeam"]
+         @soccerbet.finish!
+         @soccerbet.save
+       else
+         @soccerbet.winner = @res["fixture"]["result"]["goalsHomeTeam"]
+         @soccerbet.finish!
+         @soccerbet.save
+       end
       render :openbet
     else
       @teamid = Soccerteam.find params[:team_id]
@@ -32,17 +42,14 @@ class SoccerbetsController < ApplicationController
 
   def update
     @soccerbet = Soccerbet.find params[:id]
-
     if params[:user_id]
       @soccerbet.user_id2 = current_user.id
-      # FIX THIS
-      # @soccerbet.team_id2 = params[:soccerbet][:team]
+
       if @soccerbet.save
         @soccerbet.close!
         flash[:notice] = 'Bet Closed Successfully'
         p = UserSoccerbet.new
         p.user_id = current_user.id
-        # TODO fix below for many users
         p.soccerbet_id = @soccerbet.id
         p.save
         redirect_to soccerbet_path
@@ -50,6 +57,30 @@ class SoccerbetsController < ApplicationController
     else
       @soccerbet.team_id1 = params[:soccerbet][:team]
       @soccerbet.fixture_id = params[:soccerbet][:fixture_id]
+
+
+
+      @soccerbet.save
+
+
+
+      @res = FootballData.fetch(:fixtures, "/", id: @soccerbet.fixture_id)
+
+      @newteam1 = Soccerteam.new
+      @newteam1.name = @res["fixture"]["homeTeamName"]
+      @newteam1.team_id = @res["fixture"]["homeTeamId"]
+      @newteam1.save
+      @newteam2 = Soccerteam.new
+      @newteam2.name = @res["fixture"]["awayTeamName"]
+      @newteam2.team_id = @res["fixture"]["awayTeamId"]
+      @newteam2.save
+
+      if @soccerbet.team_id1 == @newteam1.team_id
+        @soccerbet.team_id2 = @newteam2.team_id
+      else
+        @soccerbet.team_id2 = @newteam1.team_id
+      end
+
       @soccerbet.fixture_date = params[:soccerbet][:fixture_date].to_datetime.utc
       @soccerbet.amount = params[:soccerbet][:amount]
       @soccerbet.user_id1 = current_user.id

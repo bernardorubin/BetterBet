@@ -1,24 +1,30 @@
 <h1 class="title">Current Bet</h1>
 <h1><i class="fa fa-soccer-ball-o fa-2x title" aria-hidden="true"></i></h1>
-<% if @soccerbet.closed? %>
-<div class="row">
-<div class="col-xs-12">
-  <h3>Time until Game begins</h3>
-  <%= TimeDifference.between(DateTime.current, @soccerbet.fixture_date).humanize %>
-</div>
-</div>
+  <% if @soccerbet.closed? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Time until Game begins</h3>
+        <%= TimeDifference.between(DateTime.current, @soccerbet.fixture_date).humanize %>
+      </div>
+    </div>
 <% else  %>
   <p>Game Began</p>
 <% end  %>
 <h3>State</h3>
 <p><%= @soccerbet.aasm_state %></p>
 <h2>Users In the Bet</h2>
-<% @soccerbet.users.each do |x| %>
-  | <%= x.first_name %> |
-<% end %>
+<%= @soccerbet.users.first.first_name %> chose <%= @soccerbet.team_id1 %>
+<%= @soccerbet.users.last.first_name %> chose <%= @soccerbet.team_id2 %>
 <hr>
 <h2>Teams</h2>
-<p><%= @res["fixture"]["homeTeamName"] %> | <%= @res["fixture"]["awayTeamName"] %></p>
+<p><%= @res["fixture"]["homeTeamName"] %> id <%= @res["fixture"]["homeTeamId"] %> | <%= @res["fixture"]["awayTeamName"] %> id <%= @res["fixture"]["awayTeamId"] %></p>
+<h2>Result</h2>
+<%= @res["fixture"]["result"]["goalsHomeTeam"] %>
+<%= @res["fixture"]["result"]["goalsAwayTeam"] %>
+<% if @soccerbet.winner %>
+  Winner is <%= @soccerbet.winner %>
+<% end %>
+
 <h2>Fetched</h2>
 <% @res["fixture"].each_pair do |key, value| %>
 <p><%= key %> : <%= value %></p>

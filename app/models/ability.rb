@@ -16,6 +16,14 @@ class Ability
     can :manage, Portfolio do |q|
       q.user == user
     end
+
+    can :manage, Bet do |q|
+      q.user == user
+    end
+
+    can :manage, Soccerbet do |q|
+      q.user == user
+    end
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

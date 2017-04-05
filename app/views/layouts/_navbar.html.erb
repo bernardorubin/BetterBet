@@ -28,6 +28,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+        <li><a href=""><img src="<%= current_user.image %>" alt="" style="height:20px"></a></li>
         <li><%= link_to current_user.display_name, user_path %></li>
         <%# if current_user.is_admin == true %>
         <li><%# link_to "Admin Dashboard", admin_dashboard_index_path %></li>

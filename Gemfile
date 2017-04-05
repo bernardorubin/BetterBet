@@ -22,7 +22,7 @@ gem 'aasm'
 gem 'timezone'
 gem 'time_difference'
 gem 'groupdate'
-# gem "binding_of_caller"
+gem "binding_of_caller"
 gem 'validates_timeliness'
 gem 'chosen-rails'
 gem 'simple_form'

@@ -9,7 +9,7 @@ class Soccerbet < ApplicationRecord
 
   aasm whiny_transitions: false do
     state :draft, initial: true
-    state :posted, :closed, :in_progress, :finished, :canceled
+    state :posted, :closed, :finished, :canceled, :in_progress
 
     event :post do
       transitions from: :draft, to: :posted
@@ -23,12 +23,12 @@ class Soccerbet < ApplicationRecord
       transitions from: :posted, to: :canceled
     end
 
-    event :begin do
-      transitions from: :taken, to: :in_progress
-    end
+    # event :begin do
+    #   transitions from: :taken, to: :in_progress
+    # end
 
     event :finish do
-      transitions from: :in_progress, to: :finished
+      transitions from: :closed, to: :finished
     end
 
   end
