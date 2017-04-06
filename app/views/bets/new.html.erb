@@ -12,18 +12,23 @@
 t.datetime "startdate"
 t.datetime "enddate"
 calculamos current date-->
-<div class="container col-md-4 col-md-offset-4">
+<div class="container col-md-8 col-md-offset-2">
 <%= simple_form_for @bet do |f| %>
 <hr>
+<div class="row">  <i class="fa fa-calendar fa-2x" aria-hidden="true"></i></div>
+<div class="col-xs-6">
   <%= f.input :startdate, default: @defaultstartdate, label_html: {class: 'form-title'} %>
   <p>Default Start Time is in 2 hours (2 minutes)</p>
-<hr>
+  </div>
+
+<div class="col-xs-6">
   <%= f.input :enddate, default: @defaultenddate, label_html: {class: 'form-title'} %>
   <p>Default End Date is one week (3 minutes)</p>
+</div>
   <hr>
   <%= f.hidden_field :portfolio, value: @portfolio.id %>
   <%= f.input :amount, label_html: {class: 'form-title'}, input_html: {class: 'money-input'} %>
   <%= f.submit class: 'btn btn-primary', value: 'Create a Public Bet' %>
-  <%= f.submit class: 'btn btn-primary', value: 'Challenge a Friend Directly', name: 'challenge' %>
+  <%#= f.submit class: 'btn btn-primary', value: 'Challenge a Friend Directly', name: 'challenge' %>
 <% end %>
 </div>

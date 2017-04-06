@@ -14,6 +14,18 @@ tickerArray = [["Apple", "AAPL"],["Google", "GOOGL"], ["Microsoft", "MSFT"],
 ["Sony", "SNY"], ["HSBC", "HSBC"]
 
 ]
+
+
+# apple https://www.shareicon.net/download/128x128//2015/09/18/642803_apple_512x512.png
+# google https://www.shareicon.net/download/128x128//2015/09/25/107085_google_512x512.png
+# msft https://www.shareicon.net/download/128x128//2015/09/15/101548_microsoft_512x512.png
+# fbook https://www.shareicon.net/download/128x128//2016/07/02/634605_facebook_512x512.png
+# amzn https://www.shareicon.net/download/128x128//2016/10/18/844584_pay_512x512.png
+# alibaba https://www.shareicon.net/download/128x128//2015/09/01/94049_alibaba_512x512.png
+# tesla https://www.shareicon.net/download/128x128//2015/09/01/94010_tesla_512x512.png
+# sony https://www.shareicon.net/download/128x128//2015/09/01/93997_sony_512x512.png
+# hsbc https://www.shareicon.net/download/128x128//2016/07/08/117092_online_512x512.png
+
 # "BRK-A",
 # "JNJ",
 # "XOM",
@@ -71,10 +83,7 @@ tickerArray.each do |x, y|
 end
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
-
-
 # SEED TEAMS
-
 
 @res = FootballData.fetch(:competitions)
 

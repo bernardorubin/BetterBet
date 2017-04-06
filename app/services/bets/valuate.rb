@@ -12,21 +12,11 @@ module Bets
     def do_everything
       yahoo_client = YahooFinance::Client.new
 
-
-
       @ticker_array= []
-
-
 
       portfolio.tickers.each do |x|
         @ticker_array << x.ticker
       end
-
-      @super_array = []
-
-      # @ticker_array.each do |ticker|
-      #   @super_array << StockQuote::Stock.quote("#{ticker}",nil , nil, ['last_trade_price_only'])
-      # end
 
       @value_array = []
 
@@ -35,6 +25,13 @@ module Bets
       @data.each do |x|
         @value_array << x.last_trade_price
       end
+
+      # @super_array = []
+
+      # @ticker_array.each do |ticker|
+      #   @super_array << StockQuote::Stock.quote("#{ticker}",nil , nil, ['last_trade_price_only'])
+      # end
+
 
       # @super_array.each do |x|
       #   @value_array << x.last_trade_price_only

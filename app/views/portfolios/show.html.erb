@@ -1,5 +1,10 @@
 <h1 class="title">Portfolio Analysis</h1>
+<div>
+<% @portfolio.tickers.each do |x|  %>
+  <%= image_tag x.image, style:'max-height:60px' %> &nbsp; &nbsp; &nbsp;
+<% end  %>
 
+</div>
 <h4>Start Date - End Date</h4>
 <p><%= @portfolio.startdate %> - <%= @enddate %></p>
 <% if @portfolio.in_bet? %>
@@ -44,6 +49,129 @@
 
 
 
+<!-- Modal Video 1 -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Earnings Before Interest, Tax, Depreciation & Amortization</h4>
+      </div>
+<br>
+  <p>EBITDA is a measure of profits. While there is no legal requirement, according to generally accepted accounting principles (GAAP), for companies to disclose EBITDA, it can be worked out and reported using information found in a company's financial statements. <br> <br>
+    The earnings, tax and interest figures are found on the income statement, while the depreciation and amortization figures are normally found in the notes to operating profit or on the cash flow statement. The usual shortcut to calculate EBITDA is to start with operating profit, also called earnings before interest and tax (EBIT), and then add back depreciation and amortization. <br>
+  </p>
+      <video width="448" height="336" controls>
+        <source src="http://content.jwplatform.com/videos/BfWd7TwF-G9NhEyAa.mp4" type="video/mp4">
+
+      Your browser does not support the video tag.
+      </video>
+<br>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal Video 2 -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Price-Earnings Ratio</h4>
+      </div>
+<br>
+  <p>The price-earnings ratio (P/E Ratio) is the ratio for valuing a company that measures its current share price relative to its per-share earnings.
+
+The price-earnings ratio can be calculated as:
+
+Market Value per Share / Earnings per Share
+ <br> <br>
+ In essence, the price-earnings ratio indicates the dollar amount an investor can expect to invest in a company in order to receive one dollar of that company’s earnings. This is why the P/E is sometimes referred to as the multiple because it shows how much investors are willing to pay per dollar of earnings. If a company were currently trading at a multiple (P/E) of 20, the interpretation is that an investor is willing to pay $20 for $1 of current earnings.
+
+In general, a high P/E suggests that investors are expecting higher earnings growth in the future compared to companies with a lower P/E.
+ <br>
+  </p>
+      <video width="448" height="336" controls>
+        <source src="http://content.jwplatform.com/videos/uBU0AMdO-G9NhEyAa.mp4" type="video/mp4">
+
+      Your browser does not support the video tag.
+      </video>
+<br>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal Video 3 -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Short Ratio</h4>
+      </div>
+<br>
+  <p>
+    The short interest ratio is a sentiment indicator that is derived by dividing the short interest by the average daily volume for a stock. Also known as the days to cover ratio, it is used by both fundamental and technical traders to identify the prevailing sentiment the market has for a specific stock.
+
+
+ <br> <br>
+ Shorting a stock is the opposite of buying a stock. Specifically, it is the selling of a stock that is not owned by the investor. The goal of selling a stock short is to make money when it falls to a lower price. The investor is betting that the price of the stock will go down. Once the price goes down, the investor can buy the stock at the lower price without having to own the stock. The expectation is for the price of the stock to go down. Looked at in aggregate, short interest and the short interest ratio can provide clues about the level of bearish sentiment in the market.
+
+ <br>
+
+ <br>
+ <br>
+ When short interest grows, it means more investors are covering their positions because they are worried about and/or expect the price of company stock to go down. If a company's short interest increases by 20% in one month, it means there was a 20% increase in the number of investors that are betting on the stock price going down.
+
+The short interest ratio provides a number that is used by investors to determine how long it will take short sellers, as a number of days, to cover their entire position if the price of a stock begins to rise. The short interest ratio can also be applied to exchanges to determine the sentiment of the market as a whole. If an exchange has a high short interest ratio of around five or greater, this can be taken as a bearish signal, and vice versa.
+
+  </p>
+
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Video 4 -->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Market Capitalization</h4>
+      </div>
+<br>
+  <p>
+    Market capitalization refers the total dollar market value of a company's outstanding shares. Commonly referred to as "market cap," it is calculated by multiplying a company's shares outstanding by the current market price of one share. The investment community uses this figure to determine a company's size, as opposed to using sales or total asset figures.
+
+ <br> <br>
+ Using market capitalization to show the size of a company is important because company size is a basic determinant of various characteristics in which investors are interested, including risk. It is also easy to calculate. A company with 20 million shares selling at $100 a share would have a market cap of $2 billion.
+
+ <br>
+  </p>
+      <video width="448" height="336" controls>
+        <source src="http://content.jwplatform.com/videos/1lMzuLqL-G9NhEyAa.mp4" type="video/mp4">
+
+      Your browser does not support the video tag.
+      </video>
+<br>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="row">
   <div class="togglers toggleFundamentals btn-success hoverable title1 col-md-3"><h1>FUNDAMENTALS</h1> </div>
   <div class="togglers toggleTechnicals btn-success hoverable title1 col-md-3"><h1>TECHNICALS</h1> </div>
@@ -55,25 +183,26 @@
   <hr>
   <div class="row">
     <div class="col-md-3">
-      <h4>EBITDA</h4>
+      <h4><span class="btn btn-default" data-toggle="modal" data-target="#myModal1">EBITDA</span></h4>
+
         <% @zip_fundamental.each do |x, y| %>
           <%= x %> -  <%= y.ebitda %><br>
         <% end  %>
     </div>
     <div class="col-md-3">
-      <h4>PE Ratio</h4>
+    <h4><span class="btn btn-default" data-toggle="modal" data-target="#myModal2">P/E Ratio</span></h4>
         <% @zip_fundamental.each do |x, y| %>
           <%= x %> -  <%= y.pe_ratio %><br>
         <% end  %>
     </div>
     <div class="col-md-3">
-      <h4>Short Ratio</h4>
+<h4><span class="btn btn-default" data-toggle="modal" data-target="#myModal3">Short Ratio</span></h4>
         <% @zip_fundamental.each do |x, y| %>
           <%= x %> -  <%= y.short_ratio%><br>
         <% end  %>
     </div>
     <div class="col-md-3">
-      <h4>Market Cap</h4>
+<h4><span class="btn btn-default" data-toggle="modal" data-target="#myModal4">Market Cap</span></h4>
         <% @zip_fundamental.each do |x, y| %>
           <%= x %> -  <%= y.market_capitalization %><br>
         <% end  %>
@@ -138,8 +267,6 @@
     </p>
   </div>
   <h1>VARIATION CHART</h1>
-  <p>Can improve</p>
-
   <%= area_chart @data2 %>
 
   <h1>HUNDRED DOLLAR TEST</h1>
