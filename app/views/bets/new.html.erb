@@ -3,7 +3,7 @@
 <h4>Place Bet With current Portfolio Holding in equal proportions</h4>
 <div class="row">
 <% @name_array.each do |name|%>
-  <span class="btn btn-default"><%= name  %></span>
+  <span class="btn btn-default"><% @tick = Ticker.where(name: name).first %><%= image_tag @tick.image, style:'height:20px' %>&nbsp; &nbsp; <%= name %></span>
 <% end  %>
 <!--  TODO Add weighted portfolios-->
 </div>

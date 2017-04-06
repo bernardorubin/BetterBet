@@ -27,7 +27,7 @@
           <td><%= link_to '<i class="fa fa-line-chart" aria-hidden="true"></i>'.html_safe, portfolio_path(x), class:"btn btn-success" %></td>
           <td>
             <% x.tickers.each do |x|%>
-              <span class="btn btn-default btn-sm"><%= x.name %></span>
+              <span class="btn btn-default btn-sm"><%= image_tag x.image, style:'height:20px' %>&nbsp; &nbsp;<%= x.name %></span>
             <% end  %>
           </td>
           <td>

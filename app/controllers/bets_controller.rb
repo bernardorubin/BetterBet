@@ -13,12 +13,10 @@ class BetsController < ApplicationController
   end
 
   def index
-    # All Bets
     if params[:user]
       @user = User.find params[:user]
       @portfolios = @user.portfolios.where("bet_id IS NOT NULL")
       @soccerbets = @user.soccerbets
-
       @bets = Array.new
       @portfolios.each do |x|
         @bets << Bet.find(x.bet_id)

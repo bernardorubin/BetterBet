@@ -1,8 +1,10 @@
-<h1 class="title">Portfolio Analysis</h1>
+<h1 class="title"><i class="fa fa-briefcase" aria-hidden="true"></i> | Portfolio Analysis</h1>
 <div>
-<% @portfolio.tickers.each do |x|  %>
-  <%= image_tag x.image, style:'max-height:60px' %> &nbsp; &nbsp; &nbsp;
-<% end  %>
+  <div class="image-container">
+    <% @portfolio.tickers.each do |x|  %>
+      <%= image_tag x.image, style:'max-height:60px' %> &nbsp; &nbsp; &nbsp;
+    <% end  %>
+  </div>
 
 </div>
 <h4>Start Date - End Date</h4>
@@ -241,6 +243,18 @@ The short interest ratio provides a number that is used by investors to determin
     <!-- <%#= @super_duper_array[index].first.symbol %> -- <%#= @stdev_array[index].round(2) %> <br> -->
   <%# end %>
   <div class="row">
+    <h1>HUNDRED DOLLAR TEST</h1>
+    <p>If You invested 100 dollars at the beginning, today you would have </p>
+    <p><strong>Portfolio Return >><%= (@portfolio_last - 100).round(2)  %> % </strong> <br>
+      <% @zip_dollars.each do |x , y| %>
+        <%= x %> -- <%= y.round(2) %> <br>
+      <% end  %>
+
+      <%# @super_dollars_at_end_array.each_with_index do |x, index| %>
+        <!-- <%#= @super_duper_array[index].first.symbol %> -at beginning, today you would have- <%#= @super_dollars_at_end_array[index].round(2) %> <br> -->
+      <%# end %>
+    </p>
+    <%= line_chart @data3, min: @minimum, max: @maximum %>
     <div class="col-sm-6">
       <h1>VARIATION COEFFICIENT</h1>
       <p>The higher the riskier</p>
@@ -267,26 +281,16 @@ The short interest ratio provides a number that is used by investors to determin
     </p>
   </div>
   <h1>VARIATION CHART</h1>
+  <p>Displays indexed standard deviation</p>
   <%= area_chart @data2 %>
 
-  <h1>HUNDRED DOLLAR TEST</h1>
-  <p>If You invested 100 dollars at the beginning, today you would have </p>
-  <p><strong>Portfolio Return >><%= (@portfolio_last - 100).round(2)  %> % </strong> <br>
-    <% @zip_dollars.each do |x , y| %>
-      <%= x %> -- <%= y.round(2) %> <br>
-    <% end  %>
 
-    <%# @super_dollars_at_end_array.each_with_index do |x, index| %>
-      <!-- <%#= @super_duper_array[index].first.symbol %> -at beginning, today you would have- <%#= @super_dollars_at_end_array[index].round(2) %> <br> -->
-    <%# end %>
-  </p>
-  <%= line_chart @data3, min: @minimum, max: @maximum %>
 
 
   <h1>SORTINO Ratio</h1>
   <p>Eliminates upward volatily</p>
   <p>
-    A higher Sortino ratio is better. When looking at two similar investments, a rational investor would prefer the one with the higher Sortino ratio because it means that the investment is earning more return per unit of bad risk that it takes on.
+    A higher Sortino ratio is better. It means that the investment is earning more return per unit of bad risk that it takes on.
     <br>
     <% @zip_sortino.each do |x , y| %>
       <%= x %> -- <%= y.round(2) %> <br>

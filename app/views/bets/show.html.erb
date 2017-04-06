@@ -122,7 +122,7 @@
       <tr>
         <td><%= x.user.display_name %></td>
         <td><% x.tickers.each do |x| %>
-           <span class="btn btn-default btn-sm"><%= x.name %> </span>
+           <span class="btn btn-default btn-sm"><%= image_tag x.image, style:'height:20px' %>&nbsp; &nbsp;<%= x.name %> </span>
           <% end %>
         </td>
         <% if @bet.in_progress? || @bet.finished? %>
@@ -160,7 +160,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title" id="myModalLabel">Choose Your Charity</h3>
-        <h4>10% of payout will be donated to this charity</h4>
+        <h4>5% of payout will be donated to this charity</h4>
         <p>Income Inequality, Water, Education, Health, Environment</p>
       </div>
         <hr>

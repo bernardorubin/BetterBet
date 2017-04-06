@@ -9,13 +9,21 @@
 
 
 <ul class="nav nav-tabs nav-justified">
-  <li class="active"><a data-toggle="tab" href="#home"><h3>Stocks</h3></a></li>
-  <li><a data-toggle="tab" href="#menu1"><h3>Sports</h3></a></li>
-
+  <% if params[:sports]  %>
+    <li><a data-toggle="tab" href="#home"><h4>Stocks</h4></a></li>
+    <li class="active"><a data-toggle="tab" href="#menu1"><h4>Sports</h4></a></li>
+  <% else  %>
+    <li class="active"><a data-toggle="tab" href="#home"><h4>Stocks</h4></a></li>
+    <li><a data-toggle="tab" href="#menu1"><h4>Sports</h4></a></li>
+  <% end  %>
 </ul>
 
 <div class="tab-content">
-  <div id="home" class="tab-pane fade in active">
+    <% if params[:sports]  %>
+      <div id="home" class="tab-pane fade">
+    <% else %>
+      <div id="home" class="tab-pane fade in active">
+    <% end %>
     <div class="" style="text-align:left">
       <table class="table table-hover">
         <thead>
@@ -49,7 +57,7 @@
               <td>
                 <% x.portfolios.each do |r| %>
                       <% r.tickers.each do |ticker| %>
-                   <span class="btn btn-default btn-sm"><%= ticker.name %></span>
+                   <span class="btn btn-default btn-sm"><%= image_tag ticker.image, style:'height:20px' %>&nbsp; &nbsp;<%= ticker.name %></span>
                   <% end %>
                 <% end  %>
               </td>
@@ -65,13 +73,18 @@
       </table>
     </div>
   </div>
-  <div id="menu1" class="tab-pane fade">
+
+  <% if params[:sports]  %>
+    <div id="menu1" class="tab-pane fade in active">
+    <% else %>
+    <div id="menu1" class="tab-pane fade">
+    <% end %>
     <div class="" style="text-align:left">
       <table class="table table-hover">
         <thead>
           <tr>
             <th>UserName</th>
-            <th>Time Until Game Begins</th>
+            <th>Time Until Game Starts</th>
             <th>Amount</th>
             <th>Teams</th>
             <th>Take/See Bet</th>
@@ -101,7 +114,11 @@
               <% if x.in_progress? || x.closed? || x.canceled?  || x.finished?%>
                 <td><%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, soccerbet_path(x), class:"btn btn-warning btn-sm" %></td>
               <% else %>
-                <td><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> | Participate in Bet'.html_safe, soccerbet_path(x, user_id: current_user), method: :patch, class:"btn btn-success btn-sm", data: {confirm:"are you sure?"} %></td>
+                <td><%= link_to soccerbet_path(x, user_id: current_user), method: :patch, class:"btn btn-success btn-sm" do %>
+                        <i class="fa fa-handshake-o" aria-hidden="true"></i> | I bet
+                        <%= image_tag @awayteam.image, style:'height:25px' %> Will Win
+                    <% end %>
+                </td>
               <% end %>
               <td><%= x.aasm_state %></td>
             </tr>

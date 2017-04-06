@@ -78,7 +78,7 @@ class SoccerbetsController < ApplicationController
         p.user_id = current_user.id
         p.soccerbet_id = @soccerbet.id
         p.save
-        redirect_to bets_path
+        redirect_to bets_path(sports: true)
       end
     end
   end

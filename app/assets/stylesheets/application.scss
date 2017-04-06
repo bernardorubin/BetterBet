@@ -26,6 +26,14 @@
 @import "bootstrap-social";
 
 
+.image-container {
+  width: 30vw;
+  padding:10px;
+  background-color: transparentize(white, 0.1);
+  border: 1px solid rgba(42,161,152, 1);
+    box-shadow: inset 5px 5px 21px 0px rgba(0,0,0,0.75);
+}
+
 .main_title_container {
   position: absolute;
   top: 5vh;
@@ -191,7 +199,8 @@ body {
   background-color: rgba(42,161,152, .6);
   border: 1px solid #2AA198 !important;
   box-shadow: inset 10px 10px 21px 0px rgba(0,0,0,0.75);
-  border-bottom-right-radius: 60px;
+  border-bottom-right-radius: 80px;
+  border-bottom-left-radius: 80px;
 }
 .togglers{
   padding-bottom:18px;
@@ -377,7 +386,7 @@ text{
   transform: translate3d(0,0,0);
 }
 .main-example .count {
-  background: #202020;
+  background: #2AA198;
   color: #f8f8f8;
   display: block;
   font-family: 'Oswald', sans-serif;
