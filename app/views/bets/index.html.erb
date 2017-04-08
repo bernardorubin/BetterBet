@@ -38,7 +38,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @bets.each do |x| %>
+          <% @bets.reverse.each do |x| %>
             <tr>
               <td> <% user =  User.find x.portfolios.first.user_id  %>
               <%= user.display_name %></td>
@@ -116,7 +116,7 @@
               <% else %>
                 <td><%= link_to soccerbet_path(x, user_id: current_user), method: :patch, class:"btn btn-success btn-sm" do %>
                         <i class="fa fa-handshake-o" aria-hidden="true"></i> | I bet
-                        <%= image_tag @awayteam.image, style:'height:25px' %> Will Win
+                        <%= image_tag @awayteam.image, style:'height:20px' %> Wins
                     <% end %>
                 </td>
               <% end %>

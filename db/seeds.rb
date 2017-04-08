@@ -9,22 +9,27 @@
 
 
 
-tickerArray = [["Apple", "AAPL"],["Google", "GOOGL"], ["Microsoft", "MSFT"],
-["Facebook", "FB"], ["Amazon", "AMZN"], ["Alibaba", "BABA"],["Tesla", "TSLA"],
-["Sony", "SNY"], ["HSBC", "HSBC"]
+tickerArray = [["Apple", "AAPL", "https://www.shareicon.net/download/128x128//2015/09/18/642803_apple_512x512.png"],
+                ["Google", "GOOGL", "https://www.shareicon.net/download/128x128//2015/09/25/107085_google_512x512.png"],
+                ["Microsoft", "MSFT", "https://www.shareicon.net/download/128x128//2015/09/15/101548_microsoft_512x512.png"],
+                ["Facebook", "FB", "https://www.shareicon.net/download/128x128//2016/07/02/634605_facebook_512x512.png"],
+                ["Amazon", "AMZN", "https://www.shareicon.net/download/128x128//2016/10/18/844584_pay_512x512.png"],
+                ["Alibaba", "BABA", "https://www.shareicon.net/download/128x128//2015/09/01/94049_alibaba_512x512.png"],
+                ["Tesla", "TSLA", "https://www.shareicon.net/download/128x128//2015/09/01/94010_tesla_512x512.png"],
+                ["Sony", "SNY", "https://www.shareicon.net/download/128x128//2015/09/01/93997_sony_512x512.png"],
+                ["HSBC", "HSBC", "https://www.shareicon.net/download/128x128//2016/07/08/117092_online_512x512.png"]
+              ]
 
-]
 
-
-# apple https://www.shareicon.net/download/128x128//2015/09/18/642803_apple_512x512.png
-# google https://www.shareicon.net/download/128x128//2015/09/25/107085_google_512x512.png
-# msft https://www.shareicon.net/download/128x128//2015/09/15/101548_microsoft_512x512.png
-# fbook https://www.shareicon.net/download/128x128//2016/07/02/634605_facebook_512x512.png
-# amzn https://www.shareicon.net/download/128x128//2016/10/18/844584_pay_512x512.png
-# alibaba https://www.shareicon.net/download/128x128//2015/09/01/94049_alibaba_512x512.png
-# tesla https://www.shareicon.net/download/128x128//2015/09/01/94010_tesla_512x512.png
-# sony https://www.shareicon.net/download/128x128//2015/09/01/93997_sony_512x512.png
-# hsbc https://www.shareicon.net/download/128x128//2016/07/08/117092_online_512x512.png
+# apple
+# google
+# msft
+# fbook
+# amzn
+# alibaba
+# tesla
+# sony
+# hsbc
 
 # "BRK-A",
 # "JNJ",
@@ -78,8 +83,8 @@ tickerArray = [["Apple", "AAPL"],["Google", "GOOGL"], ["Microsoft", "MSFT"],
 
 User.create(email: 'bernardorubin@gmail.com', password: 'chichi', timezone: 'America/Los_Angeles')
 
-tickerArray.each do |x, y|
-  Ticker.create(name: x, ticker: y)
+tickerArray.each do |x, y, z|
+  Ticker.create(name: x, ticker: y, image: z)
 end
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 

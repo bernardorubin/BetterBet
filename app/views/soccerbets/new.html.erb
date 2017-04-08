@@ -1,6 +1,7 @@
 <h1 class="title">Choose a Team</h1>
+<h1><i class="fa fa-soccer-ball-o fa-3x title fa-spin" aria-hidden="true"></i></h1>
 
 <%= simple_form_for @soccerbet do |f| %>
   <%= f.association :soccerteams, input_html: { class: 'chosen-select form-control' }, label_html: { class: 'col-xs-12' } %>
-  <%= f.submit class: 'btn btn-success btn-lg' %>
+  <%= f.submit 'Search Games', class: 'btn btn-success btn-lg' %>
 <% end  %>

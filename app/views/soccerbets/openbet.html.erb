@@ -64,6 +64,7 @@
 <h2>Teams</h2>
 <p><%= @res["fixture"]["homeTeamName"] %> id <%= @res["fixture"]["homeTeamId"] %> | <%= @res["fixture"]["awayTeamName"] %> id <%= @res["fixture"]["awayTeamId"] %></p>
 <h2>Result</h2>
+<p>No result yet, the game hasn't started</p>
 <%= @res["fixture"]["result"]["goalsHomeTeam"] %>
 <%= @res["fixture"]["result"]["goalsAwayTeam"] %>
 <% if @soccerbet.winner %>

@@ -58,9 +58,10 @@ class BetsController < ApplicationController
 
         get_user_time_zone
 
-        @defaultstartdate = @timezone.utc_to_local(Time.current) + 2.minutes
-        @defaultenddate = @timezone.utc_to_local(Time.current) + 3.minutes
+        @dt = @timezone.utc_to_local(Time.current)
 
+        @defaultstartdate = @dt + 2.minutes
+        @defaultenddate = @dt + 3.minutes
       end
 
   end
