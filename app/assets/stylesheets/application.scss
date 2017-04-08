@@ -26,58 +26,39 @@
 @import "bootstrap-social";
 
 
-.image-container {
-  width: 30vw;
-  padding:10px;
-  background-color: transparentize(white, 0.1);
-  border: 1px solid rgba(42,161,152, 1);
-    box-shadow: inset 5px 5px 21px 0px rgba(0,0,0,0.75);
-}
-
+///////////////////HOME INDEX
 .main_title_container {
-  position: absolute;
+  position: relative;
   top: 5vh;
   right: 0px;
   background-color: #08181C;
   padding-left: 20vw;
   padding-right: 3vw;
-  border-bottom-left-radius: 40px;
+  border-bottom-left-radius: 00px;
   border: 1px solid white;
-  border-right: none;
 }
 
 .main_title_container_2 {
-  position: absolute;
-  top: 20vh;
-  right: 0px;
-  padding-right: 3vw;
-  width:45vw;
+  margin-top: 40px;
 }
 
-
-
 .main_title {
-  position: absolute;
+  position: relative;
   top: 14vh;
   right: 0px;
   text-align: right;
-  background-color: rgba(42,161,152, 1);
+  background-color: rgba(42,161,152, .8);
   border-radius: 0px;
-  border-bottom-left-radius: 60px;
   padding: 20px;
-  height: 35vh;
-  width:45vw;
+  height: 40vh;
+  width: 100%;
   padding-left: 40px;
   padding-right: 70px;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid white;
-  border-right: none;
-
-}
-
-.main_title {
   color: #08191D;
+
 }
 
 .parallax {
@@ -101,6 +82,29 @@
     background-size: cover;
 }
 
+//////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.image-container {
+  width: 30vw;
+  padding:10px;
+  background-color: transparentize(white, 0.1);
+  border: 1px solid rgba(42,161,152, 1);
+    box-shadow: inset 5px 5px 21px 0px rgba(0,0,0,0.75);
+}
 
 
 html {

@@ -18,6 +18,7 @@
 // require Chart.bundle
 //= require chartkick
 //= require bootstrap-sprockets
+//= require lodash
 
 
 $(document).ready(function(){

@@ -8,6 +8,7 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS 💎 //////////////////////////////////////////////
+gem 'lodash-rails'
 # gem 'nokogiri'
 gem 'football__data'
 # gem 'xml-simple'
