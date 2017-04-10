@@ -25,10 +25,14 @@
   </button>
   <hr>
   <%= link_to new_bet_path(@portfolio) do  %>
-    <span class="fa-stack fa-lg betFixed" data-toggle="tooltip" title="Bet" data-placement="top">
+  <div class="btn btn-success btn-lg">
+    <i class="fa fa-plus-square" aria-hidden="true"></i> | Create a Public bet with this Portfolio
+  </div>
+  <hr>
+    <!-- <span class="fa-stack fa-lg betFixed" data-toggle="tooltip" title="Create Bet" data-placement="top">
       <i class="fa fa-square fa-stack-2x"></i>
       <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
-    </span>
+    </span> -->
   <% end  %>
 <% end %>
 
@@ -175,10 +179,10 @@ The short interest ratio provides a number that is used by investors to determin
 
 
 <div class="row">
-  <div class="togglers toggleFundamentals btn-success hoverable title1 col-md-3"><h1>FUNDAMENTALS</h1> </div>
-  <div class="togglers toggleTechnicals btn-success hoverable title1 col-md-3"><h1>TECHNICALS</h1> </div>
-  <div class="togglers toggleNews btn-success hoverable title1 col-md-3" disabled><h1>NEWS</h1> </div>
-  <div class="togglers btn-success hoverable title1 col-md-3" disabled><h1>GURU ADVICE</h1> </div>
+  <div class="togglers toggleFundamentals btn-success hoverable title1 col-md-4"><h1>FUNDAMENTALS</h1> </div>
+  <div class="togglers toggleTechnicals btn-success hoverable title1 col-md-4"><h1>TECHNICALS</h1> </div>
+  <div class="togglers toggleNews btn-success hoverable title1 col-md-4" disabled><h1>NEWS</h1> </div>
+  <!-- <div class="togglers btn-success hoverable title1 col-md-3" disabled><h1>GURU ADVICE</h1> </div> -->
 </div>
 
 <div id="fundamentals" style="display:none">

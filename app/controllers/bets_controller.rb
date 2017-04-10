@@ -60,8 +60,8 @@ class BetsController < ApplicationController
 
         @dt = @timezone.utc_to_local(Time.current)
 
-        @defaultstartdate = @dt + 2.minutes
-        @defaultenddate = @dt + 3.minutes
+        @defaultstartdate = @dt + 2.hours
+        @defaultenddate = @dt + 7.days
       end
 
   end

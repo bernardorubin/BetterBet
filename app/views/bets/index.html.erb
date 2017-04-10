@@ -32,13 +32,11 @@
             <th>Time Until Bet Starts</th>
             <th>Time Until Bet Ends</th>
             <th>Amount</th>
-            <th>Stocks in Portfolio</th>
-            <th>Take/See Bet</th>
-            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           <% @bets.reverse.each do |x| %>
+
             <tr>
               <td> <% user =  User.find x.portfolios.first.user_id  %>
               <%= user.display_name %></td>
@@ -53,20 +51,24 @@
                 <td><%= TimeDifference.between(DateTime.current, x.enddate).humanize %></td>
               <% end  %>
               <td><%= number_to_currency(x.amount) %></td>
-
-              <td>
+              </tr>
+              <tr>
+              <td colspan="4">
                 <% x.portfolios.each do |r| %>
                       <% r.tickers.each do |ticker| %>
                    <span class="btn btn-default btn-sm"><%= image_tag ticker.image, style:'height:20px' %>&nbsp; &nbsp;<%= ticker.name %></span>
                   <% end %>
                 <% end  %>
               </td>
+
+            </tr>
+            <tr>
               <% if x.in_progress? || x.finished? || x.canceled? %>
-                <td><%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, bet_path(x.portfolios.first, bet_id: x.id), class:"btn btn-warning btn-sm" %></td>
+                <td colspan="4" style="border-bottom:1pt solid #2AA198;"><%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, bet_path(x.portfolios.first, bet_id: x.id), class:"btn btn-warning" %></td>
               <% else %>
-                <td><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> | Participate in Bet'.html_safe, user_portfolios_path(user_id: current_user, bet_id: x.id), class:"btn btn-success btn-sm" %></td>
+                <td colspan="4" style="border-bottom:1pt solid #2AA198;"><%= link_to '<i class="fa fa-handshake-o" aria-hidden="true"></i> | Participate in Bet'.html_safe, user_portfolios_path(user_id: current_user, bet_id: x.id), class:"btn btn-success", style:"width:100%" %></td>
               <% end %>
-              <td><%= x.aasm_state %></td>
+              <%#= x.aasm_state %>
             </tr>
           <% end %>
         </tbody>
@@ -86,9 +88,6 @@
             <th>UserName</th>
             <th>Time Until Game Starts</th>
             <th>Amount</th>
-            <th>Teams</th>
-            <th>Take/See Bet</th>
-            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -104,23 +103,27 @@
                 <td><%= TimeDifference.between(DateTime.current, x.fixture_date).humanize %></td>
               <% end  %>
               <td><%= number_to_currency(x.amount) %></td>
-              <td>
+              </tr>
+              <tr>
+              <td colspan="3" style="text-align:center">
               <% @hometeam = Soccerteam.where(team_id: x.team_id1).first %>
               <% @awayteam = Soccerteam.where(team_id: x.team_id2).first %>
 
 
                 <%= image_tag @hometeam.image, style:'height:25px' %>  <%= @hometeam.name  %> vs <%= @awayteam.name  %>  <%= image_tag @awayteam.image, style:'height:25px' %>
               </td>
+              </tr>
+              <tr>
               <% if x.in_progress? || x.closed? || x.canceled?  || x.finished?%>
-                <td><%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, soccerbet_path(x), class:"btn btn-warning btn-sm" %></td>
+                <td colspan="3"><%= link_to '<i class="fa fa-eye" aria-hidden="true"></i>'.html_safe, soccerbet_path(x), class:"btn btn-warning", style:"width:100%" %></td>
               <% else %>
-                <td><%= link_to soccerbet_path(x, user_id: current_user), method: :patch, class:"btn btn-success btn-sm" do %>
+                <td colspan="3"><%= link_to soccerbet_path(x, user_id: current_user), method: :patch, class:"btn btn-success", style:"width:100%" do %>
                         <i class="fa fa-handshake-o" aria-hidden="true"></i> | I bet
                         <%= image_tag @awayteam.image, style:'height:20px' %> Wins
                     <% end %>
                 </td>
               <% end %>
-              <td><%= x.aasm_state %></td>
+            <%#= x.aasm_state %>
             </tr>
           <% end %>
         </tbody>

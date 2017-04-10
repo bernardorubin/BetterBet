@@ -23,7 +23,7 @@ module Bets
       @data = yahoo_client.quotes(@ticker_array, [:symbol, :last_trade_price, :previous_close, :ask, :bid])
 
       @data.each do |x|
-        @value_array << x.last_trade_price.to_f + rand(1..9).to_f
+        @value_array << x.last_trade_price.to_f
       end
 
 

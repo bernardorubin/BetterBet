@@ -7,29 +7,31 @@
 <% end %>
 
 <h4>You own <%= pluralize(@portfolios.count, "portfolio")  %></h4>
-<%= link_to 'Create New Portfolio', new_portfolio_path, class: 'btn btn-default' %>
+<%= link_to '<i class="fa fa-plus" aria-hidden="true"></i> | Create New Portfolio'.html_safe, new_portfolio_path, class: 'btn btn-success' %>
+<h4>Or</h4>
+<h4>Select an already existing portfolio below</h4>
 <hr>
 
   <table class="table table-hover">
     <thead>
       <tr>
         <th>Analyze</th>
-        <th>Stocks in Portfolio</th>
-        <th>Delete / See Bet State</th>
+
+        <th style="display:none">Stocks in Portfolio</th>
+
         <% if @bet_id.present?  %>
-          <th>Select a Portfolio to Close Bet</th>
+        <th>Select a Portfolio to Close Bet</th>
+        <% else %>
+        <th>Delete / See Bet State</th>
         <% end %>
       </tr>
     </thead>
     <tbody>
       <% @portfolios.each do |x| %>
         </tr>
-          <td><%= link_to '<i class="fa fa-line-chart" aria-hidden="true"></i>'.html_safe, portfolio_path(x), class:"btn btn-success" %></td>
-          <td>
-            <% x.tickers.each do |x|%>
-              <span class="btn btn-default btn-sm"><%= image_tag x.image, style:'height:20px' %>&nbsp; &nbsp;<%= x.name %></span>
-            <% end  %>
-          </td>
+          <td><%= link_to '<i class="fa fa-line-chart" aria-hidden="true"></i>'.html_safe, portfolio_path(x), class:"btn btn-secondary" %></td>
+        <% if @bet_id.present?  %>
+        <% else  %>
           <td>
             <% if x.in_bet?  %>
               <%= link_to '<i class="fa fa-bar-chart" aria-hidden="true"></i> Currently Active'.html_safe, bet_path(x, bet_id: x.bet_id), class:"btn btn-success" %>
@@ -37,15 +39,23 @@
               <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i> Delete'.html_safe , portfolio_path(x) , method: :delete, data: { confirm: 'Are you sure? '}, class:"btn btn-warning" %>
             <% end %>
           </td>
+          <% end  %>
           <% if @bet_id.present? %>
             <% if !x.in_bet? %>
-            <td><%= link_to '<i class="fa fa-check-square-o" aria-hidden="true"></i> | Close Bet With This Portfolio'.html_safe, bet_path(x, bet_id:@bet_id), class:"btn btn-success" %></td>
+            <td><%= link_to '<i class="fa fa-check-square-o" aria-hidden="true"></i> | Close Bet'.html_safe, bet_path(x, bet_id:@bet_id), class:"btn btn-success" %></td>
             <% else  %>
             <td><i class="fa fa-line-chart" aria-hidden="true"></i> Already in an Active Bet</td>
             <% end %>
           <% else %>
 
           <% end  %>
+          <tr>
+            <td colspan="2" style="border-bottom:1pt solid #2AA198;">
+              <% x.tickers.each do |x|%>
+              <span class="btn btn-default btn-sm"><%= image_tag x.image, style:'height:20px' %>&nbsp; &nbsp;<%= x.name %></span>
+              <% end  %>
+            </td>
+          </tr>
         </tr>
       <% end %>
     </tbody>

@@ -18,17 +18,17 @@ calculamos current date-->
 <div class="row">  <i class="fa fa-calendar fa-2x" aria-hidden="true"></i></div>
 <div class="col-xs-6">
   <%= f.input :startdate, default: @defaultstartdate, label_html: {class: 'form-title'} %>
-  <p>Default Start Time is in 2 hours (2 minutes)</p>
+  <p>Default Start Time is in 2 hours</p>
   </div>
 
 <div class="col-xs-6">
   <%= f.input :enddate, default: @defaultenddate, label_html: {class: 'form-title'} %>
-  <p>Default End Date is one week (3 minutes)</p>
+  <p>Default End Date is one week</p>
 </div>
   <hr>
   <%= f.hidden_field :portfolio, value: @portfolio.id %>
   <%= f.input :amount, label_html: {class: 'form-title'}, input_html: {class: 'money-input'} %>
-  <%= f.submit class: 'btn btn-primary', value: 'Create a Public Bet' %>
+  <%= f.submit class: 'btn btn-success btn-lg', value: 'Post Bet'%>
   <%#= f.submit class: 'btn btn-primary', value: 'Challenge a Friend Directly', name: 'challenge' %>
 <% end %>
 </div>
