@@ -26,14 +26,22 @@
   <hr>
   <%= link_to new_bet_path(@portfolio) do  %>
   <div class="btn btn-success btn-lg">
-    <i class="fa fa-plus-square" aria-hidden="true"></i> | Create a Public bet with this Portfolio
+    <i class="fa fa-plus-square" aria-hidden="true"></i> | Publish bet with this Portfolio
   </div>
+  <% end  %>
+  <hr>
+  <%= link_to bets_path do  %>
+  <div class="btn btn-success btn-lg">
+    <i class="fa fa-users" aria-hidden="true"></i> | Open bet hub
+  </div>
+  <% end %>
+
   <hr>
     <!-- <span class="fa-stack fa-lg betFixed" data-toggle="tooltip" title="Create Bet" data-placement="top">
       <i class="fa fa-square fa-stack-2x"></i>
       <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
     </span> -->
-  <% end  %>
+
 <% end %>
 
 <!-- Modal -->

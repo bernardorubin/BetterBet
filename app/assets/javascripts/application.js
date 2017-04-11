@@ -19,9 +19,13 @@
 //= require chartkick
 //= require bootstrap-sprockets
 //= require lodash
+//= require moment
+//= require bootstrap-datetimepicker
+
 
 
 $(document).ready(function(){
+
   $('.toggleAnalysis').on('click', function(){
 
     $('.betHub, .toggleBet').slideToggle().promise().done(function(){

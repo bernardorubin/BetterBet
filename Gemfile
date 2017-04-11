@@ -8,6 +8,9 @@ end
 # https://rubygems.org/gems/money-open-exchange-rates
 
 # MY GEMS 💎 //////////////////////////////////////////////
+# gem 'moment_timezone-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem 'momentjs-rails'
 gem 'lodash-rails'
 # gem 'nokogiri'
 gem 'football__data'

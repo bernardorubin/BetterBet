@@ -1,12 +1,16 @@
 class Bet < ApplicationRecord
   has_many :portfolios
   attr_accessor :portfolio
+  attr_accessor :parsed_time1
+  attr_accessor :parsed_time2
   scope :latest_first, -> {order(created_at: :desc)}
   validates :amount, presence: true
-  
+
   has_many :user_soccerbets, dependent: :destroy
   has_many :soccerbets, through: :user_soccerbets
 
+  # Date validation
+  # validates_date :startdate, :before => lambda { Date.today }
 
   include AASM
 

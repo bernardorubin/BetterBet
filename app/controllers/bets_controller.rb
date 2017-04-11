@@ -56,12 +56,12 @@ class BetsController < ApplicationController
   #
         @bet = Bet.new
 
-        get_user_time_zone
+        # get_user_time_zone
 
-        @dt = @timezone.utc_to_local(Time.current)
+        # @dt = @timezone.utc_to_local(Time.current)
 
-        @defaultstartdate = @dt + 2.hours
-        @defaultenddate = @dt + 7.days
+        @defaultstartdate = Time.now + 2.hours
+        @defaultenddate = Time.now + 7.days
       end
 
   end
@@ -71,7 +71,7 @@ class BetsController < ApplicationController
   def create
     # binding.pry
 
-    # Path when the bet is open
+
     if params[:bet_id]
       @portfolio = Portfolio.find(params[:portfolio_id])
       if @portfolio.in_bet?
@@ -100,25 +100,29 @@ class BetsController < ApplicationController
         end
         @bet = Bet.new(bet_params)
         # portfolio_params["startdate(1i)"].to_i, portfolio_params["startdate(2i)"].to_i, portfolio_params["startdate(3i)"].to_i
-        startdate = DateTime.new bet_params["startdate(1i)"].to_i,
-                              bet_params["startdate(2i)"].to_i,
-                              bet_params["startdate(3i)"].to_i,
-                              bet_params["startdate(4i)"].to_i,
-                              bet_params["startdate(5i)"].to_i
-
-        enddate = DateTime.new bet_params["enddate(1i)"].to_i,
-                              bet_params["enddate(2i)"].to_i,
-                              bet_params["enddate(3i)"].to_i,
-                              bet_params["enddate(4i)"].to_i,
-                              bet_params["enddate(5i)"].to_i
 
 
+        # startdate = DateTime.new bet_params["startdate(1i)"].to_i,
+        #                       bet_params["startdate(2i)"].to_i,
+        #                       bet_params["startdate(3i)"].to_i,
+        #                       bet_params["startdate(4i)"].to_i,
+        #                       bet_params["startdate(5i)"].to_i
+        #
+        # enddate = DateTime.new bet_params["enddate(1i)"].to_i,
+        #                       bet_params["enddate(2i)"].to_i,
+        #                       bet_params["enddate(3i)"].to_i,
+        #                       bet_params["enddate(4i)"].to_i,
+        #                       bet_params["enddate(5i)"].to_i
 
-        get_user_time_zone
 
-        @bet.startdate = @timezone.local_to_utc(startdate)
 
-        @bet.enddate = @timezone.local_to_utc(enddate)
+        # get_user_time_zone
+
+        @x = (params[:bet][:parsed_time1])
+        @y = (params[:bet][:parsed_time2])
+        @bet.startdate = @x
+        @bet.enddate = @y
+        # @bet.enddate = @timezone.local_to_utc(enddate)
 
 
         if @bet.save

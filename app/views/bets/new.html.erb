@@ -8,6 +8,10 @@
 <!--  TODO Add weighted portfolios-->
 </div>
 
+
+
+
+
 <!-- tenemos
 t.datetime "startdate"
 t.datetime "enddate"
@@ -17,12 +21,14 @@ calculamos current date-->
 <hr>
 <div class="row">  <i class="fa fa-calendar fa-2x" aria-hidden="true"></i></div>
 <div class="col-xs-6">
-  <%= f.input :startdate, default: @defaultstartdate, label_html: {class: 'form-title'} %>
+  <%= f.input :startdate, as: :date_time_picker, label_html: {class: 'form-title'}, input_html: {id: 'datetime1'} %>
+  <%= f.hidden_field :parsed_time1 %>
+    <%= f.hidden_field :parsed_time2 %>
   <p>Default Start Time is in 2 hours</p>
   </div>
 
 <div class="col-xs-6">
-  <%= f.input :enddate, default: @defaultenddate, label_html: {class: 'form-title'} %>
+  <%= f.input :enddate, as: :date_time_picker, label_html: {class: 'form-title'}, input_html: {id: 'datetime2'} %>
   <p>Default End Date is one week</p>
 </div>
   <hr>
@@ -32,3 +38,45 @@ calculamos current date-->
   <%#= f.submit class: 'btn btn-primary', value: 'Challenge a Friend Directly', name: 'challenge' %>
 <% end %>
 </div>
+
+
+
+<script type="text/javascript">
+    $(function () {
+      $('#new_bet').submit(function() {
+        var thisMoment1 = moment($('#datetime1').val());
+        var thisMoment2 = moment($('#datetime2').val());
+
+        if (thisMoment1.isValid()) {
+          $('#bet_parsed_time1').val(thisMoment1.toISOString());
+        }
+        if (thisMoment2.isValid()) {
+          $('#bet_parsed_time2').val(thisMoment2.toISOString());
+        }
+      });
+
+      // $('.form_datetime').datetimepicker({
+      //   autoclose: true,
+      //   todayBtn: true,
+      //   pickerPosition: "bottom-left",
+      //
+      // });
+      // $('.form_datetime').datetimepicker({
+      //     daysOfWeekDisabled: [0, 6],
+      //     defaultDate: "<%= @defaultstartdate %>"
+      // });
+      var default1 = moment().add(1, 'days');
+      $('#datetime1').datetimepicker({
+          daysOfWeekDisabled: [0, 6],
+          defaultDate: default1
+      });
+      var default2 = moment().add(2, 'days');
+      $('#datetime2').datetimepicker({
+          daysOfWeekDisabled: [0, 6],
+          defaultDate: default2
+      });
+        // $('#datetimepicker11').datetimepicker({
+        //     daysOfWeekDisabled: [0, 6]
+        // });
+    });
+</script>
