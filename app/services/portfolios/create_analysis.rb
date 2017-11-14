@@ -82,7 +82,7 @@ module Portfolios
 
       # b = Benchmark.measure do
       @ticker_array.each do |ticker|
-        @super_duper_array << StockQuote::Stock.history("#{ticker}", "#{@startdate}", "#{@enddate}")
+        @super_duper_array << StockQuote::Stock.quote("#{ticker}", "#{@startdate}", "#{@enddate}")
       end
       # end
       # puts "*** time: #{b}"

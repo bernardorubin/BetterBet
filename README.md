@@ -1,24 +1,56 @@
-# README
+# Better Bets
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This was my graduation final project at CodeCore.
 
-Things you may want to cover:
+It uses several advanced rails features.
 
-* Ruby version
+The app serves the purpose of a virtual bookkeeper.
 
-* System dependencies
+It has two main areas:
 
-* Configuration
+* Sports Bets
+* Stocks Bets
 
-* Database creation
+Stock Bets is the most complex system it allows the user to create his own stock
+portfolio after using the analysis tools available such as ->
 
-* Database initialization
+* Fetch historical stock prices and current financial data from their financial statements
+* See current news relevant to the company
+* See financial charts comparing any group of stocks selected by the user
+* Graph your portfolio's historical performance
 
-* How to run the test suite
+After the user chooses their portfolio of stocks they can publish it, set a wager and bet against other users.
 
-* Services (job queues, cache servers, search engines, etc.)
+Sports bets are similar in that you can see future fixtures for your favorite team and publish a bet that other users can see and bet against.
 
-* Deployment instructions
+App Built with these elements ->
 
-* ...
+* Rails
+
+* Active Job
+
+* Delayed Job
+
+* RSS Feed News Integration
+
+* Chartkick
+
+* State Machine
+
+* Devise for Authentication with OAuth Facebook Integration
+
+* Cancancan for Authorization
+
+To deploy ->
+
+* Install Ruby, and Rails
+
+* `bundle install`
+
+* `rails db:create`
+
+* `rails db:migrate`
+
+* `rails db:seed`
+
+* `rails s`

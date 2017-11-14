@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-# TODO FIX EMAIL STUFF
+      # TODO FIX EMAIL STUFF
       if auth.info.email?
       user.email = auth.info.email
       else
